@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Human Resources &amp; Recruiting WordPress Theme</title>
+		<link rel="icon" href='{{ asset("assets/wp-content/uploads/sites/38/2025/03/brand-icon.png")}}' sizes="32x32" />
+		<link rel="icon" href='{{ asset("assets/wp-content/uploads/sites/38/2025/03/brand-icon.png")}}' sizes="64x64" />
+		<link rel="shortcut icon" href='{{ asset("assets/wp-content/uploads/sites/38/2025/03/brand-icon.png")}}' />
+	
+		<script>
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/wordpress.zozothemes.com\/hirxpert\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.2"}};
+			/*! This file is auto-generated */
+			!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+		</script>
+		<link rel='stylesheet' id='zhf-admin-css' href='{{ asset("assets/wp-content/plugins/zozo-header-footer/admin/assets/css/zhf-meta-box8a54.css")}}?ver=1.0.0' media='all' />
+		<link rel='stylesheet' id='zozo-select2-css' href='{{ asset("assets/wp-content/plugins/zozo-header-footer/admin/target-rule/select28a54.css")}}?ver=1.0.0' media='all' />
+		<link rel='stylesheet' id='zozo-target-rule-css' href='{{ asset("assets/wp-content/plugins/zozo-header-footer/admin/target-rule/target-rule8a54.css")}}?ver=1.0.0' media='all' />
+		<link rel='stylesheet' id='bootstrap-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/bootstrap.min62d0.css")}}?ver=4.5.3' media='all' />
+		<link rel='stylesheet' id='owl-carousel-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/owl.carousel.min531b.css")}}?ver=2.3.4' media='all' />
+		<link rel='stylesheet' id='image-hover-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/image-hover.min5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='fontawesome-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/font-awesome1849.css")}}?ver=4.7.0' media='all' />
+		<link rel='stylesheet' id='themify-icons-css' href='{{ asset("assets/wp-content/plugins/zozo-header-footer/assets/css/themify-icons5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='bootstrap-icons-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/bootstrap-icons5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='cea-style-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/style5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='cea-shortcode-style-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/shortcode-styles5152.css")}}?ver=1.0' media='all' />
+		<style id='global-styles-inline-css'>
+			:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #FFF;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--dark-gray: #111;--wp--preset--color--light-gray: #767676;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+			:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+			:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+			:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+		</style>
+		<link rel='stylesheet' id='contact-form-7-css' href='{{ asset("assets/wp-content/plugins/contact-form-7/includes/css/stylesfc7a.css")}}?ver=6.0.6' media='all' />
+		<link rel='stylesheet' id='font-awesome-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/font-awesome.min1849.css")}}?ver=4.7.0' media='all' />
+		<link rel='stylesheet' id='sr7css-css' href='{{ asset("assets/wp-content/plugins/revslider/public/css/sr71676.css")}}?ver=6.7.31' media='all' />
+		<link rel='stylesheet' id='woocommerce-layout-css' href='{{ asset("assets/wp-content/plugins/woocommerce/assets/css/woocommerce-layout94cf.css")}}?ver=9.8.1' media='all' />
+		<link rel='stylesheet' id='woocommerce-smallscreen-css' href='{{ asset("assets/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen94cf.css")}}?ver=9.8.1' media='only screen and (max-width: 768px)' />
+		<link rel='stylesheet' id='woocommerce-general-css' href='{{ asset("assets/wp-content/plugins/woocommerce/assets/css/woocommerce94cf.css")}}?ver=9.8.1' media='all' />
+		<link rel='stylesheet' id='brands-styles-css' href='{{ asset("assets/wp-content/plugins/woocommerce/assets/css/brands94cf.css")}}?ver=9.8.1' media='all' />
+		<link rel='stylesheet' id='bootstrap-5-css' href='{{ asset("assets/wp-content/themes/hirxpert/assets/css/bootstrap.mince52.css")}}?ver=5.0.2' media='all' />
+		<link rel='stylesheet' id='hirxpert-woo-style-css' href='{{ asset("assets/wp-content/themes/hirxpert/assets/css/woo-styles5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='hirxpert-style-css' href='{{ asset("assets/wp-content/themes/hirxpert/style5152.css")}}?ver=1.0' media='all' />
+		<style id='hirxpert-style-inline-css'>
+			@media (min-width:1400px){.container,.container-lg,.container-md,.container-sm,.container-xl,.container-xxl{max-width:1300px}}.primary-color,.theme-color,a:focus,a:hover,a:active{color:#014e4e}.primary-bg,.theme-bg{background-color:#014e4e}.border-shape-top:before,.border-shape-top-left:before{background:linear-gradient(to bottom,#014e4e -24%,rgb(58 123 213 / 0))}.border-shape-top:after,.border-shape-top-left:after{background:linear-gradient(to top,#014e4e 0,rgb(58 123 213 / 0))}.footer-widget.contact-widget:before{background:linear-gradient(to right,#014e4e 0,rgb(184 151 128 / 6%))}.section-title-wrapper span.elementor-divider-separator{border-image:linear-gradient(to right,#014e4e,rgb(58 123 213 / 0));border-image-slice:1}.rtl .section-title-wrapper span.elementor-divider-separator{border-image:linear-gradient(to left,#014e4e,rgb(58 123 213 / 0));border-image-slice:1}.team-wrapper.team-style-default .team-inner .post-thumb:before{background:linear-gradient(to top,#014e4e -152%,255,255,255,0))}.bookly-progress-tracker .step{background-color:rgba(1,78,78,0.25)}.portfolio-classic-bg:after,.portfolio-classic-bg-up:after,.service-style-modern .service-inner .post-thumb:after{background-image:linear-gradient(178deg,rgba(1,78,78,0.48) 0,#014e4e 100%)}.calendar_wrap th,tfoot td,ul.nav.wp-menu > li > a:before,ul[id^="nv-primary-navigation"] li.button.button-primary > a,.menu li.button.button-primary > a,span.animate-bubble-box:after,span.animate-bubble-box:before,::selection,.owl-carousel button.owl-dot.active,.content-widgets .widget .menu-service-sidebar-menu-container ul > li > a:after,.comments-pagination.pagination .page-numbers.current,.portfolio-meta ul.nav.social-icons > li > a:hover,span.cea-popup-modal-dismiss.ti-close,blockquote:after,.wp-block-quote.is-large:after,.wp-block-quote.is-style-large:after,.wp-block-quote.is-style-large:not(.is-style-plain):after,.wp-block-quote.has-text-align-right:after,.wp-block-quote:after,p.quote-author::before,nav.post-nav-links .post-page-numbers.current,blockquote cite::before,.page .comments-wrapper.section-inner input.submit,.widget-area-right .widget p.wp-block-tag-cloud a.tag-cloud-link:hover,.widget .tagcloud > a:hover,.widget .tagcloud > a:focus,.widget .tagcloud > a:active,.section-title-wrapper.title-theme .title-wrap > *.sub-title:after,.cea-tab-elementor-widget.tab-style-2.cea-vertical-tab a.nav-item.nav-link:before,.portfolio-single .portfolio-video.post-video-wrap .video-play-icon,.portfolio-wrapper.portfolio-style-default .isotope-filter ul.nav li a:before,.isotope-filter ul.nav.m-auto.d-block li.active a,.call-us-team a.cea-button-link:hover,.call-us-team a.cea-button-link span.cea-button-num,.elementor-widget-ceaposts .blog-style-classic-pro .blog-inner .post-date a,.widget-area-left .contact-widget-info > p > span.bi,.hirxpert-content-wrap .post-tag > a:hover,.widget-area-right .contact-widget-info > p > span.bi,.portfolio-style-default .portfolio-inner .post-thumb:before,.portfolio-single .portfolio-sub-title,.testimonial-wrapper.testimonial-style-default .owl-item .testimonial-inner:hover:before,.timeline > li > .timeline-sep-title:before,.feature-box-style-5 .feature-box-wrapper .fbox-number,.header-navbar a.h-phone:before,.portfolio-style-classic .post-thumb.post-overlay-active:before,.bottom-meta .post-more:before,.blog-style-classic-pro .blog-inner ul.nav.top-meta-list li:before,.wp-block-file__button.wp-element-button,p.wp-block-tag-cloud a.tag-cloud-link:hover,.event-inner ul.nav.top-meta-list .post-date:before,a.hirxpert-toggle > span:first-child:before,a.hirxpert-toggle > span:last-child:before,a.hirxpert-toggle > span:nth-child(2):before,.team-wrapper.team-style-classic .team-inner:after,.cea-tab-elementor-widget .cea-tabs > a .cea-tab-title:before,.event-style-default .event-inner .event-address,.event-info-wrap h4,.charitable-donation-form .donation-amounts .donation-amount.selected label,aside.footer-widget-2 h5:before,.widget .widgettitle:before,.widget .widget-title:before,.widget-area-right .wp-block-group__inner-container h1:before,.widget-area-right .wp-block-group__inner-container h2:before,.widget-area-right .wp-block-group__inner-container h3:before,.widget-area-right .wp-block-group__inner-container h4:before,.widget-area-right .wp-block-group__inner-container h5:before,.widget-area-right .wp-block-group__inner-container h6:before,.widget-area-left .widget .widget-title:before,.owl-dots button.owl-dot,.single-post ul.nav.post-meta > li.post-category:before,.team-wrapper.team-style-classic .team-inner:before,.portfolio-style-classic .post-thumb.post-overlay-active:after,.elementor-widget-ceaposts .blog-inner .read-more:before,.bottom-meta .post-more .read-more:before,.portfolio-style-classic .portfolio-inner .post-overlay-items .post-icons a,.hirxpert-masonry .top-meta-wrap ul.nav.post-meta > li:before,.blog .hirxpert-masonry .post-meta .post-more a:before,.hirxpert-masonry .bottom-meta-wrap .post-meta .post-more a:before,.wp-block-columns.footer-call-to-action,.feature-box-default .cea-button-wrapper .cea-button-link:before,.portfolio-style-classic .portfolio-inner .post-title-head .post-title:before,.portfolio-style-classic-pro .portfolio-inner .post-overlay-items .post-icons a,.portfolio-style-modern .portfolio-inner .post-overlay-items .post-icons a,.cus-box-1 .feature-box-classic-pro .feature-box-inner .cea-button-content-wrapper .cea-button-text:before,.portfolio-style-default .portfolio-inner .post-overlay-items .post-icons a,.portfolio-style-default .portfolio-inner .post-category a,.btn-black .cea-button-wrapper .cea-button-link:hover:after,.comment-body .reply a.comment-reply-link:hover,.blog-style-classic .blog-inner .top-meta,.blog-style-modern.blog-normal-model .blog-inner .top-meta .post-date,.team-style-default .team-inner:hover .post-overlay-items > .team-social-wrap,.team-style-default .team-inner:hover .post-overlay-items > .team-social-wrap > ul,.blog-style-default.blog-normal-model .blog-inner .top-meta,.content-widgets-wrapper .widget_categories ul li a:before,.content-widgets-wrapper .widget_archive ul li a:before,.footer-widgets-wrap .widget_archive ul li a:before,.footer-widgets-wrap .widget_categories ul li a:before,.woocommerce ul.products li.product .onsale,.woocommerce span.onsale,.woocommerce ul.products li.product a.added_to_cart.wc-forward:hover,.woocommerce ul.products li.product .button,.woocommerce div.product .woocommerce-tabs ul.tabs li a,.woocommerce #content input.button,.woocommerce button.button.alt,.woocommerce #respond input#submit,.woocommerce a.button,.woocommerce button.button,.woocommerce input.button,.woocommerce-page #content input.button,.woocommerce-page #respond input#submit,.woocommerce-page a.button,.woocommerce-page button.button,.woocommerce-page input.button,.woocommerce input.button.alt,.woocommerce input.button.disabled,.woocommerce input.button:disabled[disabled],.cart_totals .wc-proceed-to-checkout a.checkout-button,.single-product.woocommerce .restaurt_ajax_add_to_cart,.woocommerce-MyAccount-navigation > ul li a:hover,.woocommerce-account .woocommerce-MyAccount-navigation > ul li.is-active a,.wp-block-woocommerce-customer-account a .wc-block-customer-account__account-icon,.wc-block-mini-cart__badge,.content-widgets-outer-wrapper .wc-block-grid .wc-block-grid__product-onsale,ul.nav.pagination.post-pagination > li > a,.service-wrapper.service-style-default .service-icon-img-wrap,.service-style-modern .service-inner .post-overlay-items .post-category a,.portfolio-style-classic .portfolio-inner .post-overlay-items .post-icons a:hover,.team-style-modern.team-slide-model .owl-carousel .owl-nav button.owl-prev:hover,.team-style-modern.team-slide-model .owl-carousel .owl-nav button.owl-next:hover,.single .row.team,.single.single-cea-team .team-other-details .team-details-icon,.elementor-progress-percentage,header.site-header ul.nav.wp-menu li > ul.sub-menu li a:before,.widget-area-right .zozo_social_widget ul.nav.social-icons > li > a:hover,.hirxpert-masonry .top-meta-wrap .post-date:hover,.single .hirxpert-content-wrap .post-inner .post-date:hover,.single.single-cea-service aside.content-widgets-outer-wrapper .widget-content .menu .menu-item a,blockquote,.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-large:not(.is-style-plain),.wp-block-quote.has-text-align-right,.wp-block-quote,.zozo-hf .zhf-menu-wrap .zhf-nav-menu .sub-menu > li > a:before,.portfolio-style-classic-pro .portfolio-inner:hover .post-details-outer .top-meta .post-category a:hover{background-color:#014e4e}.theme-color-bg,.icon-theme-color-bg,.flip-box-wrapper:hover .icon-theme-hcolor-bg,.contact-info-style-classic-pro .contact-info-title,.contact-info-wrapper.contact-info-style-classic:before,.testimonial-wrapper.testimonial-style-modern .testimonial-inner:after,.isotope-filter ul.nav li.active a:after,.isotope-filter ul.nav li a:after,.blog-wrapper.blog-style-modern .blog-inner .top-meta .post-category,.blog-wrapper .post-overlay-items .post-date a,.event-style-classic .top-meta .post-date,.blog-layouts-wrapper .post-overlay-items .post-date a,.portfolio-content-wrap .portfolio-title h3,.back-to-top:after,span.zozo-product-favoured,.charitable-donation-form .custom-donation-amount-wrapper label,.campaign-progress-bar .bar,.donate-button,.charitable-donation-amount-form .donation-amount.selected,.campaign-progress-bar .bar,.donate-button,.charitable-donation-amount-form .donation-amount.selected,.blog .hirxpert-masonry .post-meta .post-more a:hover:before,.hirxpert-masonry .bottom-meta-wrap .post-meta .post-more a:hover:before{background-color:#014e4e !important}.full-search-wrapper .search-form .input-group .btn:hover,.testimonial-style-list .testimonial-inner:after,ul.nav.post-meta > li span,.comment-metadata time,.comments-wrap span:before,.comment-body .reply a.comment-reply-link,.blog .hirxpert-masonry .post-meta .post-more a,h2.entry-title a:hover,.woocommerce-message::before,.woocommerce div.product p.price,.woocommerce div.product span.price,ul.pricing-features-list.list-group li:before,.doc-icon,.sidebar-broucher .icon-box a:hover,p.quote-author,.feature-box-wrapper .fbox-content a:hover,blockquote cite,.wp-block-quote cite,.wp-block-quote footer,.bottom-meta-wrap ul.nav.post-meta > li.post-date a:hover,.single-post .cus-img-menu .menu-item .widget .wp-block-image:hover figcaption a,.single-post blockquote cite,.single-post blockquote cite a,.content-widgets-wrapper .widget_categories ul li a:before,.content-widgets-wrapper .widget_archive ul li a:before,.content-widgets-wrapper .wp-block-categories li a:before,.cus-contact a:first-child,.pagination-single-inner > h6 > a:hover span.title,.hirxpert-masonry .bottom-meta-wrap .post-meta li.post-share-wrap .social-share a:hover i,.post-share-wrap ul.social-share > li > a:hover > i,.team-style-classic-pro .team-designation,.hirxpert-masonry .bottom-meta-wrap .post-meta .post-more a:hover,.widget-content-bx a i,.widget-area-left .contact-widget-info > p a:hover,.widget-area-right .contact-widget-info > p a:hover,.testimonial-style-default .testimonial-inner::after,.sticky-head.header-sticky .header-navbar a.h-phone:hover,.contact-widget-info > p > span.bi,.pricing-style-classic.pricing-table-wrapper:hover ul li:before,.widget-area-right .zozo_social_widget ul.nav.social-icons > li > a,.secondary-bar-inner .input-group-addon.zozo-mc.btn.btn-default,.blog-style-classic-pro .post-author a:hover > span.author-name,.contact-widget-info > p a:hover,.insta-footer-wrap .sub-title,.mobile-menu-floating ul.wp-menu ul.sub-menu li.menu-item.current-menu-ancestor.menu-item-has-children .sub-menu li.current-menu-item a,.widget-content-bx.w-address .bi,.campaign-loop.campaign-grid.campaign-grid-3 li.campaign a:hover h3,.blog-layouts-wrapper .blog-multi-layout-1 .cea-block-secondary .top-meta a i,.blog-layouts-wrapper .blog-multi-layout-1 .cea-block-primary .top-meta a i,.widget-area-right .wp-block-group__inner-container h1:after,.widget-area-right .wp-block-group__inner-container h2:after,.widget-area-right .wp-block-group__inner-container h3:after,.widget-area-right .wp-block-group__inner-container h4:after,.widget-area-right .wp-block-group__inner-container h5:after,.widget-area-right .wp-block-group__inner-container h6:after,.widget-area-left .widget .widget-title:after,aside.footer-widget-2 h5:after,.widget .widgettitle:after,.widget .widget-title:after,blockquote:before,.wp-block-quote.is-large:before,.wp-block-quote.is-style-large:before,.wp-block-quote.is-style-large:not(.is-style-plain):before,.wp-block-quote.has-text-align-right:before,.wp-block-quote:before,.sticky-head.header-sticky .header-navbar .header-titles > *.site-title a:hover,.single-cea-team .team-social-wrap ul.social-icons > li > a i,.portfolio-style-classic .owl-carousel .owl-item:hover:before,.flip-box-inner .cea-button-link.elementor-size-sm .cea-button-icon,.elementor-widget-ceaposts .blog-style-modern .blog-inner .post-date a i,.elementor-widget-ceaposts .blog-style-list .blog-inner .post-date a i,.blog-style-default .blog-inner .author-name:hover,.single.single-cea-team .team-other-details .media-body a:hover,.single.single-cea-team .team-other-details .media-body span.team-experience:hover,.feature-box-wrapper.feature-box-modern .fbox-content a:hover,.feature-box-wrapper.feature-box-classic .fbox-content a:hover,.team-style-classic .team-inner .team-designation,.single aside.content-widgets-outer-wrapper .widget-content .menu-service-sidebar-menu-container li.current-menu-item a,.zozo_social_widget ul.nav.social-icons > li > a:hover,.woocommerce div ul.products li.product .price,.shop_table.cart td.product-price .amount,.shop_table.cart td.product-subtotal .amount,.woocommerce table.shop_table td.product-name,.woocommerce-info::before,.shop_table tfoot td,.woocommerce table.shop_table td,.woocommerce:where(body:not(.woocommerce-uses-block-theme)) .woocommerce-breadcrumb a,.wp-block-woocommerce-customer-account a:hover,.wc-block-grid__product .wc-block-grid__product-price ins .woocommerce-Price-amount.amount,.wc-block-grid__product .wc-block-grid__product-title:hover,.wc-block-grid__product .wc-block-grid__product-price,.woocommerce .widget_block .wc-block-active-filters .wc-block-active-filters__clear-all,.wc-block-price-filter .wc-block-components-filter-reset-button,.service-style-default .service-inner .post-category a,.service-style-modern .service-inner:hover .post-overlay-items .post-category a,.portfolio-style-default .portfolio-inner .post-category a:hover,.portfolio-style-default .portfolio-inner .post-overlay-items .post-icons a:hover,.portfolio-style-classic .portfolio-inner .post-overlay-items .post-icons a,.cus-portfolio-classic .portfolio-style-classic .portfolio-inner .post-overlay-items .post-icons a,.cus-portfolio-classic .portfolio-style-classic .portfolio-inner .post-overlay-items .post-icons a:hover,.row.portfolio-details .col-sm-4 > .portfolio-meta span.portfolio-meta-icon,.testimonial-style-default .testimonial-inner .testimonial-rating,.team-wrapper.team-style-modern .team-inner .post-overlay-items .post-designation-head,.cus-tm-wrap .testimonial-style-default .testimonial-inner .testimonial-rating p i:before,.hirxpert-masonry .top-meta-wrap .post-date a,.single .hirxpert-content-wrap .post-inner .post-date a,.single.single-cea-service aside.content-widgets-outer-wrapper .widget-content .menu .menu-item a,.single.single-cea-service aside.content-widgets-outer-wrapper .widget-content .menu .menu-item a:hover,.single.single-cea-service aside.content-widgets-outer-wrapper .widget-content .menu .current-menu-item.menu-item a,.content-widgets-wrapper .content-widgets > .widget .hirxpert_latest_post_widget .side-item .side-item-text a:hover{color:#014e4e}.hirxpert-masonry .bottom-meta-wrap .post-meta li.post-share-wrap .social-share a:hover,.single-post ul.social-share > li > a:hover,.post-share-wrap ul.social-share > li > a,.wp-block-button.is-style-outline a.wp-block-button__link,.cea-tab-elementor-widget .cea-tabs > a.active .cea-tab-title,.woocommerce-page .theme-color,.hirxpert-masonry .bottom-meta-wrap .post-meta .post-more a,.feature-box-default .fbox-content a:hover,.portfolio-style-classic-pro .portfolio-inner .post-details-outer .top-meta .post-category a{color:#014e4e !important}.wp-block-woocommerce-mini-cart .wc-block-mini-cart__button:hover .wc-block-mini-cart__icon{color:#014e4e;fill:#014e4e}blockquote,.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-large:not(.is-style-plain),.wp-block-quote.has-text-align-right,.wp-block-quote,.woocommerce-message,.woocommerce #content div.product .woocommerce-tabs ul.tabs,.woocommerce div.product .woocommerce-tabs ul.tabs,.woocommerce-page #content div.product .woocommerce-tabs ul.tabs,.woocommerce-page div.product .woocommerce-tabs ul.tabs,.contact-form-wrapper span.wpcf7-form-control-wrap select:focus,.contact-form-wrapper span.wpcf7-form-control-wrap textarea:focus,.single-post .comments-wrapper.section-inner input:focus,.single-post .comments-wrapper.section-inner textarea:focus,.modal-popup-body input.wpcf7-form-control:focus,.modal-popup-body textarea.wpcf7-form-control:focus,.wp-block-search__input:focus,.mailchimp-wrapper .input-group input#zozo-mc-email:focus,.single-cea-testimonial .testimonial-info img,.cus-float-img .float-parallax img,.comments-wrapper.section-inner input:focus,.comments-wrapper.section-inner textarea:focus,.comments-pagination.pagination .page-numbers,.team-wrapper.team-style-default .team-inner > .post-thumb img.img-fluid.rounded-circle,.testimonial-wrapper.testimonial-style-list .post-thumb img,.timeline > li:hover .timeline-panel,nav.post-nav-links .post-page-numbers,.first-widget-abt,.zozo-booking-form-wrap .bookly-form select:focus,.zozo-booking-form-wrap .bookly-form input[type="text"]:focus,.zozo-booking-form-wrap .bookly-form input[type="number"]:focus,.zozo-booking-form-wrap .bookly-form input[type="password"]:focus,.zozo-booking-form-wrap .bookly-form textarea:focus,.wp-block-button.is-style-outline a.wp-block-button__link,form.post-password-form input:focus,.elementor-element.border-left-cls:before,form.form-inline.search-form .input-group > *.form-control:focus,.team-wrapper.team-style-default .team-inner:after,.charitable-form-fields input:focus,.single .content-widgets-wrapper .wp-block-search__input:focus,.single-cea-team .team-social-wrap ul.social-icons > li > a,.zozo_social_widget ul.nav.social-icons > li > a,.zozo_social_widget ul.nav.social-icons > li > a:hover,.mobile-menu-floating .search-form .search-field:focus,.widget.widget_search .search-form .search-field:focus,.woocommerce nav.woocommerce-pagination ul li a,.woocommerce nav.woocommerce-pagination ul li span,.woocommerce div.product div.images.woocommerce-product-gallery,.woocommerce div.product div.images .flex-control-thumbs li,.form-control:focus,.woocommerce form .form-row input.input-text:focus,.woocommerce form .form-row textarea:focus,.woocommerce form .form-row .input-text:focus,.woocommerce-page form .form-row .input-text:focus,.select2-container--default.select2-container--open.select2-container--below .select2-selection--single,ul.nav.pagination.post-pagination > li > a,.single-cea-team .team-social-wrap ul.social-icons > li > a,.error404-content .search-form .search-field:focus{border-color:#014e4e}.charitable-donation-form .donation-amount.selected,.charitable-donation-form .donation-amount.selected,.charitable-donation-amount-form .donation-amount.selected,.charitable-notice,.charitable-drag-drop-images li:hover a.remove-image,.supports-drag-drop .charitable-drag-drop-dropzone.drag-over,.cea-mailchimp-style-default input.form-control:focus,.cea-mailchimp-style-inline input.form-control:focus,.woocommerce-cart table.cart td.actions .coupon .input-text:focus,.woocommerce .wc-block-components-price-slider__range-input::-webkit-slider-thumb,.contact-form-wrapper span.wpcf7-form-control-wrap input:focus,.wpcf7-form.init .wpcf7-form-control-wrap .wpcf7-form-control:focus{border-color:#014e4e !important}.testimonial-wrapper.testimonial-style-default .owl-item .testimonial-inner,.full-search-wrapper form.form-inline.search-form .form-control:focus,textarea.wpcf7-form-control:focus{border-bottom-color:#014e4e}.team-wrapper.team-style-default .team-inner .post-thumb:before,.woocommerce-info{border-top-color:#014e4e}.cea-counter-wrapper.cea-counter-style-modern .counter-value > *,.portfolio-style-classic .owl-carousel .owl-item:hover:before{-webkit-text-stroke:1px #014e4e}.sidebar-broucher .doc-icon,.hirxpert-content-wrap aside.content-widgets-outer-wrapper .widget-title:after,.hirxpert-content-wrap .widget.widget_block .wp-block-group .wp-block-heading::after{background:#014e4e}.secondary-color,.widget-area-right .zozo_social_widget ul.nav.social-icons > li > a:hover,.hirxpert-masonry .bottom-meta-wrap .post-meta .post-more a,.woocommerce:where(body:not(.woocommerce-uses-block-theme)) .woocommerce-breadcrumb a:hover,.woocommerce .widget_block .wc-block-active-filters .wc-block-active-filters__clear-all:hover,.wc-block-price-filter .wc-block-components-filter-reset-button:hover,.sidebar-broucher .doc-icon{color:#f9d67b}.secondary-bg,.portfolio-style-classic .portfolio-inner .post-overlay-items .post-icons a:hover{background-color:#f9d67b}<br /><b>Warning</b>:Undefined variable $secondary_rgb in <b>/home/tzozothemes/wordpress.zozothemes.com/wp-content/plugins/hirxpert-addon/admin/extension/theme-options/theme-options-css.php</b> on line <b>129</b><br />header.hirxpert-page-header:after{background-color:rgba(,0.77)}.close:hover,header a.btn.btn-primary:hover,.search-form .input-group .btn:hover,.full-search-wrapper,.elementor-widget-ceaposts .blog-style-classic-pro .blog-inner .post-date a:hover,.bottom-meta .post-more:hover:before,.blog .hirxpert-masonry .post-meta .post-more a:hover:before,.hirxpert-masonry .bottom-meta-wrap .post-meta .post-more a:hover:before,.woocommerce ul.products li.product .button:hover,.woocommerce div.product .woocommerce-tabs ul.tabs li.active a,.woocommerce div.product .woocommerce-tabs ul.tabs li a:hover,.woocommerce #content input.button:hover,.woocommerce a.button:hover,.woocommerce button.button:hover,.woocommerce input.button:hover,.woocommerce-page #content input.button:hover,.woocommerce-page a.button:hover,.woocommerce-page button.button:hover,.woocommerce-page input.button:hover,.woocommerce input.button.alt:hover,.woocommerce input.button.disabled:hover,.woocommerce input.button:disabled[disabled]:hover,.cart_totals .wc-proceed-to-checkout a.checkout-button:hover,.woocommerce button.button.alt:hover,:where(body:not(.woocommerce-block-theme-has-button-styles)) .woocommerce button.button.alt.disabled:hover,.blog-style-default .blog-inner .post-date a:hover,.single-post .comments-wrapper.section-inner input.submit,.portfolio-style-classic-pro .portfolio-inner .post-details-outer .top-meta .post-category a{background-color:#f9d67b}.zozo-booking-form-wrap .bookly-form select,select,.cf-style-modern span.wpcf7-form-control-wrap select{background-image:url(../wp-content/themes/hirxpert/assets/images/icon-select.png)}.cus-testimonial-default .testimonial-wrapper.testimonial-style-default .testimonial-inner:before{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/themes/hirxpert/assets/images/quotation.webp)}.elementor-element.border-points:before{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/themes/hirxpert/assets/images/arrow-step.png)}.elementor-element.border-points:after{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/themes/hirxpert/assets/images/arrow-step-after.png)}.elementor-element .section-title-wrapper .title-wrap > * .subtitle-dots:before{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/themes/hirxpert/assets/images/tie.webp)}.single.single-cea-team .hirxpert-content-wrap .team-content-area .row.team:before{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/themes/hirxpert/assets/images/shape-5.webp)}.btn,button,.back-to-top,.header-navbar a.btn.btn-primary,.widget_search .search-form .input-group .btn,button.wp-block-search__button,.btn.bordered:hover,.close,button.wp-block-search__button,.comment-respond input[type="submit"],.wp-block-button__link,.button.button-primary,input[type=button],input[type="submit"],header .mini-cart-dropdown ul.cart-dropdown-menu > li.mini-view-cart a,.woocommerce #respond input#submit.alt,.woocommerce a.button.alt,.woocommerce button.button.alt,.woocommerce input.button.alt,a.zozo-woo-compare-ajax.zozo-btn,.mini-view-wishlist a,.mini-view-cart a,.woocommerce .woocommerce-error .button,.woocommerce .woocommerce-info .button,.woocommerce .woocommerce-message .button,.woocommerce-page .woocommerce-error .button,.woocommerce-page .woocommerce-info .button,.woocommerce-page .woocommerce-message .button,a.zozo-compare-close,a.zozo-sticky-cart-close,a.zozo-sticky-wishlist-close{color:#ffffff;background-color:#014e4e}.btn:hover,button:hover,.back-to-top:hover,.header-navbar a.btn.btn-primary:hover,.widget_search .search-form .input-group .btn:hover,button.wp-block-search__button:hover,.btn:focus,button:focus,.back-to-top:focus,.header-navbar a.btn.btn-primary:focus,.widget_search .search-form .input-group .btn:focus,button.wp-block-search__button:focus,.btn:active,button:active,.back-to-top:active,.header-navbar a.btn.btn-primary:active,.widget_search .search-form .input-group .btn:active,button.wp-block-search__button:active,.contact-form-wrapper input.wpcf7-form-control.wpcf7-submit:hover,input[type="submit"]:hover,header .mini-cart-dropdown ul.cart-dropdown-menu > li.mini-view-cart a:hover,nav.post-nav-links .post-page-numbers:hover,.wp-block-button__link:hover,.wp-block-button.is-style-outline a.wp-block-button__link:hover,.woocommerce #respond input#submit.alt:hover,.woocommerce a.button.alt:hover,.woocommerce button.button.alt:hover,.woocommerce input.button.alt:hover,a.zozo-woo-compare-ajax.zozo-btn:hover,.mini-view-wishlist a:hover,.mini-view-cart a:hover,.woocommerce .woocommerce-error .button:hover,.woocommerce .woocommerce-info .button:hover,.woocommerce .woocommerce-message .button:hover,.woocommerce-page .woocommerce-error .button:hover,.woocommerce-page .woocommerce-info .button:hover,.woocommerce-page .woocommerce-message .button:hover,a.zozo-compare-close:hover,a.zozo-sticky-cart-close:hover,a.zozo-sticky-wishlist-close:hover{color:#ffffff;background-color:#f9d67b}.header-topbar a{color:#014e4e}.hirxpert-content-wrap{padding-top:120px;padding-bottom:120px}@media only screen and (max-width:1024px){.header-mobilebar{display:flex}.site-header{display:none}.header-mobilebar.navbar *{color:!important}.header-mobilebar.navbar{background-color:#ffffff !important}.mobile-menu-active .mobile-menu-floating{background-color:#ffffff !important}.mobile-menu-active .mobile-menu-floating *{color:#222222}.mobile-menu-floating i.close-icon:after,.mobile-menu-floating i.close-icon:before{border-bottom-color:#222222}}@media only screen and (min-width:1025px){.site-header{display:block}.header-mobilebar{display:none}.header-mobilebar.navbar *{color:!important}.header-mobilebar.navbar{background-color:#ffffff !important}.mobile-menu-active .mobile-menu-floating{background-color:#ffffff !important}.mobile-menu-active .mobile-menu-floating *{color:#222222}.mobile-menu-floating i.close-icon:after,.mobile-menu-floating i.close-icon:before{border-bottom-color:#222222 !important}}.page-loader{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/03/hir-loader.gif)}body{color:#666666;font-family:DM Sans;font-size:16px;line-height:28px}.lead{color:#666666;font-family:DM Sans;font-size:18px;line-height:24px}h1,.h1{color:#222222;font-family:Sora;font-size:54px;line-height:64px}h2,.h2{color:#222222;font-family:Sora;font-size:48px;line-height:58px}h3,.h3{color:#222222;font-family:Sora;font-size:38px;line-height:50px}h4,.h4{color:#222222;font-family:Sora;font-size:26px;line-height:36px}h5,.h5{color:#222222;font-family:Sora;font-size:21px;line-height:32px}h6,.h6{color:#222222;font-family:Sora;font-size:17px;line-height:30px}@media only screen and (max-width:767px){}.site-header{font-family:Sora}.site-header{background-color:rgba(255,255,255,0)}.site-header{border-top-width:2px;border-top-style:none;border-right-width:2px;border-right-style:none;border-bottom-width:2px;border-bottom-style:none;border-left-width:2px;border-left-style:none}.primary-menu .menu-item-has-children ul.sub-menu{background-color:rgb(255,255,255)}.primary-menu .menu-item-has-children ul.sub-menu li a{color:#222222}.primary-menu .menu-item-has-children ul.sub-menu li a:hover{color:#014e4e}.primary-menu .menu-item-has-children ul.sub-menu li a:active,.primary-menu li.current-menu-parent > ul.sub-menu > li.current-menu-item > a,.primary-menu li.current-menu-parent > ul.sub-menu > li.current-menu-ancestor.current-menu-item > a,ul.wp-menu ul.sub-menu li.menu-item.current-menu-ancestor.menu-item-has-children > a{color:#014e4e}.header-topbar{font-family:Sora;font-size:15px}.header-topbar{line-height:40px}.header-topbar{background-color:rgb(5,7,28)}.header-topbar{padding-right:35px;padding-left:35px}.header-topbar{border-bottom-width:1px;border-bottom-style:none;border-bottom-color:rgba(255,255,255,0.2)}.header-topbar a{color:#222222}.header-topbar a:hover{color:#014e4e}.header-topbar a:active,.header-topbar ul.wp-menu > li.current-menu-item > a,.header-topbar ul.nav.wp-menu > li.menu-item-has-children.current_page_parent > a,.header-topbar ul.nav.wp-menu > li.menu-item-has-children.current-menu-ancestor > a{color:#014e4e}.header-logobar{line-height:120px}.header-logobar{background-color:rgb(255,255,255)}.header-logobar{padding-top:0;padding-right:30px;padding-bottom:0;padding-left:30px}.header-navbar{font-family:Sora;font-weight:600;font-size:14px;line-height:30px;letter-spacing:1px;text-transform:uppercase}.header-navbar{line-height:100px}.header-sticky .header-navbar{line-height:90px}.header-navbar{background-color:rgb(255,255,255)}.header-navbar{border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:rgba(0,0,0,0.06)}.header-navbar a{color:#222222}.header-navbar a:hover{color:#014e4e}.header-navbar a:active,.header-navbar ul.wp-menu > li.current-menu-item > a,.header-navbar ul.nav.wp-menu > li.menu-item-has-children.current-menu-ancestor > a{color:#014e4e}.sticky-head.header-sticky .header-navbar{background-color:rgb(255,255,255)}.sticky-head.header-sticky .header-navbar a{color:#222222}.sticky-head.header-sticky .header-navbar a:hover{color:#014e4e}.sticky-head.header-sticky .header-navbar a:active,.sticky-head.header-sticky .header-navbar ul.wp-menu > li.current-menu-item > a,.sticky-head.header-sticky .header-navbar ul.nav.wp-menu > li.menu-item-has-children.current-menu-ancestor > a,.sticky-head.header-sticky .header-navbar a.active{color:#014e4e}img.site-logo{max-width:180px}img.sticky-logo{max-width:180px}img.mobile-logo{max-width:150px}.blog .page-title-wrap .page-title,.blog .page-title-wrap .breadcrumb li{color:#ffffff}.blog .page-title-wrap .breadcrumb a{color:#ffffff}.blog .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.blog .page-title-wrap .breadcrumb a:active{color:#f9d67b}.blog .hirxpert-page-header{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/02/page-title-1.webp);background-repeat:no-repeat;background-size:cover;background-attachment:fixed}.blog .page-title-wrap{padding-top:200px;padding-bottom:115px}.blog .hirxpert-page-header:after{background-color:rgba(1,78,78,0.72)}.archive .page-title-wrap .page-title,.archive .page-title-wrap .breadcrumb li,.search .page-title-wrap .page-title,.search .page-title-wrap .breadcrumb li{color:#ffffff}.archive .page-title-wrap .breadcrumb a,.search .page-title-wrap .breadcrumb a{color:#ffffff}.archive .page-title-wrap .breadcrumb a:hover,.search .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.archive .page-title-wrap .breadcrumb a:active,.search .page-title-wrap .breadcrumb a:active{color:#f9d67b}.archive .hirxpert-page-header,.search .hirxpert-page-header{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/02/page-title-1.webp);background-repeat:no-repeat;background-size:cover;background-attachment:fixed}.archive .page-title-wrap,.search .page-title-wrap{padding-top:200px;padding-bottom:115px}.archive .hirxpert-page-header:after,.search .hirxpert-page-header:after{background-color:rgba(1,78,78,0.72)}.single-post .page-title-wrap .page-title,.single-post .page-title-wrap .breadcrumb li,.single-product .page-title-wrap .page-title,.single-product .page-title-wrap .breadcrumb li,.single-campaign .page-title-wrap .page-title,.single-campaign .page-title-wrap .breadcrumb li{color:#ffffff}.single-post .page-title-wrap .breadcrumb a,.single-product .page-title-wrap .breadcrumb a,.single-campaign .page-title-wrap .breadcrumb a{color:#ffffff}.single-post .page-title-wrap .breadcrumb a:hover,.single-product .page-title-wrap .breadcrumb a:hover,.single-campaign .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.single-post .page-title-wrap .breadcrumb a:active,.single-product .page-title-wrap .breadcrumb a:active,.single-campaign .page-title-wrap .breadcrumb a:active{color:#f9d67b}.single-post .hirxpert-page-header,.single-product .hirxpert-page-header,.single-campaign .hirxpert-page-header{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/02/page-title-1.webp);background-repeat:no-repeat;background-size:cover;background-attachment:fixed}.single-post .page-title-wrap,.single-product .page-title-wrap,.single-campaign .page-title-wrap{padding-top:200px;padding-bottom:115px}.single-post .hirxpert-page-header:after,.single-product .hirxpert-page-header:after,.single-product .hirxpert-page-header:after,body.single-doctors-directory.doctors-directory-template-default .hirxpert-page-header:after{background-color:rgba(1,78,78,0.72)}.page .page-title-wrap .page-title,.page .page-title-wrap .breadcrumb li,.error404 .page-title-wrap .page-title,.error404 .page-title-wrap .breadcrumb li{color:#ffffff}.page .page-title-wrap .page-subtitle,.error404 .page-title-wrap .page-subtitle{color:#ffffff}.page .page-title-wrap .breadcrumb a,.error404 .page-title-wrap .breadcrumb a{color:#ffffff}.page .page-title-wrap .breadcrumb a:hover,.error404 .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.page .page-title-wrap .breadcrumb a:active,.error404 .page-title-wrap .breadcrumb a:active{color:#f9d67b}.page .hirxpert-page-header,.error404 .hirxpert-page-header{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/02/page-title-1.webp);background-repeat:no-repeat;background-size:cover;background-attachment:fixed}.page .page-title-wrap,.error404 .page-title-wrap{padding-top:200px;padding-bottom:115px}.page .hirxpert-page-header:after,.error404 .hirxpert-page-header:after{background-color:rgba(1,78,78,0.72)}.single[class*="single-cea-"] .page-title-wrap .page-title,.single[class*="single-cea-"] .page-title-wrap .breadcrumb li{color:#ffffff}.single[class*="single-cea-"] .page-title-wrap .breadcrumb a{color:#ffffff}.single[class*="single-cea-"] .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.single[class*="single-cea-"] .page-title-wrap .breadcrumb a:active{color:#f9d67b}.single[class*="single-cea-"] .hirxpert-page-header{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/02/page-title-1.webp);background-repeat:no-repeat;background-size:cover;background-attachment:fixed}.single[class*="single-cea-"] .page-title-wrap{padding-top:200px;padding-bottom:115px}.single[class*="single-cea-"] .hirxpert-page-header:after{background-color:rgba(1,78,78,0.72)}.single.single-cea-service .page-title-wrap .page-title,.single-cea-service .page-title-wrap .breadcrumb li{color:#ffffff}.single.single-cea-service .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.single.single-cea-service .page-title-wrap .breadcrumb a:active{color:#f9d67b}.single.single-cea-service .hirxpert-page-header{background-repeat:no-repeat;background-size:cover}.single.single-cea-service .page-title-wrap{padding-top:200px;padding-bottom:115px}.single.single-cea-service .hirxpert-page-header:after{background-color:}.single.single-cea-team .page-title-wrap .page-title,.single-cea-team .page-title-wrap .breadcrumb li{color:#ffffff}.single.single-cea-team .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.single.single-cea-team .page-title-wrap .breadcrumb a:active{color:#f9d67b}.single.single-cea-team .hirxpert-page-header{background-repeat:no-repeat;background-size:cover}.single.single-cea-team .page-title-wrap{padding-top:200px;padding-bottom:115px}.single.single-cea-team .hirxpert-page-header:after{background-color:}.single.single-cea-testimonial .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.single.single-cea-testimonial .page-title-wrap .breadcrumb a:active{color:#f9d67b}.single.single-cea-testimonial .hirxpert-page-header{background-repeat:no-repeat;background-size:cover}.single.single-cea-testimonial .page-title-wrap{padding-top:200px;padding-bottom:115px}.single.single-cea-testimonial .hirxpert-page-header:after{background-color:}.single.single-cea-portfolio .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.single.single-cea-portfolio .page-title-wrap .breadcrumb a:active{color:#f9d67b}.single.single-cea-portfolio .hirxpert-page-header{background-repeat:no-repeat;background-size:cover}.single.single-cea-portfolio .page-title-wrap{padding-top:200px;padding-bottom:115px}.single.single-cea-portfolio .hirxpert-page-header:after{background-color:}.single.single-cea-event .page-title-wrap .breadcrumb a:hover{color:#f9d67b}.single.single-cea-event .page-title-wrap .breadcrumb a:active{color:#f9d67b}.single.single-cea-event .hirxpert-page-header{background-repeat:no-repeat;background-size:cover}.single.single-cea-event .page-title-wrap{padding-top:200px;padding-bottom:115px}.single.single-cea-event .hirxpert-page-header:after{background-color:}.site-footer{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/02/footer-bg-1.webp);background-repeat:no-repeat;background-position:center center;background-size:cover}.site-footer{margin-top:0;margin-right:0;margin-bottom:0;margin-left:0}.insta-footer-wrap{background-repeat:no-repeat;background-position:center center}.insta-footer-wrap{padding-top:20px;padding-right:48px;padding-bottom:44px;padding-left:48px}.insta-footer-wrap{border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:rgba(255,255,255,0.12)}.insta-footer-wrap a{color:#ababab}.insta-footer-wrap a:hover{color:#014e4e}.insta-footer-wrap a:active{color:#014e4e}.footer-widgets-wrap{font-size:16px;line-height:30px}.footer-widgets-wrap{background-image:url(https://wordpress.zozothemes.com/hirxpert/wp-content/uploads/sites/38/2025/02/footer-bg-1.webp);background-repeat:no-repeat;background-position:center center;background-size:cover}.footer-widgets-wrap{padding-top:100px;padding-bottom:100px}.footer-widgets-wrap{border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:rgba(255,255,255,0.12)}.footer-widgets-wrap a{color:#c1c1c1}.footer-widgets-wrap a:hover{color:#014e4e}.footer-widgets-wrap a:active{color:#014e4e}.footer-bottom-wrap{font-size:16px;line-height:30px}.footer-bottom-wrap{background-color:rgba(255,255,255,0)}.footer-bottom-wrap{padding-top:25px;padding-bottom:25px}.footer-bottom-wrap{margin-top:0;margin-right:0;margin-bottom:0;margin-left:0}.footer-bottom-wrap a{color:#f9d67b}.footer-bottom-wrap a:hover{color:#ffffff}.footer-bottom-wrap a:active{color:#ffffff}.secondary-bar-wrapper{background:linear-gradient(90deg,#014e4e 0,#f9d67b 100%)}.page-load-initiate .page-loader:before,.page-load-end .page-loader:before,.page-load-initiate .page-loader:after,.page-load-end .page-loader:after{background:linear-gradient(90deg,#014e4e 0,#f9d67b 100%);background:-webkit-gradient(linear,left top,right top,from(#f9d67b),to(#014e4e));background:-webkit-linear-gradient(left,#f9d67b 0,#014e4e 100%);background:-o-linear-gradient(left,#f9d67b 0,#014e4e 100%);background:linear-gradient(to right,#f9d67b 0,#014e4e 100%)}.secondary-bar-inner{width:460px}.secondary-bar-wrapper.from-left .secondary-bar-inner{left:-460px}.secondary-bar-wrapper.from-right .secondary-bar-inner{right:-460px}
+			/* Hirxpert Post Options Styles */.hirxpert-content-wrap {padding-top: 0px;padding-bottom: 0px;}
+		</style>
+		<link rel='stylesheet' id='theme-styles-css' href='{{ asset("assets/wp-content/themes/hirxpert/assets/css/theme-stylesd1c0.css")}}?ver=6.7.2' media='all' />
+		<link rel='stylesheet' id='elementor-icons-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min4e44.css")}}?ver=5.36.0' media='all' />
+		<link rel='stylesheet' id='elementor-frontend-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/css/custom-frontend.min2724.css")}}?ver=1743997676' media='all' />
+		<link rel='stylesheet' id='elementor-post-5-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/css/post-52724.css")}}?ver=1743997676' media='all' />
+		<link rel='stylesheet' id='e-animation-slideInLeft-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/animations/styles/slideInLeft.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='e-animation-zoomIn-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/animations/styles/zoomIn.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='widget-text-path-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/css/widget-text-path.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='widget-image-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/css/widget-image.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='widget-heading-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/css/widget-heading.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='e-animation-bounceInUp-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/animations/styles/bounceInUp.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='widget-icon-list-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/css/custom-widget-icon-list.min2724.css")}}?ver=1743997676' media='all' />
+		<link rel='stylesheet' id='magnific-popup-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/magnific-popup.min5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='widget-rating-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/css/widget-rating.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='e-animation-fadeInUp-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInUp.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='e-animation-pop-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-pop.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='widget-social-icons-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/css/widget-social-icons.min87cc.css")}}?ver=3.28.3' media='all' />
+		<link rel='stylesheet' id='e-apple-webkit-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/css/custom-apple-webkit.min2724.css")}}?ver=1743997676' media='all' />
+		<link rel='stylesheet' id='elementor-post-438-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/css/post-4385b84.css")}}?ver=1744002673' media='all' />
+		<link rel='stylesheet' id='elementor-gf-local-roboto-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/google-fonts/css/robotoa6b0.css")}}?ver=1742287169' media='all' />
+		<link rel='stylesheet' id='elementor-gf-local-robotoslab-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/google-fonts/css/robotoslab7ccb.css")}}?ver=1742287173' media='all' />
+		<link rel='stylesheet' id='elementor-gf-local-figtree-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/google-fonts/css/figtree0d9c.css")}}?ver=1742287174' media='all' />
+		<link rel='stylesheet' id='elementor-gf-local-dmsans-css' href='{{ asset("assets/wp-content/uploads/sites/38/elementor/google-fonts/css/dmsans46a0.css")}}?ver=1742287176' media='all' />
+		<link rel='stylesheet' id='elementor-icons-shared-2-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/bootstrap-icons5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='elementor-icons-bootstrap-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/bootstrap-icons5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='elementor-icons-shared-1-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/themify-icons5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='elementor-icons-themify-css' href='{{ asset("assets/wp-content/plugins/classic-elementor-addons-pro/assets/css/themify-icons5152.css")}}?ver=1.0' media='all' />
+		<link rel='stylesheet' id='elementor-icons-shared-0-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min52d5.css")}}?ver=5.15.3' media='all' />
+		<link rel='stylesheet' id='elementor-icons-fa-solid-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min52d5.css")}}?ver=5.15.3' media='all' />
+		<link rel='stylesheet' id='elementor-icons-fa-brands-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min52d5.css")}}?ver=5.15.3' media='all' />
+		
+		<script src="{{ asset('assets/wp-includes/js/jquery/jquery.minf43b.js')}}?ver=3.7.1" id="jquery-core-js"></script>
+		<script src="{{ asset('assets/wp-includes/js/jquery/jquery-migrate.min5589.js')}}?ver=3.4.1" id="jquery-migrate-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/revslider/public/js/libs/tptools1676.js')}}?ver=6.7.31" id="tp-tools-js" async data-wp-strategy="async"></script>
+		<script src="{{ asset('assets/wp-content/plugins/revslider/public/js/sr71676.js')}}?ver=6.7.31" id="sr7-js" async data-wp-strategy="async"></script>
+		<script src="{{ asset('assets/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min8e23.js')}}?ver=2.7.0-wc.9.8.1" id="jquery-blockui-js" defer data-wp-strategy="defer"></script>
+		<script src="{{ asset('assets/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min94cf.js')}}?ver=9.8.1" id="wc-add-to-cart-js" defer data-wp-strategy="defer"></script>
+		<script src="{{ asset('assets/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min7db4.js')}}?ver=2.1.4-wc.9.8.1" id="js-cookie-js" defer data-wp-strategy="defer"></script>
+		<script src="{{ asset('assets/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min94cf.js')}}?ver=9.8.1" id="woocommerce-js" defer data-wp-strategy="defer"></script>
+		<script src="{{ asset('assets/wp-content/themes/hirxpert/assets/js/theme5152.js')}}?ver=1.0" id="hirxpert-js-js"></script>
+	</head>
+
+    <body class="page-template-default page page-id-438 wp-embed-responsive theme-hirxpert woocommerce-no-js elementor-default elementor-kit-5 elementor-page elementor-page-438 initiate">
+		<div class="hirxpert-body-inner">
+			<div class="page-loader">
+				<span class="page-loader-divider"></span>
+			</div>
+	
+			<div class="sticky-outer" data-stickyup="0">
+				<div class="sticky-head">
+					<div class="header-mobilebar navbar">
+						<div class="container">
+							<ul class="nav mobilebar element-left right-element-exist">
+								<li class="header-mobile-toggle-wrapper">
+									<a href="https://wordpress.zozothemes.com/hirxpert" class="mobile-menu-toggle"><i class="bi bi-list"></i></a>
+								</li>
+								<!-- .header-navigation-wrapper -->
+							</ul>
+							<ul class="nav mobilebar pull-center justify-content-center right-element-exist">
+								<li class="header-titles-wrapper">
+									<div class="header-titles">
+										<a class="site-link" href="../index.html"><img class="img-fluid mobile-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+									</div>
+									<!-- .header-titles -->
+								</li>
+								<!-- .header-titles-wrapper -->
+							</ul>
+							<ul class="nav mobilebar pull-right justify-content-end right-element-exist">
+								<li class="header-search-wrapper">
+									<a class="full-search-toggle" href="#"><i class="bi bi-search"></i></a>
+								</li>
+							</ul>
+						</div>
+						<!-- .container -->
+					</div>
+					<!-- .header-mobilebar -->
+				</div>
+				<!-- .sticky-head -->
+			</div>
+			<!-- .sticky-outer -->
+	
+			<header id="site-header" class="site-header">
+				<div class="sticky-outer" data-stickyup="0">
+					<div class="sticky-head">
+						<div class="header-navbar navbar elements-3">
+							<div class="container-fluid">
+								<ul class="nav navbar-ul element-left right-element-exist">
+									<li class="header-titles-wrapper">
+										<div class="header-titles">
+											<a class="site-link" href="../index.html"><img class="img-fluid site-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+											<a class="site-link sticky-logo-link" href="../index.html"><img class="img-fluid sticky-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+										</div>
+										<!-- .header-titles -->
+									</li>
+									<!-- .header-titles-wrapper -->
+								</ul>
+								<ul class="nav navbar-ul pull-center justify-content-center right-element-exist">
+									<li class="header-navigation-wrapper">
+										<nav class="primary-menu-wrapper" aria-label="Horizontal">
+											<ul class="nav wp-menu primary-menu">
+												<li id="menu-item-92048" class="cus-img-menu menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-92048 menu-item-has-mega-children"><a href="../index.html">Home</a>
+													<ul class="sub-menu mega-menu">
+														<li id="menu-item-92094" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-92094 mega-menu-col col-"><a href="#">Home List</a>
+															<ul class="sub-menu">
+																<li id="menu-item-92088" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-92088">
+																	<div class="widget widget_block widget_media_image">
+																		<div class="widget-content">
+																			<div class="wp-block-image">
+																				<figure class="aligncenter size-full">
+																					<a href="https://wordpress.zozothemes.com/hirxpert"><img fetchpriority="high" fetchpriority="high" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-1.jpg') }}" alt="" class="wp-image-92129"
+																						/></a>
+																					<figcaption class="wp-element-caption"><a href="https://wordpress.zozothemes.com/hirxpert" data-type="link" data-id="https://wordpress.zozothemes.com/hirxpert">Home 1</a> </figcaption>
+																				</figure>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+																<li id="menu-item-92089" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-438 current_page_item menu-item-92089">
+																	<div class="widget widget_block widget_media_image">
+																		<div class="widget-content">
+																			<div class="wp-block-image">
+																				<figure class="aligncenter size-full">
+																					<a href="index.html"><img decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-2.jpg') }}" alt="" class="wp-image-92130" /></a>
+																					<figcaption class="wp-element-caption"><a href="index.html">Home 2</a> </figcaption>
+																				</figure>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+																<li id="menu-item-92092" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92092">
+																	<div class="widget widget_block widget_media_image">
+																		<div class="widget-content">
+																			<div class="wp-block-image">
+																				<figure class="aligncenter size-full">
+																					<a href="../home-3/index.html"><img decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-3.jpg') }}" alt="" class="wp-image-92131" /></a>
+																					<figcaption class="wp-element-caption"><a href="../home-3/index.html">Home 3</a> </figcaption>
+																				</figure>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+																<li id="menu-item-92090" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92090">
+																	<div class="widget widget_block widget_media_image">
+																		<div class="widget-content">
+																			<div class="wp-block-image">
+																				<figure class="aligncenter size-full is-resized">
+																					<a href="../home-4/index.html"><img loading="lazy" loading="lazy" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-4.jpg') }}" alt="" class="wp-image-92132" style="width:400px;height:auto"
+																						/></a>
+																					<figcaption class="wp-element-caption"><a href="../home-4/index.html">Home 4</a></figcaption>
+																				</figure>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+																<li id="menu-item-92091" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92091">
+																	<div class="widget widget_block widget_media_image">
+																		<div class="widget-content">
+																			<div class="wp-block-image">
+																				<figure class="aligncenter size-full">
+																					<a href="../home-5/index.html"><img loading="lazy" loading="lazy" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-5.jpg') }}" alt="" class="wp-image-92133" /></a>
+																					<figcaption
+																					class="wp-element-caption"><a href="../home-5/index.html">Home 5</a> </figcaption>
+																				</figure>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+																<li id="menu-item-92093" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92093">
+																	<div class="widget widget_block widget_media_image">
+																		<div class="widget-content">
+																			<div class="wp-block-image">
+																				<figure class="aligncenter size-full is-resized">
+																					<a href="../home-landing-page/index.html"><img loading="lazy" loading="lazy" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-landing-page-1.jpg') }}" alt="" class="wp-image-92135"
+																						style="width:400px;height:auto" /></a>
+																					<figcaption class="wp-element-caption"><a href="../home-landing-page/index.html">Landing Page</a> </figcaption>
+																				</figure>
+																			</div>
+																		</div>
+																	</div>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li id="menu-item-92049" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92049"><a href="../about-us/index.html">About Us</a>
+													<ul class="sub-menu">
+														<li id="menu-item-92050" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92050"><a href="../team/index.html">Team</a></li>
+														<li id="menu-item-92051" class="menu-item menu-item-type-post_type menu-item-object-cea-team menu-item-92051"><a href="../team/amelia-robinson/index.html">Team Details</a></li>
+														<li id="menu-item-92052" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92052"><a href="../faq/index.html">FAQ</a></li>
+														<li id="menu-item-92053" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92053"><a href="../testimonial/index.html">Testimonial</a></li>
+														<li id="menu-item-92054" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92054"><a href="../contact-us/index.html">Contact Us</a></li>
+													</ul>
+												</li>
+												<li id="menu-item-92055" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92055"><a href="../our-services/index.html">Our Services</a>
+													<ul class="sub-menu">
+														<li id="menu-item-92056" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92056"><a href="../service/employee-benefits-design-optimization/index.html">Design &#038; Optimization</a></li>
+														<li id="menu-item-92057" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92057"><a href="../service/workplace-safety-compliance-audits/index.html">Workplace Safety</a></li>
+														<li id="menu-item-92058" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92058"><a href="../service/retention-strategies-for-top-talent/index.html">Retention Strategies</a></li>
+														<li id="menu-item-92059" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92059"><a href="../service/executive-search-leadership-hiring/index.html">Leadership Hiring</a></li>
+														<li id="menu-item-92060" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92060"><a href="../service/smart-talent-sourcing-find-the-right-fit/index.html">Find the Right Fit</a></li>
+													</ul>
+												</li>
+												<li id="menu-item-92061" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92061"><a href="../portfolio/index.html">Portfolio</a>
+													<ul class="sub-menu">
+														<li id="menu-item-92062" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92062"><a href="../portfolio/index.html">Portfolio Default</a></li>
+														<li id="menu-item-92063" class="menu-item menu-item-type-post_type menu-item-object-cea-portfolio menu-item-92063"><a href="../portfolio/work-organization/index.html">Portfolio Details</a></li>
+													</ul>
+												</li>
+												<li id="menu-item-92064" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92064"><a href="../blog/index.html">Blog</a>
+													<ul class="sub-menu">
+														<li id="menu-item-92065" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92065"><a href="../blog/index.html">Blog Default</a></li>
+														<li id="menu-item-92127" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92127"><a href="../blog-list/index.html">Blog List</a></li>
+														<li id="menu-item-92123" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92123"><a href="../blog-grid-overlay/index.html">Blog Grid + Overlay</a></li>
+														<li id="menu-item-92122" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92122"><a href="#">Blog Grid</a>
+															<ul class="sub-menu">
+																<li id="menu-item-92126" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92126"><a href="../blog-2-columns/index.html">Blog 2 Columns</a></li>
+																<li id="menu-item-92125" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92125"><a href="../blog-3-columns/index.html">Blog 3 Columns</a></li>
+																<li id="menu-item-92124" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92124"><a href="../blog-4-columns/index.html">Blog 4 Columns</a></li>
+															</ul>
+														</li>
+														<li id="menu-item-92066" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-92066"><a href="../learning-about-employee-growth/index.html">Blog Details</a></li>
+													</ul>
+												</li>
+												<li id="menu-item-92108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92108"><a href="../shop/index.html">Shop</a>
+													<ul class="sub-menu">
+														<li id="menu-item-92105" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92105"><a href="../cart/index.html">Cart</a></li>
+														<li id="menu-item-92106" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92106"><a href="../checkout/index.html">Checkout</a></li>
+														<li id="menu-item-92107" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92107"><a href="../my-account/index.html">My account</a></li>
+													</ul>
+												</li>
+											</ul>
+										</nav>
+										<!-- .primary-menu-wrapper -->
+									</li>
+									<!-- .header-navigation-wrapper -->
+								</ul>
+								<ul class="nav navbar-ul pull-right justify-content-end right-element-exist">
+									<li><a class="full-bar-search-toggle" href="#"><i class="bi bi-search"></i></a></li>
+									<li>
+										<span class="cea-button-wrapper">
+											<a href="../contact-us/index.html" class="cea-button-link elementor-button cea-button elementor-size-sm">
+												<span class="cea-button-content-wrapper">
+													<span class="cea-button-icon cea-align-icon-right"><i aria-hidden="true" class=" bi-arrow-up-right ms-2"></i></span>
+													<span class="cea-button-text">Get In Touch </span>
+												</span>
+											</a>
+										</span>
+									</li>
+								</ul>
+							</div>
+							<!-- .container -->
+							<div class="full-bar-search-wrap">
+								<form role="search" method="get" class="search-form" action="https://wordpress.zozothemes.com/hirxpert/">
+									<label>
+										<span class="screen-reader-text">Search for:</span>
+										<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+									</label>
+									<input type="submit" class="search-submit" value="Search" />
+								</form>
+								<a href="#" class="close full-bar-search-toggle"></a>
+							</div>
+						</div>
+						<!-- .header-navbar -->
+					</div>
+					<!-- .sticky-head -->
+				</div>
+				<!-- .sticky-outer -->
+			</header>
+			<!-- #site-header -->
+
+
+            <!-- ========== Main Content ========== -->
+            <main id="site-content">
+                @yield('konten')
+            </main>
+
+
+            <footer id="site-footer" class="site-footer">
+				<div class="site-footer-wrap container-fluid p-0">
+					<div class="footer-widgets-wrap">
+						<div class="container">
+							<div class="row">
+								<aside class="footer-widget-2 col-md-12">
+									<div class="widget widget_block">
+										<div class="widget-content">
+											<div class="wp-block-columns cus-middle-widget-wrap is-layout-flex wp-container-core-columns-is-layout-1 wp-block-columns-is-layout-flex">
+												<div class="wp-block-column cus-navmenu-wedgets is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:30.333%">
+													<div class="wp-block-image size-full is-resized cus-logo-img mb-4">
+														<a href="../index.html"><img loading="lazy" decoding="async" loading="lazy" width="350" height="90" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log-3.webp') }}" alt="" class="wp-image-485  mb-3" style="width:250px"></a>
+														<p>At the heart of our philosophy lies the belief that a thriving workplace is rooted in trust, respect, commitment to continuous growth.</p>
+													</div>
+													<div class="widget pr-4">
+														<div class="mailchimp-wrapper">
+															<form class="zozo-mc-form" id="zozo-mc-form" method="post">
+																<input type="hidden" name="bizzor_mc_listid" value="">
+																<div class="input-group">
+																	<input type="text" class="form-control zozo-mc-email" required="required" id="zozo-mc-email" placeholder="Email Address" name="zozo_mc_email">
+																	<button class="input-group-addon zozo-mc btn btn-default"><span class="bi bi-send"></span></button>
+																</div>
+															</form>
+															<!--Mailchimp Custom Script-->
+															<div class="mc-notice-group" data-success="Success." data-fail="Failure.">
+																<span class="mc-notice-msg"></span>
+															</div>
+															<!-- .mc-notice-group -->
+														</div>
+														<!-- .mailchimp-wrapper -->
+													</div>
+												</div>
+												<div class="wp-block-column cus-footer-ser-menu is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:20%">
+													<div class="wp-block-column cus-footer-ser-menu is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:20%">
+														<div class="widget widget_nav_menu">
+															<h4 class="widgettitle">Quicklinks</h4>
+															<div class="menu-quicklinks-container">
+																<ul id="menu-quicklinks" class="menu">
+																	<li id="menu-item-6021" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6021"><a href="../about-us/index.html">About Us</a></li>
+																	<li id="menu-item-6022" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6022"><a href="../our-services/index.html">Our Services</a></li>
+																	<li id="menu-item-6024" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6024"><a href="../team/index.html">Team</a></li>
+																	<li id="menu-item-6023" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6023"><a href="../portfolio/index.html">Portfolio</a></li>
+																	<li id="menu-item-6025" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6025"><a href="../testimonial/index.html">Testimonial</a></li>
+																	<li id="menu-item-6020" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6020"><a href="../blog/index.html">Blog</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="wp-block-column cus-footer-quicklink is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:24%">
+													<div class="wp-block-column cus-footer-quicklink is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:24%">
+														<div class="widget widget_nav_menu">
+															<h4 class="widgettitle">Our Services</h4>
+															<div class="menu-footer-service-menu-container">
+																<ul id="menu-services-menu" class="menu">
+																	<li id="menu-item-4454" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-4454"><a href="../service/workforce-planning-strategy/index.html">Workforce Planning &amp; Strategy</a></li>
+																	<li id="menu-item-4455" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-4455"><a href="../service/employee-benefits-design-optimization/index.html">Design &amp; Optimization</a></li>
+																	<li id="menu-item-4456" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-4456"><a href="../service/workplace-safety-compliance-audits/index.html">Workplace Safety</a></li>
+																	<li id="menu-item-4457" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-4457"><a href="../service/retention-strategies-for-top-talent/index.html">Retention Strategies</a></li>
+																	<li id="menu-item-4459" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-4459"><a href="../service/executive-search-leadership-hiring/index.html">Executive Search</a></li>
+																	<li id="menu-item-4459" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-4459"><a href="../service/leadership-development-coaching/index.html">Leadership Development</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="wp-block-column cus-footer-contact is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25.333%">
+													<div class="wp-block-column cus-footer-contact is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25.333%">
+														<h4 class="widgettitle">Contact Info</h4>
+														<div class="footer-cta d-flex align-items-center">
+															<div class="text-widget-content">
+																<div class="text-widget-inner">
+																	<div class="footer-widget">
+																		<div class="title">Inquiry</div>
+																		<div class="phone-num"><a href="tel:+5284567592" class="phone">+(528) 456-7592</a></div>
+																	</div>
+																	<div class="footer-widget">
+																		<div class="title">Email</div>
+																		<a href="mailto:info@hirxpert.com" class="footer-email" target="_self">info@hirxpert.com</a>
+																	</div>
+																	<div class="footer-widget">
+																		<div class="title">Location</div>
+																		<a class="footer-location">132, Tic St, Kingston, NY 12401 USA.</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</aside>
+							</div>
+							<!-- .row -->
+						</div>
+						<!-- .container -->
+					</div>
+					<!-- .footer-widgets-wrap -->
+					<div class="footer-bottom-wrap">
+						<div class="container">
+							<div class="row">
+								<div class="col-12">
+									<ul class="nav copyright-bar-ul pull-center justify-content-center">
+										<li>
+											<p class="footer-copyright">&copy; Copyright 2025. All rights reserved. <a href="../index.html" target="_blank">Hirxpert</a>. Designed by
+												<a href="https://zozothemes.com/" target="_blank">Zozothemes</a></p>
+										</li>
+									</ul>
+								</div>
+								<!-- .col-12 -->
+							</div>
+							<!-- .row -->
+						</div>
+						<!-- .container -->
+					</div>
+					<!-- .footer-bottom-wrap -->
+				</div>
+				<!-- .container -->
+			</footer>
+			<!-- #site-footer -->
+			
+			<div class="full-search-wrapper">
+				<a class="full-search-toggle close" href="#"></a>
+				<form role="search" method="get" class="search-form" action="https://wordpress.zozothemes.com/hirxpert/">
+					<label>
+						<span class="screen-reader-text">Search for:</span>
+						<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+					</label>
+					<input type="submit" class="search-submit" value="Search" />
+				</form>
+			</div>
+			<div class="mobile-menu-floating">
+				<a href="https://wordpress.zozothemes.com/hirxpert" class="mobile-menu-toggle"><i class="close-icon"></i></a>
+				<div class="header-titles">
+					<a class="site-link" href="../index.html"><img class="img-fluid mobile-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+				</div>
+				<!-- .header-titles -->
+				<nav class="mobile-menu-wrapper">
+					<ul class="wp-menu mobile-menu">
+						<li id="menu-item-92144" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-92144"><a href="../index.html">Home</a>
+							<ul class="sub-menu">
+								<li id="menu-item-92146" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-92146"><a href="../index.html">Home Default</a></li>
+								<li id="menu-item-92147" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-438 current_page_item menu-item-92147"><a href="index.html" aria-current="page">Home 2</a></li>
+								<li id="menu-item-92148" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92148"><a href="../home-3/index.html">Home 3</a></li>
+								<li id="menu-item-92149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92149"><a href="../home-4/index.html">Home 4</a></li>
+								<li id="menu-item-92150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92150"><a href="../home-5/index.html">Home 5</a></li>
+								<li id="menu-item-92151" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92151"><a href="../home-landing-page/index.html">Home Landing Page</a></li>
+							</ul>
+						</li>
+						<li id="menu-item-92152" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92152"><a href="../about-us/index.html">About Us</a>
+							<ul class="sub-menu">
+								<li id="menu-item-92153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92153"><a href="../team/index.html">Team</a></li>
+								<li id="menu-item-92154" class="menu-item menu-item-type-post_type menu-item-object-cea-team menu-item-92154"><a href="../team/amelia-robinson/index.html">Team Details</a></li>
+								<li id="menu-item-92155" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92155"><a href="../faq/index.html">FAQ</a></li>
+								<li id="menu-item-92156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92156"><a href="../testimonial/index.html">Testimonial</a></li>
+								<li id="menu-item-92157" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92157"><a href="#">Service Grid</a>
+									<ul class="sub-menu">
+										<li id="menu-item-92158" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92158"><a href="../service-styles-1/index.html">Service Styles 1</a></li>
+										<li id="menu-item-92159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92159"><a href="../service-styles-2/index.html">Service Styles 2</a></li>
+										<li id="menu-item-92160" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92160"><a href="../service-styles-3/index.html">Service Styles 3</a></li>
+									</ul>
+								</li>
+								<li id="menu-item-92161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92161"><a href="../contact-us/index.html">Contact Us</a></li>
+							</ul>
+						</li>
+						<li id="menu-item-92162" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92162"><a href="../our-services/index.html">Our Services</a>
+							<ul class="sub-menu">
+								<li id="menu-item-92163" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92163"><a href="../service/employee-benefits-design-optimization/index.html">Design &#038; Optimization</a></li>
+								<li id="menu-item-92164" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92164"><a href="../service/workplace-safety-compliance-audits/index.html">Workplace Safety</a></li>
+								<li id="menu-item-92165" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92165"><a href="../service/retention-strategies-for-top-talent/index.html">Retention Strategies</a></li>
+								<li id="menu-item-92166" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92166"><a href="../service/executive-search-leadership-hiring/index.html">Leadership Hiring</a></li>
+								<li id="menu-item-92167" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92167"><a href="../service/smart-talent-sourcing-find-the-right-fit/index.html">Find the Right Fit</a></li>
+							</ul>
+						</li>
+						<li id="menu-item-92168" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92168"><a href="../portfolio/index.html">Portfolio</a>
+							<ul class="sub-menu">
+								<li id="menu-item-92169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92169"><a href="../portfolio/index.html">Portfolio Default</a></li>
+								<li id="menu-item-92170" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92170"><a href="#">Portfolio Grid</a>
+									<ul class="sub-menu">
+										<li id="menu-item-92171" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92171"><a href="../portfolio-grid-2/index.html">Portfolio Grid 2</a></li>
+										<li id="menu-item-92172" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92172"><a href="../portfolio-grid-3/index.html">Portfolio Grid 3</a></li>
+										<li id="menu-item-92173" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92173"><a href="../portfolio-grid-4/index.html">Portfolio Grid 4</a></li>
+									</ul>
+								</li>
+								<li id="menu-item-92174" class="menu-item menu-item-type-post_type menu-item-object-cea-portfolio menu-item-92174"><a href="../portfolio/work-organization/index.html">Portfolio Details</a></li>
+							</ul>
+						</li>
+						<li id="menu-item-92175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92175"><a href="../blog/index.html">Blog</a>
+							<ul class="sub-menu">
+								<li id="menu-item-92176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92176"><a href="../blog/index.html">Blog Default</a></li>
+								<li id="menu-item-92177" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92177"><a href="../blog-list/index.html">Blog List</a></li>
+								<li id="menu-item-92178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92178"><a href="../blog-grid-overlay/index.html">Blog Grid + Overlay</a></li>
+								<li id="menu-item-92179" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92179"><a href="#">Blog Grid</a>
+									<ul class="sub-menu">
+										<li id="menu-item-92180" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92180"><a href="../blog-2-columns/index.html">Blog 2 Columns</a></li>
+										<li id="menu-item-92181" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92181"><a href="../blog-3-columns/index.html">Blog 3 Columns</a></li>
+										<li id="menu-item-92182" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92182"><a href="../blog-4-columns/index.html">Blog 4 Columns</a></li>
+									</ul>
+								</li>
+								<li id="menu-item-92183" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-92183"><a href="../learning-about-employee-growth/index.html">Blog Details</a></li>
+							</ul>
+						</li>
+						<li id="menu-item-92184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92184"><a href="../shop/index.html">Shop</a>
+							<ul class="sub-menu">
+								<li id="menu-item-92185" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92185"><a href="../cart/index.html">Cart</a></li>
+								<li id="menu-item-92186" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92186"><a href="../checkout/index.html">Checkout</a></li>
+								<li id="menu-item-92187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92187"><a href="../my-account/index.html">My account</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<!-- .mobile-menu-wrapper -->
+				<form role="search" method="get" class="search-form" action="https://wordpress.zozothemes.com/hirxpert/">
+					<label>
+						<span class="screen-reader-text">Search for:</span>
+						<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+					</label>
+					<input type="submit" class="search-submit" value="Search" />
+				</form>
+			</div>
+			<!-- .mobile-menu-floating -->
+			<a href="https://wordpress.zozothemes.com/hirxpert" class="back-to-top" id="back-to-top"><i class="bi bi-caret-up-fill"></i></a>
+		</div>
+
+        <!-- Script -->
+		<style id='core-block-supports-inline-css'>
+			.wp-container-core-columns-is-layout-1{flex-wrap:nowrap;}
+		</style>
+		<script src="{{ asset('assets/wp-content/plugins/zozo-header-footer/admin/target-rule/select28a54.js') }}?ver=1.0.0" id="zozo-select2-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/zozo-header-footer/admin/target-rule/target-rule8a54.js') }}?ver=1.0.0" id="zozo-target-rule-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/zozo-header-footer/admin/target-rule/user-role8a54.js') }}?ver=1.0.0" id="zozo-user-role-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/theia-sticky-sidebar.min5152.js') }}?ver=1.0" id="theai-sticky-sidebar-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/cea-row-sticky5152.js') }}?ver=1.0" id="cea-row-sticky-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/gsap.min0f26.js') }}?ver=3.12.7" id="gsap-min-js-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/scroll-trigger.min0f26.js') }}?ver=3.12.7" id="scroll-trigger-js-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/split-type.minaf8f.js') }}?ver=0.3.4" id="split-type-js-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/cea-custom-front5152.js') }}?ver=1.0" id="cea-custom-front-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/custom5152.js') }}?ver=1.0" id="cea-elementor-custom-js"></script>
+		<script src="{{ asset('assets/wp-includes/js/dist/hooks.min4fdd.js') }}?ver=4d63a3d491d11ffd8ac6" id="wp-hooks-js"></script>
+		<script src="{{ asset('assets/wp-includes/js/dist/i18n.minc33c.js') }}?ver=5e580eb46a90c2b997e6" id="wp-i18n-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/contact-form-7/includes/swv/js/indexfc7a.js') }}?ver=6.0.6" id="swv-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/contact-form-7/includes/js/indexfc7a.js') }}?ver=6.0.6" id="contact-form-7-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min94cf.js') }}?ver=9.8.1" id="sourcebuster-js-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min94cf.js') }}?ver=9.8.1" id="wc-order-attribution-js"></script>
+		<script src="{{ asset('assets/../../www.google.com/recaptcha/api320d.js') }}?render=6LcSDOMqAAAAAAXP70AU_jv2f0nXp_sdFZscMv_2&amp;ver=3.0" id="google-recaptcha-js"></script>
+		<script src="{{ asset('assets/wp-includes/js/dist/vendor/wp-polyfill.min2c7c.js') }}?ver=3.15.0" id="wp-polyfill-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/contact-form-7/modules/recaptcha/indexfc7a.js') }}?ver=6.0.6" id="wpcf7-recaptcha-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/tilt.jquery573a.js') }}?ver=1.1.19" id="tilt-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/jquery.magnific.popup.minf488.js') }}?ver=1.1.0" id="magnific-popup-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/owl.carousel.min531b.js') }}?ver=2.3.4" id="owl-carousel-js"></script>
+		<script src="{{ asset('assets/wp-includes/js/imagesloaded.minbb93.js') }}?ver=5.0.0" id="imagesloaded-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/infinite-scroll.pkgd.minf39e.js') }}?ver=4.0.1" id="infinite-scroll-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/isotope.pkgd.min19ce.js') }}?ver=3.0.3" id="isotope-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/classic-elementor-addons-pro/assets/js/cea-float-parallax5152.js') }}?ver=1.0" id="cea-float-parallax-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/elementor/assets/js/webpack.runtime.min87cc.js') }}?ver=3.28.3" id="elementor-webpack-runtime-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/elementor/assets/js/frontend-modules.min87cc.js') }}?ver=3.28.3" id="elementor-frontend-modules-js"></script>
+		<script src="{{ asset('assets/wp-includes/js/jquery/ui/core.minb37e.js') }}?ver=1.13.3" id="jquery-ui-core-js"></script>
+		<script id="elementor-frontend-js-before">
+			var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":true},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":true},"version":"3.28.3","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"e_local_google_fonts":true,"nested-elements":true,"editor_v2":true,"e_element_cache":true,"home_screen":true,"launchpad-checklist":true},"urls":{"assets":"https:\/\/wordpress.zozothemes.com\/hirxpert\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/wordpress.zozothemes.com\/hirxpert\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/wordpress.zozothemes.com\/hirxpert\/wp-content\/uploads\/sites\/38"},"nonces":{"floatingButtonsClickTracking":"ae0613622e"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet","viewport_laptop"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":438,"title":"Home%202%20%E2%80%93%20Human%20Resources%20%26%20Recruiting%20WordPress%20Theme","excerpt":"","featuredImage":false}};
+		</script>
+		<script src="{{ asset('assets/wp-content/plugins/elementor/assets/js/frontend.min87cc.js') }}?ver=3.28.3" id="elementor-frontend-js"></script>
+		<script src="{{ asset('assets/wp-content/plugins/elementor/assets/js/frontend.min87cc.js') }}?ver=3.28.3" id="elementor-frontend-js"></script>
+    </body>
+</html>
