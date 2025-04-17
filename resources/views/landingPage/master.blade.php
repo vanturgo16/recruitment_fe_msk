@@ -75,6 +75,14 @@
 		<link rel='stylesheet' id='elementor-icons-fa-solid-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min52d5.css")}}?ver=5.15.3' media='all' />
 		<link rel='stylesheet' id='elementor-icons-fa-brands-css' href='{{ asset("assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min52d5.css")}}?ver=5.15.3' media='all' />
 		
+		<style>
+			.current-menu-active > a {
+				color: #FE060C;
+			}
+			.sticky-head.header-sticky .header-navbar .current-menu-active a {
+				color: #FE060C;
+			}
+		</style>
 		<script src="{{ asset('assets/wp-includes/js/jquery/jquery.minf43b.js')}}?ver=3.7.1" id="jquery-core-js"></script>
 		<script src="{{ asset('assets/wp-includes/js/jquery/jquery-migrate.min5589.js')}}?ver=3.4.1" id="jquery-migrate-js"></script>
 		<script src="{{ asset('assets/wp-content/plugins/revslider/public/js/libs/tptools1676.js')}}?ver=6.7.31" id="tp-tools-js" async data-wp-strategy="async"></script>
@@ -105,7 +113,7 @@
 							<ul class="nav mobilebar pull-center justify-content-center right-element-exist">
 								<li class="header-titles-wrapper">
 									<div class="header-titles">
-										<a class="site-link" href="../index.html"><img class="img-fluid mobile-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+										<a class="site-link" href="../index.html"><img class="img-fluid mobile-logo" src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
 									</div>
 									<!-- .header-titles -->
 								</li>
@@ -133,8 +141,8 @@
 								<ul class="nav navbar-ul element-left right-element-exist">
 									<li class="header-titles-wrapper">
 										<div class="header-titles">
-											<a class="site-link" href="../index.html"><img class="img-fluid site-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
-											<a class="site-link sticky-logo-link" href="../index.html"><img class="img-fluid sticky-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+											<a class="site-link" href="../index.html"><img class="img-fluid site-logo" src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+											<a class="site-link sticky-logo-link" href="../index.html"><img class="img-fluid sticky-logo" src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
 										</div>
 										<!-- .header-titles -->
 									</li>
@@ -144,135 +152,17 @@
 									<li class="header-navigation-wrapper">
 										<nav class="primary-menu-wrapper" aria-label="Horizontal">
 											<ul class="nav wp-menu primary-menu">
-												<li id="menu-item-92048" class="cus-img-menu menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-92048 menu-item-has-mega-children"><a href="../index.html">Home</a>
-													<ul class="sub-menu mega-menu">
-														<li id="menu-item-92094" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-92094 mega-menu-col col-"><a href="#">Home List</a>
-															<ul class="sub-menu">
-																<li id="menu-item-92088" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-92088">
-																	<div class="widget widget_block widget_media_image">
-																		<div class="widget-content">
-																			<div class="wp-block-image">
-																				<figure class="aligncenter size-full">
-																					<a href="https://wordpress.zozothemes.com/hirxpert"><img fetchpriority="high" fetchpriority="high" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-1.jpg') }}" alt="" class="wp-image-92129"
-																						/></a>
-																					<figcaption class="wp-element-caption"><a href="https://wordpress.zozothemes.com/hirxpert" data-type="link" data-id="https://wordpress.zozothemes.com/hirxpert">Home 1</a> </figcaption>
-																				</figure>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-																<li id="menu-item-92089" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-438 current_page_item menu-item-92089">
-																	<div class="widget widget_block widget_media_image">
-																		<div class="widget-content">
-																			<div class="wp-block-image">
-																				<figure class="aligncenter size-full">
-																					<a href="index.html"><img decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-2.jpg') }}" alt="" class="wp-image-92130" /></a>
-																					<figcaption class="wp-element-caption"><a href="index.html">Home 2</a> </figcaption>
-																				</figure>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-																<li id="menu-item-92092" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92092">
-																	<div class="widget widget_block widget_media_image">
-																		<div class="widget-content">
-																			<div class="wp-block-image">
-																				<figure class="aligncenter size-full">
-																					<a href="../home-3/index.html"><img decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-3.jpg') }}" alt="" class="wp-image-92131" /></a>
-																					<figcaption class="wp-element-caption"><a href="../home-3/index.html">Home 3</a> </figcaption>
-																				</figure>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-																<li id="menu-item-92090" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92090">
-																	<div class="widget widget_block widget_media_image">
-																		<div class="widget-content">
-																			<div class="wp-block-image">
-																				<figure class="aligncenter size-full is-resized">
-																					<a href="../home-4/index.html"><img loading="lazy" loading="lazy" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-4.jpg') }}" alt="" class="wp-image-92132" style="width:400px;height:auto"
-																						/></a>
-																					<figcaption class="wp-element-caption"><a href="../home-4/index.html">Home 4</a></figcaption>
-																				</figure>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-																<li id="menu-item-92091" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92091">
-																	<div class="widget widget_block widget_media_image">
-																		<div class="widget-content">
-																			<div class="wp-block-image">
-																				<figure class="aligncenter size-full">
-																					<a href="../home-5/index.html"><img loading="lazy" loading="lazy" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-5.jpg') }}" alt="" class="wp-image-92133" /></a>
-																					<figcaption
-																					class="wp-element-caption"><a href="../home-5/index.html">Home 5</a> </figcaption>
-																				</figure>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-																<li id="menu-item-92093" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92093">
-																	<div class="widget widget_block widget_media_image">
-																		<div class="widget-content">
-																			<div class="wp-block-image">
-																				<figure class="aligncenter size-full is-resized">
-																					<a href="../home-landing-page/index.html"><img loading="lazy" loading="lazy" decoding="async" width="400" height="500" src="{{ asset('assets/wp-content/uploads/sites/38/2025/03/home-landing-page-1.jpg') }}" alt="" class="wp-image-92135"
-																						style="width:400px;height:auto" /></a>
-																					<figcaption class="wp-element-caption"><a href="../home-landing-page/index.html">Landing Page</a> </figcaption>
-																				</figure>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-															</ul>
-														</li>
-													</ul>
+												<li class="current-menu-active">
+													<a href="../index.html">Beranda</a>
 												</li>
-												<li id="menu-item-92049" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92049"><a href="../about-us/index.html">About Us</a>
-													<ul class="sub-menu">
-														<li id="menu-item-92050" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92050"><a href="../team/index.html">Team</a></li>
-														<li id="menu-item-92051" class="menu-item menu-item-type-post_type menu-item-object-cea-team menu-item-92051"><a href="../team/amelia-robinson/index.html">Team Details</a></li>
-														<li id="menu-item-92052" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92052"><a href="../faq/index.html">FAQ</a></li>
-														<li id="menu-item-92053" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92053"><a href="../testimonial/index.html">Testimonial</a></li>
-														<li id="menu-item-92054" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92054"><a href="../contact-us/index.html">Contact Us</a></li>
-													</ul>
+												<li class="">
+													<a href="../index.html">Life at MSK</a>
 												</li>
-												<li id="menu-item-92055" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92055"><a href="../our-services/index.html">Our Services</a>
-													<ul class="sub-menu">
-														<li id="menu-item-92056" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92056"><a href="../service/employee-benefits-design-optimization/index.html">Design &#038; Optimization</a></li>
-														<li id="menu-item-92057" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92057"><a href="../service/workplace-safety-compliance-audits/index.html">Workplace Safety</a></li>
-														<li id="menu-item-92058" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92058"><a href="../service/retention-strategies-for-top-talent/index.html">Retention Strategies</a></li>
-														<li id="menu-item-92059" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92059"><a href="../service/executive-search-leadership-hiring/index.html">Leadership Hiring</a></li>
-														<li id="menu-item-92060" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92060"><a href="../service/smart-talent-sourcing-find-the-right-fit/index.html">Find the Right Fit</a></li>
-													</ul>
+												<li class="">
+													<a href="../index.html">Karir</a>
 												</li>
-												<li id="menu-item-92061" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92061"><a href="../portfolio/index.html">Portfolio</a>
-													<ul class="sub-menu">
-														<li id="menu-item-92062" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92062"><a href="../portfolio/index.html">Portfolio Default</a></li>
-														<li id="menu-item-92063" class="menu-item menu-item-type-post_type menu-item-object-cea-portfolio menu-item-92063"><a href="../portfolio/work-organization/index.html">Portfolio Details</a></li>
-													</ul>
-												</li>
-												<li id="menu-item-92064" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92064"><a href="../blog/index.html">Blog</a>
-													<ul class="sub-menu">
-														<li id="menu-item-92065" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92065"><a href="../blog/index.html">Blog Default</a></li>
-														<li id="menu-item-92127" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92127"><a href="../blog-list/index.html">Blog List</a></li>
-														<li id="menu-item-92123" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92123"><a href="../blog-grid-overlay/index.html">Blog Grid + Overlay</a></li>
-														<li id="menu-item-92122" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92122"><a href="#">Blog Grid</a>
-															<ul class="sub-menu">
-																<li id="menu-item-92126" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92126"><a href="../blog-2-columns/index.html">Blog 2 Columns</a></li>
-																<li id="menu-item-92125" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92125"><a href="../blog-3-columns/index.html">Blog 3 Columns</a></li>
-																<li id="menu-item-92124" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92124"><a href="../blog-4-columns/index.html">Blog 4 Columns</a></li>
-															</ul>
-														</li>
-														<li id="menu-item-92066" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-92066"><a href="../learning-about-employee-growth/index.html">Blog Details</a></li>
-													</ul>
-												</li>
-												<li id="menu-item-92108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92108"><a href="../shop/index.html">Shop</a>
-													<ul class="sub-menu">
-														<li id="menu-item-92105" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92105"><a href="../cart/index.html">Cart</a></li>
-														<li id="menu-item-92106" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92106"><a href="../checkout/index.html">Checkout</a></li>
-														<li id="menu-item-92107" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92107"><a href="../my-account/index.html">My account</a></li>
-													</ul>
+												<li class="">
+													<a href="../index.html">FAQ</a>
 												</li>
 											</ul>
 										</nav>
@@ -281,7 +171,6 @@
 									<!-- .header-navigation-wrapper -->
 								</ul>
 								<ul class="nav navbar-ul pull-right justify-content-end right-element-exist">
-									<li><a class="full-bar-search-toggle" href="#"><i class="bi bi-search"></i></a></li>
 									<li>
 										<span class="cea-button-wrapper">
 											<a href="../contact-us/index.html" class="cea-button-link elementor-button cea-button elementor-size-sm">
@@ -293,17 +182,6 @@
 										</span>
 									</li>
 								</ul>
-							</div>
-							<!-- .container -->
-							<div class="full-bar-search-wrap">
-								<form role="search" method="get" class="search-form" action="https://wordpress.zozothemes.com/hirxpert/">
-									<label>
-										<span class="screen-reader-text">Search for:</span>
-										<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
-									</label>
-									<input type="submit" class="search-submit" value="Search" />
-								</form>
-								<a href="#" class="close full-bar-search-toggle"></a>
 							</div>
 						</div>
 						<!-- .header-navbar -->
@@ -456,91 +334,25 @@
 			<div class="mobile-menu-floating">
 				<a href="https://wordpress.zozothemes.com/hirxpert" class="mobile-menu-toggle"><i class="close-icon"></i></a>
 				<div class="header-titles">
-					<a class="site-link" href="../index.html"><img class="img-fluid mobile-logo" src="{{ asset('assets/wp-content/uploads/sites/38/2025/02/sample-log.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
+					<a class="site-link" href="../index.html"><img class="img-fluid mobile-logo" src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" alt="Human Resources &amp; Recruiting WordPress Theme" /></a>
 				</div>
 				<!-- .header-titles -->
 				<nav class="mobile-menu-wrapper">
 					<ul class="wp-menu mobile-menu">
-						<li id="menu-item-92144" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-92144"><a href="../index.html">Home</a>
-							<ul class="sub-menu">
-								<li id="menu-item-92146" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-92146"><a href="../index.html">Home Default</a></li>
-								<li id="menu-item-92147" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-438 current_page_item menu-item-92147"><a href="index.html" aria-current="page">Home 2</a></li>
-								<li id="menu-item-92148" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92148"><a href="../home-3/index.html">Home 3</a></li>
-								<li id="menu-item-92149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92149"><a href="../home-4/index.html">Home 4</a></li>
-								<li id="menu-item-92150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92150"><a href="../home-5/index.html">Home 5</a></li>
-								<li id="menu-item-92151" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92151"><a href="../home-landing-page/index.html">Home Landing Page</a></li>
-							</ul>
+						<li class="current-menu-active">
+							<a href="../index.html">Beranda</a>
 						</li>
-						<li id="menu-item-92152" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92152"><a href="../about-us/index.html">About Us</a>
-							<ul class="sub-menu">
-								<li id="menu-item-92153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92153"><a href="../team/index.html">Team</a></li>
-								<li id="menu-item-92154" class="menu-item menu-item-type-post_type menu-item-object-cea-team menu-item-92154"><a href="../team/amelia-robinson/index.html">Team Details</a></li>
-								<li id="menu-item-92155" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92155"><a href="../faq/index.html">FAQ</a></li>
-								<li id="menu-item-92156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92156"><a href="../testimonial/index.html">Testimonial</a></li>
-								<li id="menu-item-92157" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92157"><a href="#">Service Grid</a>
-									<ul class="sub-menu">
-										<li id="menu-item-92158" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92158"><a href="../service-styles-1/index.html">Service Styles 1</a></li>
-										<li id="menu-item-92159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92159"><a href="../service-styles-2/index.html">Service Styles 2</a></li>
-										<li id="menu-item-92160" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92160"><a href="../service-styles-3/index.html">Service Styles 3</a></li>
-									</ul>
-								</li>
-								<li id="menu-item-92161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92161"><a href="../contact-us/index.html">Contact Us</a></li>
-							</ul>
+						<li class="">
+							<a href="../index.html">Life at MSK</a>
 						</li>
-						<li id="menu-item-92162" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92162"><a href="../our-services/index.html">Our Services</a>
-							<ul class="sub-menu">
-								<li id="menu-item-92163" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92163"><a href="../service/employee-benefits-design-optimization/index.html">Design &#038; Optimization</a></li>
-								<li id="menu-item-92164" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92164"><a href="../service/workplace-safety-compliance-audits/index.html">Workplace Safety</a></li>
-								<li id="menu-item-92165" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92165"><a href="../service/retention-strategies-for-top-talent/index.html">Retention Strategies</a></li>
-								<li id="menu-item-92166" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92166"><a href="../service/executive-search-leadership-hiring/index.html">Leadership Hiring</a></li>
-								<li id="menu-item-92167" class="menu-item menu-item-type-post_type menu-item-object-cea-service menu-item-92167"><a href="../service/smart-talent-sourcing-find-the-right-fit/index.html">Find the Right Fit</a></li>
-							</ul>
+						<li class="">
+							<a href="../index.html">Karir</a>
 						</li>
-						<li id="menu-item-92168" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92168"><a href="../portfolio/index.html">Portfolio</a>
-							<ul class="sub-menu">
-								<li id="menu-item-92169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92169"><a href="../portfolio/index.html">Portfolio Default</a></li>
-								<li id="menu-item-92170" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92170"><a href="#">Portfolio Grid</a>
-									<ul class="sub-menu">
-										<li id="menu-item-92171" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92171"><a href="../portfolio-grid-2/index.html">Portfolio Grid 2</a></li>
-										<li id="menu-item-92172" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92172"><a href="../portfolio-grid-3/index.html">Portfolio Grid 3</a></li>
-										<li id="menu-item-92173" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92173"><a href="../portfolio-grid-4/index.html">Portfolio Grid 4</a></li>
-									</ul>
-								</li>
-								<li id="menu-item-92174" class="menu-item menu-item-type-post_type menu-item-object-cea-portfolio menu-item-92174"><a href="../portfolio/work-organization/index.html">Portfolio Details</a></li>
-							</ul>
-						</li>
-						<li id="menu-item-92175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92175"><a href="../blog/index.html">Blog</a>
-							<ul class="sub-menu">
-								<li id="menu-item-92176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92176"><a href="../blog/index.html">Blog Default</a></li>
-								<li id="menu-item-92177" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92177"><a href="../blog-list/index.html">Blog List</a></li>
-								<li id="menu-item-92178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92178"><a href="../blog-grid-overlay/index.html">Blog Grid + Overlay</a></li>
-								<li id="menu-item-92179" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-92179"><a href="#">Blog Grid</a>
-									<ul class="sub-menu">
-										<li id="menu-item-92180" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92180"><a href="../blog-2-columns/index.html">Blog 2 Columns</a></li>
-										<li id="menu-item-92181" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92181"><a href="../blog-3-columns/index.html">Blog 3 Columns</a></li>
-										<li id="menu-item-92182" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92182"><a href="../blog-4-columns/index.html">Blog 4 Columns</a></li>
-									</ul>
-								</li>
-								<li id="menu-item-92183" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-92183"><a href="../learning-about-employee-growth/index.html">Blog Details</a></li>
-							</ul>
-						</li>
-						<li id="menu-item-92184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-92184"><a href="../shop/index.html">Shop</a>
-							<ul class="sub-menu">
-								<li id="menu-item-92185" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92185"><a href="../cart/index.html">Cart</a></li>
-								<li id="menu-item-92186" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92186"><a href="../checkout/index.html">Checkout</a></li>
-								<li id="menu-item-92187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92187"><a href="../my-account/index.html">My account</a></li>
-							</ul>
+						<li class="">
+							<a href="../index.html">FAQ</a>
 						</li>
 					</ul>
 				</nav>
-				<!-- .mobile-menu-wrapper -->
-				<form role="search" method="get" class="search-form" action="https://wordpress.zozothemes.com/hirxpert/">
-					<label>
-						<span class="screen-reader-text">Search for:</span>
-						<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
-					</label>
-					<input type="submit" class="search-submit" value="Search" />
-				</form>
 			</div>
 			<!-- .mobile-menu-floating -->
 			<a href="https://wordpress.zozothemes.com/hirxpert" class="back-to-top" id="back-to-top"><i class="bi bi-caret-up-fill"></i></a>

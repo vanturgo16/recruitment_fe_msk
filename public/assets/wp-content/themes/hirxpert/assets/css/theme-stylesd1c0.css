@@ -1224,7 +1224,7 @@ footer .widget.widget_pages li, .footer-widgets-wrap .widget_rss ul li, footer .
         padding-right: 5px;
     }
     .elementor-element.cea-align-left .section-title-wrapper .title-wrap .sub-title {
-        padding-left: 20px;
+        /* padding-left: 20px; */
     }
     .cus-bg-dark .section-title-wrapper .subtitle-dots:before {
         filter: brightness(0) invert(1);
