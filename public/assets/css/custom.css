@@ -124,17 +124,17 @@
 }
 
 /* BG COLOR CARD */
-body:not([data-bs-theme="dark"]) .header-detail-a  {
+body:not([data-bs-theme="dark"]) .header-detail-a {
     background-color: #dddddd;
 }
-body:not([data-bs-theme="dark"]) .body-detail-a  {
+body:not([data-bs-theme="dark"]) .body-detail-a {
     background-color: #eeeeee;
 }
 /* Dark Theme */
-body[data-bs-theme="dark"] .header-detail-a  {
+body[data-bs-theme="dark"] .header-detail-a {
     background-color: #383d3b;
 }
-body[data-bs-theme="dark"] .body-detail-a  {
+body[data-bs-theme="dark"] .body-detail-a {
     background-color: #495057;
 }
 
@@ -151,4 +151,44 @@ body[data-bs-theme="dark"] .body-detail-a  {
     .card-profile-image img {
         max-width: 150px;
     }
+}
+
+.bg-company {
+    position: relative;
+    background: url("/assets/images/background/MSKDealer.jpeg") no-repeat center
+        top;
+    background-size: cover;
+    min-height: 60vh;
+    z-index: auto;
+}
+.bg-company::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+.bg-repeat-cover-overlay {
+    background: url("/assets/images/background/MSK.png");
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent black overlay */
+}
+.offcanvas-logo {
+    max-width: 150px;
+    height: auto;
+}
+
+.background-section {
+    background-image: url("/assets/images/background/MSK.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+a.my-link:hover {
+    color: red !important;
 }

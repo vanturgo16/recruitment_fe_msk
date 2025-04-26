@@ -17,7 +17,8 @@ use App\Http\Controllers\MstDropdownController;
 use App\Http\Controllers\MstRuleController;
 use App\Http\Controllers\MstUserController;
 
-Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/home', [LandingPageController::class, 'index'])->name('home');
 
 // LOGIN
 Route::get('/login', [AuthController::class, 'login'])->name('login');
