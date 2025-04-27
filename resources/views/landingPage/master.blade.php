@@ -44,19 +44,20 @@
 					 </div>
 					 <div class="offcanvas-body pt-0 align-items-center">
 						<ul class="navbar-nav mx-auto align-items-lg-center">
-						   <li class="nav-item">
-							  <a class="nav-link {{ request()->is('home*') ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a>
-						   </li>
-						   <li class="nav-item">
-							  <a class="nav-link {{ request()->is('lifeatmsk*') ? 'active' : '' }}" href="#">Life at MSK</a>
-						   </li>
-						   <li class="nav-item">
-							  <a class="nav-link {{ request()->is('career*') ? 'active' : '' }}" href="#">Karir</a>
-						   </li>
-						   <li class="nav-item">
-							  <a class="nav-link {{ request()->is('faq*') ? 'active' : '' }}" href="#">FAQ</a>
-						   </li>
+							<li class="nav-item">
+							   <a class="nav-link" href="#home">Beranda</a>
+							</li>
+							<li class="nav-item">
+							   <a class="nav-link" href="#career">Karir</a>
+							</li>
+							<li class="nav-item">
+							   <a class="nav-link" href="#lifeatmsk">Life at MSK</a>
+							</li>
+							<li class="nav-item">
+							   <a class="nav-link" href="#faq">FAQ</a>
+							</li>
 						</ul>
+						 
 						<div class="mt-3 mt-lg-0 d-flex align-items-center">
 						   <a href="signin.html" class="btn btn-light mx-2">Login</a>
 						   <a href="signup.html" class="btn btn-danger">Buat Akun</a>
@@ -86,7 +87,7 @@
 						   <div>
 							  <div
 								 class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
-								 <h4>About us</h4>
+								 <h4>Tentang Kami</h4>
 								 <a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse"
 									href="#collapseAccounts" role="button" aria-expanded="false"
 									aria-controls="collapseAccounts">
@@ -96,13 +97,10 @@
 							  <div class="collapse d-lg-block" id="collapseAccounts" data-bs-parent="#ft-links">
 								 <ul class="list-unstyled mb-0 py-3 py-lg-0">
 									<li class="mb-2">
-									   <a href="#" class="text-decoration-none text-reset my-link">Company Overview</a>
+									   <a href="#home" class="text-decoration-none text-reset my-link">Profil Perusahaan</a>
 									</li>
 									<li class="mb-2">
-									   <a href="#!" class="text-decoration-none text-reset my-link">Work Culture</a>
-									</li>
-									<li class="mb-2">
-									   <a href="#!" class="text-decoration-none text-reset my-link">Career</a>
+									   <a href="#career" class="text-decoration-none text-reset my-link">Karir</a>
 									</li>
 								 </ul>
 							  </div>
@@ -111,7 +109,7 @@
 						<div class="col-lg-3 col-12">
 						   <div
 							  class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
-							  <h4>Service</h4>
+							  <h4>Layanan</h4>
 							  <a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse"
 								 href="#collapseResources" role="button" aria-expanded="false" aria-controls="collapseResources">
 								 <i class="bi bi-chevron-down"></i>
@@ -134,7 +132,7 @@
 						<div class="col-lg-3 col-12">
 						   <div
 							  class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
-							  <h4>Contact</h4>
+							  <h4>Kontak</h4>
 							  <a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse"
 								 href="#collapseResources" role="button" aria-expanded="false" aria-controls="collapseResources">
 								 <i class="bi bi-chevron-down"></i>
@@ -230,5 +228,53 @@
 
 		<script src="{{ asset('assets/libs2/scrollcue/scrollCue.min.js') }}"></script>
 		<script src="{{ asset('assets/js/vendors/scrollcue.js') }}"></script>
+
+		{{-- Hover Effect Navbar --}}
+		<script>
+			const sections = document.querySelectorAll('section');
+			const navLinks = document.querySelectorAll('.nav-link');
+		
+			function setActiveLink() {
+				let closestSection = null;
+				let closestOffset = Number.POSITIVE_INFINITY;
+		
+				// Handle the case where the page is at the top (initial load)
+				if (window.scrollY === 0) {
+					// Ensure the "Home" link is active when at the top
+					document.querySelector('.nav-link[href="#home"]').classList.add('active');
+					return; // Early return to avoid further processing
+				}
+		
+				sections.forEach(section => {
+					const sectionTop = section.getBoundingClientRect().top;
+					if (sectionTop >= 0 && sectionTop < closestOffset) {
+						closestOffset = sectionTop;
+						closestSection = section;
+					}
+				});
+		
+				// Remove the active class from all links
+				navLinks.forEach(link => {
+					link.classList.remove('active');
+				});
+		
+				// Add active class to the corresponding link of the closest section
+				if (closestSection) {
+					const id = closestSection.getAttribute('id');
+					const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+					if (activeLink) {
+						activeLink.classList.add('active');
+					}
+				}
+			}
+		
+			// Initialize on page load to handle the first active link
+			window.addEventListener('load', setActiveLink);
+			
+			// Update active link on scroll
+			window.addEventListener('scroll', setActiveLink);
+		</script>
+		
+
 	</body>
 </html>
