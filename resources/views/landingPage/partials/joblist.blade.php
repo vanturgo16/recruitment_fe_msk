@@ -35,8 +35,8 @@
                             <div>
                                 <div class="fw-bold">Pengalaman di Bidang yang Sama</div>
                                 <div>
-                                    @if (!is_null($item->experience))
-                                        > {{ $item->experience }} tahun
+                                    @if (!is_null($item->min_yoe))
+                                        > {{ $item->min_yoe }} tahun
                                     @else
                                         -
                                     @endif
