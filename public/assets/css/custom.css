@@ -203,7 +203,7 @@ a.my-link:hover {
 .career-card:active {
     border-color: red;
     transform: scale(1.01);
-    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 .career-description {
     overflow: hidden;
@@ -211,4 +211,27 @@ a.my-link:hover {
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+.custom-pagination .page-link {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    margin: 0 3px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.custom-pagination .page-item.active .page-link {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+.custom-pagination .page-link:hover {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+}
+.custom-pagination .page-item.disabled .page-link {
+    color: #ccc;
+    border-color: #ccc;
+    background-color: transparent;
 }

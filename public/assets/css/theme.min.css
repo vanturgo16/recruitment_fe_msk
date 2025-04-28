@@ -4323,10 +4323,17 @@ progress {
 .form-control[type="file"]:not(:disabled):not([readonly]) {
     cursor: pointer;
 }
-.form-control:focus {
+/* .form-control:focus {
     background-color: var(--bs-body-bg);
     border-color: #c59eff;
     box-shadow: 0 0 0 0.25rem rgba(139, 61, 255, 0.25);
+    color: var(--bs-body-color);
+    outline: 0;
+} */
+.form-control:focus {
+    background-color: var(--bs-body-bg);
+    border-color: #ff5e5e; /* a nice bright red */
+    box-shadow: 0 0 0 0.25rem rgba(255, 94, 94, 0.25); /* red shadow */
     color: var(--bs-body-color);
     outline: 0;
 }
