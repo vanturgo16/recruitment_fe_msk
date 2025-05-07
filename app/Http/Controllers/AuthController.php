@@ -16,6 +16,11 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function register(Request $request)
+    {
+        return view('landingPage.auth.register');
+    }
+
     public function postlogin(Request $request)
     {
         $email = $request->email;

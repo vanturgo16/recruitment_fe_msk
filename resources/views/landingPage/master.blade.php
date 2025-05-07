@@ -42,24 +42,24 @@
 						<div class="offcanvas-body pt-0 align-items-center">
 							<ul class="navbar-nav mx-auto align-items-lg-center">
 								<li class="nav-item">
-									<a class="nav-link" href="#home">Beranda</a>
+									<a class="nav-link" href="{{ route('home') }}#home">Beranda</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="#career">Karir</a>
+									<a class="nav-link" href="{{ route('home') }}#career">Karir</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="#tnc">Ketentuan & Cara Melamar</a>
+									<a class="nav-link" href="{{ route('home') }}#tnc">Ketentuan & Cara Melamar</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="#lifeatmsk">Life at MSK</a>
+									<a class="nav-link" href="{{ route('home') }}#lifeatmsk">Life at MSK</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="#faq">FAQ</a>
+									<a class="nav-link" href="{{ route('home') }}#faq">FAQ</a>
 								</li>
 							</ul>
 							<div class="mt-3 mt-lg-0 d-flex align-items-center">
 								<a href="signin.html" class="btn btn-light mx-2">Login</a>
-								<a href="signup.html" class="btn btn-danger">Buat Akun</a>
+								<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
 							</div>
 						</div>
 					</div>
@@ -91,10 +91,10 @@
 								<div class="collapse d-lg-block" id="collapseAccounts" data-bs-parent="#ft-links">
 									<ul class="list-unstyled mb-0 py-3 py-lg-0">
 										<li class="mb-2">
-											<a href="#home" class="text-decoration-none text-reset my-link">Profil Perusahaan</a>
+											<a href="{{ route('home') }}#home" class="text-decoration-none text-reset my-link">Profil Perusahaan</a>
 										</li>
 										<li class="mb-2">
-											<a href="#career" class="text-decoration-none text-reset my-link">Karir</a>
+											<a href="{{ route('home') }}#career" class="text-decoration-none text-reset my-link">Karir</a>
 										</li>
 									</ul>
 								</div>
