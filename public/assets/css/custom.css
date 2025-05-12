@@ -235,3 +235,7 @@ a.my-link:hover {
     border-color: #ccc;
     background-color: transparent;
 }
+.form-control::placeholder {
+    font-size: small;
+    opacity: 0.5; 
+}

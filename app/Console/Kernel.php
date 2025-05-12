@@ -8,29 +8,14 @@ use Illuminate\Support\Carbon;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * Define the application's command schedule.
-     */
     protected function schedule(Schedule $schedule): void
     {
-        $logPath1 = storage_path('logs/LogExampleCron');
-        // Ensure the directory exists
-        if (!file_exists($logPath1)) {
-            mkdir($logPath1, 0777, true);
-        }
-        
-        $now = Carbon::now()->format('YmdHis');
 
-        $schedule->command('ExampleCron')
+        $schedule->command('DeleteUserCron')
             ->timezone('Asia/Jakarta')
-            ->dailyAt('23:59')
-            // ->everyMinute()
-            ->sendOutputTo("storage/logs/LogExampleCron/LogExampleCron_" . $now . ".txt");
+            ->everyMinute();
+            // ->everyFiveMinutes();
     }
-
-    /**
-     * Register the commands for the application.
-     */
     protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');

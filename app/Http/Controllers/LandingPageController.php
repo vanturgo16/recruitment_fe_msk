@@ -16,28 +16,9 @@ class LandingPageController extends Controller
 {
     use AuditLogsTrait;
 
-    // public function index(Request $request)
-    // {
-    //     $search = $request->get('search', '');
-        
-    //     $jobLists = Joblist::select('joblists.*', 'mst_positions.position_name', 'mst_departments.dept_name', 'employees.email')
-    //         ->leftjoin('mst_positions', 'joblists.id_position', 'mst_positions.id')
-    //         ->leftjoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
-    //         ->leftjoin('employees', 'joblists.position_req_user', 'employees.id')
-    //         ->where(function($query) use ($search) {
-    //             $query->where('mst_positions.position_name', 'like', "%{$search}%")
-    //                 ->orWhere('mst_departments.dept_name', 'like', "%{$search}%")
-    //                 ->orWhere('joblists.jobdesc', 'like', "%{$search}%");
-    //         })
-    //         ->orderBy('joblists.created_at')
-    //         ->paginate(3);
-
-    //     return view('landingPage.index', compact('jobLists', 'search'));
-    // }
-
     public function index(Request $request)
     {
-        $search = $request->get('search', '');
+        $search = $request->get('search');
 
         $jobLists = Joblist::select('joblists.*', 'mst_positions.position_name', 'mst_departments.dept_name', 'employees.email')
             ->leftjoin('mst_positions', 'joblists.id_position', 'mst_positions.id')

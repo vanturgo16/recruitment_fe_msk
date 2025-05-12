@@ -15,9 +15,9 @@ class DashboardController extends Controller
 {
     use AuditLogsTrait;
 
-    public function index(Request $request)
+    public function home(Request $request)
     {
-        return view('dashboard.index');
+        return view('landingPage.dashboard.home');
     }
     public function switchTheme(Request $request)
     {

@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs2/scrollcue/scrollCue.css') }}"/>
 		<!-- Box icons -->
 		<link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/css/boxicons.min.css') }}"/>
+		<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 		<!-- Theme CSS -->
 		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
 		<!-- CUSTOM CSS -->
@@ -25,6 +26,9 @@
 	</head>
 
 	<body>
+		@include('layouts.loading')
+		@include('landingPage.toast')
+
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-light w-100">
 				<div class="container px-3">
@@ -58,8 +62,32 @@
 								</li>
 							</ul>
 							<div class="mt-3 mt-lg-0 d-flex align-items-center">
-								<a href="signin.html" class="btn btn-light mx-2">Login</a>
-								<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
+								@guest
+									<a href="{{ route('login') }}" class="btn btn-light mx-2">Login</a>
+									<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
+								@else
+									@if(Auth::user()->is_active)
+										<div class="dropdown">
+											<a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+												<img src="{{ Auth::user()->profile_photo_url ?? asset('default-avatar.png') }}" alt="User" width="32" height="32" class="rounded-circle me-2">
+												<span>{{ Auth::user()->name }}</span>
+											</a>
+											<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+												<li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+												<li><hr class="dropdown-divider"></li>
+												<li>
+													<form method="POST" action="{{ route('logout') }}">
+														@csrf
+														<button type="submit" class="dropdown-item">Logout</button>
+													</form>
+												</li>
+											</ul>
+										</div>
+									@else
+										<a href="{{ route('login') }}" class="btn btn-light mx-2">Login</a>
+										<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
+									@endif
+								@endguest
 							</div>
 						</div>
 					</div>
@@ -211,5 +239,9 @@
 		<script src="{{ asset('assets/js/vendors/scrollcue.js') }}"></script>
 		<!-- Hover Effect Navbar -->
 		<script src="{{ asset('assets/js/scroll-hover-nav.js') }}"></script>
+		<!-- Password -->
+		<script src="{{ asset('assets/js/vendors/password.js') }}"></script>
+		<!-- FORM LOAD JS -->
+		<script src="{{ asset('assets/js/formLoad.js') }}"></script>
 	</body>
 </html>

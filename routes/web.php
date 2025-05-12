@@ -21,7 +21,14 @@ Route::get('/', [LandingPageController::class, 'index'])->name('home');
 
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
-// Route::get('/home', [LandingPageController::class, 'index'])->name('home');
+Route::post('store/register', [AuthController::class, 'storeRegist'])->name('storeRegist');
+Route::get('auth/confirmation/{email}', [AuthController::class, 'confirmAccount'])->name('confirmAccount');
+
+Route::get('forget-password', [AuthController::class, 'forgetPassword'])->name('forgetPassword');
+Route::post('auth/store-forget-password', [AuthController::class, 'storeforgetPassword'])->name('storeforgetPassword');
+
+Route::get('auth/reset-password/{email}', [AuthController::class, 'resetPassword'])->name('resetPassword');
+Route::post('auth/store-reset-password', [AuthController::class, 'storeresetPassword'])->name('storeresetPassword');
 
 // LOGIN
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -32,60 +39,12 @@ Route::get('/expired-logout', [AuthController::class, 'expiredlogout'])->name('e
 
 Route::get('/change-language/{lang}', [LanguageController::class, 'change'])->name('change.language');
 
+
+
+
+
 // LOGGED IN
 Route::middleware([Authenticate::class, NoCache::class, UpdateLastSeen::class])->group(function () {
     // DASHBOARD
-    Route::controller(DashboardController::class)->group(function () {
-        Route::prefix('dashboard')->group(function () {
-            Route::get('/', 'index')->name('dashboard');
-            Route::post('/', 'switchTheme')->name('switchTheme');
-        });
-    });
-    // PROFIL
-    Route::controller(ProfileController::class)->group(function () {
-        Route::prefix('profile')->group(function () {
-            Route::get('/', 'index')->name('profile.index');
-            Route::post('/update-photo', 'updatePhoto')->name('profile.updatePhoto');
-        });
-    });
-    // RULE CONFIGURATION
-    Route::middleware(['role:Super Admin'])->controller(MstRuleController::class)->group(function () {
-        Route::prefix('rule')->group(function () {
-            Route::get('/', 'index')->name('rule.index');
-            Route::post('/store', 'store')->name('rule.store');
-            Route::post('/update/{id}', 'update')->name('rule.update');
-            Route::post('/delete/{id}', 'delete')->name('rule.delete');
-        });
-    });
-    // DROPDOWN CONFIGURATION
-    Route::middleware(['role:Admin,Super Admin'])->controller(MstDropdownController::class)->group(function () {
-        Route::prefix('dropdown')->group(function () {
-            Route::get('/', 'index')->name('dropdown.index');
-            Route::post('/store', 'store')->name('dropdown.store');
-            Route::post('/update/{id}', 'update')->name('dropdown.update');
-            Route::post('/disable/{id}', 'disable')->name('dropdown.disable');
-            Route::post('/enable/{id}', 'enable')->name('dropdown.enable');
-        });
-    });
-    // USER CONFIGURATION
-    Route::middleware(['role:Admin,Super Admin'])->controller(MstUserController::class)->group(function () {
-        Route::prefix('user')->group(function () {
-            Route::get('/', 'index')->name('user.index');
-            Route::get('/datas', 'datas')->name('user.datas');
-            Route::post('/store', 'store')->name('user.store');
-            Route::get('/edit/{id}', 'edit')->name('user.edit');
-            Route::post('/update/{id}', 'update')->name('user.update');
-            Route::post('/reset/{id}', 'reset')->name('user.reset');
-            Route::post('/activate/{id}', 'activate')->name('user.activate');
-            Route::post('/deactivate/{id}', 'deactivate')->name('user.deactivate');
-            Route::post('/delete/{id}', 'delete')->name('user.delete');
-            Route::post('/check_email_employee', 'check_email')->name('user.check_email_employee');
-        });
-    });
-    // AUDIT LOG
-    Route::middleware(['role:Admin,Super Admin'])->controller(AuditLogController::class)->group(function () {
-        Route::prefix('auditlog')->group(function () {
-            Route::get('/', 'index')->name('auditlog.index');
-        });
-    });
+    Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
 });
