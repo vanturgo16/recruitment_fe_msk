@@ -6,12 +6,18 @@
 	<div data-cue="fadeIn" class="bg-dark py-3 background-section">
 		<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
 			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-				class="active" aria-current="true" aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-				aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-				aria-label="Slide 3"></button>
+				@php
+					$totalSlides = 2 + $jobBanner->count(); // 2 = first static + video slide
+				@endphp
+				@for ($i = 0; $i < $totalSlides; $i++)
+					<button type="button"
+							data-bs-target="#carouselExampleAutoplaying"
+							data-bs-slide-to="{{ $i }}"
+							class="{{ $i === 0 ? 'active' : '' }}"
+							aria-current="{{ $i === 0 ? 'true' : 'false' }}"
+							aria-label="Slide {{ $i + 1 }}">
+					</button>
+				@endfor
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
@@ -57,22 +63,8 @@
 											<source src="{{ asset('assets/images/testVideo.mp4') }}" type="video/mp4" />
 										</video>
 										<div class="col-xxl-6 col-xl-7 col-lg-8">
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
+											<br><br><br><br><br><br><br><br>
+											<br><br><br><br><br><br><br><br><br>
 										</div>
 									</div>
 								</div>
@@ -80,7 +72,7 @@
 						</div>
 					</section>
 				</div>
-				<div class="carousel-item">
+				{{-- <div class="carousel-item">
 					<section data-cue="fadeIn">
 						<div class="container">
 							<a href="#!">
@@ -89,66 +81,17 @@
 										<div class="col-xxl-6 col-xl-7 col-lg-8">
 											<div class="d-flex flex-column gap-5" data-cue="zoomIn">
 												<div>
-													<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">Lowongan Tersedia</span>
+													<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">RECRUITMENT MITRA SENDANG KEMAKMURAN</span>
 												</div>
 												<div class="d-flex flex-column gap-6">
 													<div class="d-flex flex-column gap-3">
-														<h1 class="mb-0 text-white-stable">Staff</h1>
-														<h3 class="mt-n3 text-white-stable">IT Department</h3>
-														<div class="card">
-															<div class="card-body">
-																<div class="career-requirements row mb-0 text-dark">
-																	<div class="career-degree col-md-6">
-																		<div class="d-flex">
-																			<i class="career-icon bi bi-calendar-check me-2 align-self-start"></i>
-																			<div>
-																				<div class="fw-bold">Periode Pendaftaran</div>
-																				<div>
-																					28 Apr 2025 - 02 Jun 2025
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="career-degree col-md-6">
-																		<div class="d-flex">
-																			<i class="career-icon bi bi-mortarboard-fill me-2 align-self-start"></i>
-																			<div>
-																				<div class="fw-bold">Pendidikan</div>
-																				<div>Strata 1</div>
-																			</div>
-																		</div>                            
-																	</div>
-																	<div class="career-degree col-md-6">
-																		<div class="d-flex">
-																			<i class="career-icon bi bi-briefcase-fill me-2 align-self-start"></i>
-																			<div>
-																				<div class="fw-bold">Pengalaman</div>
-																				<div>
-																					> 1 tahun
-																				</div>                                        
-																			</div>
-																		</div>
-																	</div>
-																	<div class="career-degree col-md-6">
-																		<div class="d-flex">
-																			<i class="career-icon bi bi-person-fill me-2 align-self-start"></i>
-																			<div>
-																				<div class="fw-bold">Umur</div>
-																				<div>
-																					> 25 tahun
-																				</div>                                        
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														{{-- <p class="mb-0 text-white-stable">
+														<h1 class="mb-0 text-white-stable">Mari Bertumbuh Bersama AHASS Banten</h1>
+														<p class="mb-0 text-white-stable">
 														Buka lembaran baru dalam perjalanan karier Anda bersama AHASS Banten — jaringan bengkel resmi yang terus berkembang. Kami mencari individu berbakat dan berdedikasi untuk bergabung dalam tim profesional kami. Raih kesempatan untuk berkembang, berkontribusi, dan sukses bersama kami.
-														</p> --}}
+														</p>
 													</div>
 													<div class="d-flex align-items-center">
-														<a href="#!" class="btn btn-danger">Detail Lowongan</a>
+														<a href="#!" class="btn btn-danger">Lihat Kesempatan</a>
 													</div>
 												</div>
 											</div>
@@ -161,7 +104,132 @@
 							</a>
 						</div>
 					</section>
-				</div>
+				</div> --}}
+				@if($jobBanner->count() > 0)
+					@foreach($jobBanner as $banner)
+						<div class="carousel-item">
+							<section data-cue="fadeIn">
+								<div class="container">
+									<a href="#!">
+										<div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4 image-blur bg-company">
+											<div class="row g-0">
+												<div class="col-xxl-6 col-xl-7 col-lg-8">
+													<div class="d-flex flex-column gap-5" data-cue="zoomIn">
+														<div>
+															<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">Lowongan Tersedia</span>
+														</div>
+														<div class="d-flex flex-column gap-6">
+															<div class="d-flex flex-column gap-3">
+																<h1 class="mb-0 text-white-stable">{{ $banner->position_name }}</h1>
+																<h3 class="mt-n3 text-white-stable">{{ $banner->dept_name }}</h3>
+																<div class="card">
+																	<div class="card-body shadow">
+																		<div class="career-requirements row mb-0 text-dark">
+																			<div class="career-degree col-md-6">
+																				<div class="d-flex">
+																					<i class="career-icon bi bi-calendar-check me-2 align-self-start"></i>
+																					<div>
+																						<div class="fw-bold">Periode Pendaftaran</div>
+																						<div>
+																							{{ \Carbon\Carbon::parse($banner->rec_date_start)->translatedFormat('d M Y') }}
+																							@if ($banner->rec_date_end)
+																								- {{ \Carbon\Carbon::parse($banner->rec_date_end)->translatedFormat('d M Y') }}
+																							@endif
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="career-degree col-md-6">
+																				<div class="d-flex">
+																					<i class="career-icon bi bi-mortarboard-fill me-2 align-self-start"></i>
+																					<div>
+																						<div class="fw-bold">Pendidikan</div>
+																						<div>{{ $banner->min_education ?? '-' }}</div>
+																					</div>
+																				</div>                            
+																			</div>
+																			<div class="career-degree col-md-6">
+																				<div class="d-flex">
+																					<i class="career-icon bi bi-briefcase-fill me-2 align-self-start"></i>
+																					<div>
+																						<div class="fw-bold">Pengalaman</div>
+																						<div>
+																							@if (!is_null($banner->min_yoe))
+																								> {{ $banner->min_yoe }} tahun
+																							@else
+																								-
+																							@endif
+																						</div>                                        
+																					</div>
+																				</div>
+																			</div>
+																			<div class="career-degree col-md-6">
+																				<div class="d-flex">
+																					<i class="career-icon bi bi-person-fill me-2 align-self-start"></i>
+																					<div>
+																						<div class="fw-bold">Umur</div>
+																						<div>
+																							@if (!is_null($banner->min_age))
+																								> {{ $banner->min_age }} tahun
+																							@else
+																								-
+																							@endif
+																						</div>                                        
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="d-flex align-items-center">
+																<a href="#!" class="btn btn-danger">Detail Lowongan</a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end">
+													<img src="{{ asset('assets/images/lowongan.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</section>
+						</div>
+					@endforeach
+				@else
+					<div class="carousel-item">
+						<section data-cue="fadeIn">
+							<div class="container">
+								<a href="#!">
+									<div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4 image-blur bg-company">
+										<div class="row g-0">
+											<div class="col-xxl-6 col-xl-7 col-lg-8">
+												<div class="d-flex flex-column gap-5" data-cue="zoomIn">
+													<div>
+														<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">Lowongan</span>
+													</div>
+													<div class="d-flex flex-column gap-6">
+														<div class="d-flex flex-column gap-3">
+															<h1 class="mb-0 text-white-stable"><i class='bx bx-folder-open'></i></h1>
+															<p class="mb-0 text-white-stable">
+																Maaf Saat Ini Belum Ada Lowongan Tersedia, Silahkan Kunjungi Kembali Halaman Ini
+															</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end">
+												<img src="{{ asset('assets/images/lowongan.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</section>
+					</div>
+				@endif
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>

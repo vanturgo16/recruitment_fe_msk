@@ -156,6 +156,7 @@ body[data-bs-theme="dark"] .body-detail-a {
 .bg-company {
     position: relative;
     background: url("/assets/images/background/MSKDealer.jpeg") no-repeat center
+    /* background: url("/assets/images/sizeGuide.png") no-repeat center */
         top;
     background-size: cover;
     min-height: 60vh;

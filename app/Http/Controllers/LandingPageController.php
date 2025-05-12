@@ -29,14 +29,15 @@ class LandingPageController extends Controller
                     ->orWhere('mst_departments.dept_name', 'like', "%{$search}%")
                     ->orWhere('joblists.jobdesc', 'like', "%{$search}%");
             })
-            ->orderBy('joblists.created_at')
-            ->paginate(3);
+            ->orderBy('joblists.created_at');
+        $jobBanner = $jobLists->limit(2)->get();
+        $jobLists = $jobLists->paginate(3);
 
         if ($request->ajax()) {
             return view('landingPage.partials.joblist', compact('jobLists', 'search'))->render();
         }
-
-        return view('landingPage.index', compact('jobLists', 'search'));
+        
+        return view('landingPage.index', compact('jobBanner', 'jobLists', 'search'));
     }
 
 

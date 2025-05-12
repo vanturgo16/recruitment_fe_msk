@@ -8294,6 +8294,11 @@ fieldset:disabled .btn {
     display: inline-block;
     height: 2rem;
     width: 2rem;
+    /* highlight */
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.6); /* dark semi-transparent box */
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .carousel-control-prev-icon {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
@@ -8313,6 +8318,10 @@ fieldset:disabled .btn {
     position: absolute;
     right: 0;
     z-index: 2;
+    /* highlight  */
+    /* background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); */
 }
 .carousel-indicators [data-bs-target] {
     background-clip: padding-box;
