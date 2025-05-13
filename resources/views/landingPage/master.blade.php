@@ -16,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs2/scrollcue/scrollCue.css') }}"/>
 		<!-- Box icons -->
 		<link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/css/boxicons.min.css') }}"/>
-		<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/boxicons@2.1.4/css/boxicons.min.css') }}"/>
 		<!-- Theme CSS -->
 		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
 		<!-- CUSTOM CSS -->
@@ -61,7 +61,19 @@
 									<a class="nav-link" href="{{ route('home') }}#faq" id="nav-faq">FAQ</a>
 								</li>
 							</ul>
+							
 							<div class="mt-3 mt-lg-0 d-flex align-items-center">
+								{{-- <div class="dropdown d-inline-block">
+									<button type="button" class="btn header-item bg-light-subtle border-start border-end" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/userDefault.png') }}" alt="Header Avatar" width="32" height="32">
+										<span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span> <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+									</button>
+									<div class="dropdown-menu dropdown-menu-end">
+										<a class="dropdown-item" href=""><i class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
+										<a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#logout"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+									</div>
+								</div> --}}
+								
 								@guest
 									<a href="{{ route('login') }}" class="btn btn-light mx-2">Login</a>
 									<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
@@ -69,8 +81,8 @@
 									@if(Auth::user()->is_active)
 										<div class="dropdown">
 											<a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-												<img src="{{ Auth::user()->profile_photo_url ?? asset('default-avatar.png') }}" alt="User" width="32" height="32" class="rounded-circle me-2">
-												<span>{{ Auth::user()->name }}</span>
+												<img src="{{ Auth::user()->profile_photo_url ?? asset('assets/images/users/userDefault.png') }}" alt="User" width="32" height="32" class="rounded-circle me-2">
+												<span class="text-dark">{{ Auth::user()->name }}</span>
 											</a>
 											<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
 												<li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
