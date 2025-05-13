@@ -13,8 +13,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('DeleteUserCron')
             ->timezone('Asia/Jakarta')
-            ->everyMinute();
-            // ->everyFiveMinutes();
+            // ->everyMinute();
+            ->everyFiveMinutes();
     }
     protected function commands(): void
     {

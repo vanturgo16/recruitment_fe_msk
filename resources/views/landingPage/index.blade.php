@@ -7,7 +7,7 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
 			<div class="carousel-indicators">
 				@php
-					$totalSlides = 2 + $jobBanner->count(); // 2 = first static + video slide
+					$totalSlides = $jobBanner->isEmpty() ? 4 : 3 + $jobBanner->count();
 				@endphp
 				@for ($i = 0; $i < $totalSlides; $i++)
 					<button type="button"
@@ -20,6 +20,7 @@
 				@endfor
 			</div>
 			<div class="carousel-inner">
+				{{-- WELCOME BANNER --}}
 				<div class="carousel-item active">
 					<section data-cue="fadeIn">
 						<div class="container">
@@ -39,13 +40,13 @@
 														</p>
 													</div>
 													<div class="d-flex align-items-center">
-														<a href="#!" class="btn btn-danger">Lihat Kesempatan</a>
+														<a href="#career" class="btn btn-danger">Lihat Kesempatan</a>
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end">
-											<img src="{{ asset('assets/images/test2.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
+											<img src="{{ asset('assets/images/figureMSK.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
 										</div>
 									</div>
 								</div>
@@ -53,14 +54,16 @@
 						</div>
 					</section>
 				</div>
-				<div class="carousel-item">
+
+				{{-- VIDEO BANNER --}}
+				{{-- <div class="carousel-item">
 					<section data-cue="fadeIn">
 						<div class="container">
 							<a href="#!">
 								<div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4">
 									<div class="row g-0">
 										<video class="w-100" autoplay muted loop style="object-fit: cover; object-position: top;" playsinline>
-											<source src="{{ asset('assets/images/testVideo.mp4') }}" type="video/mp4" />
+											<source src="{{ asset('assets/images/sampleVideo.mp4') }}" type="video/mp4" />
 										</video>
 										<div class="col-xxl-6 col-xl-7 col-lg-8">
 											<br><br><br><br><br><br><br><br>
@@ -71,40 +74,31 @@
 							</a>
 						</div>
 					</section>
-				</div>
-				{{-- <div class="carousel-item">
-					<section data-cue="fadeIn">
-						<div class="container">
-							<a href="#!">
-								<div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4 image-blur bg-company">
-									<div class="row g-0">
-										<div class="col-xxl-6 col-xl-7 col-lg-8">
-											<div class="d-flex flex-column gap-5" data-cue="zoomIn">
-												<div>
-													<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">RECRUITMENT MITRA SENDANG KEMAKMURAN</span>
-												</div>
-												<div class="d-flex flex-column gap-6">
-													<div class="d-flex flex-column gap-3">
-														<h1 class="mb-0 text-white-stable">Mari Bertumbuh Bersama AHASS Banten</h1>
-														<p class="mb-0 text-white-stable">
-														Buka lembaran baru dalam perjalanan karier Anda bersama AHASS Banten — jaringan bengkel resmi yang terus berkembang. Kami mencari individu berbakat dan berdedikasi untuk bergabung dalam tim profesional kami. Raih kesempatan untuk berkembang, berkontribusi, dan sukses bersama kami.
-														</p>
-													</div>
-													<div class="d-flex align-items-center">
-														<a href="#!" class="btn btn-danger">Lihat Kesempatan</a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end">
-											<img src="{{ asset('assets/images/test2.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-					</section>
 				</div> --}}
+
+				{{-- IMAGE BANNER --}}
+				@php
+					$banners = ['Banner1.jpg', 'Banner2.jpg'];
+				@endphp
+				@foreach ($banners as $banner)
+					<div class="carousel-item">
+						<section data-cue="fadeIn">
+							<div class="container">
+								<a href="#!">
+									<div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4"
+										style="background-image: url('{{ asset("assets/images/banner/$banner") }}');
+											background-repeat: no-repeat;
+											background-position: center;
+											background-size: cover;
+											min-height: 81vh;">
+									</div>
+								</a>
+							</div>
+						</section>
+					</div>
+				@endforeach
+
+				{{-- JOB BANNER 2 FIRST --}}
 				@if($jobBanner->count() > 0)
 					@foreach($jobBanner as $banner)
 						<div class="carousel-item">
@@ -116,7 +110,7 @@
 												<div class="col-xxl-6 col-xl-7 col-lg-8">
 													<div class="d-flex flex-column gap-5" data-cue="zoomIn">
 														<div>
-															<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">Lowongan Tersedia</span>
+															<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">LOWONGAN TERSEDIA</span>
 														</div>
 														<div class="d-flex flex-column gap-6">
 															<div class="d-flex flex-column gap-3">
@@ -208,7 +202,7 @@
 											<div class="col-xxl-6 col-xl-7 col-lg-8">
 												<div class="d-flex flex-column gap-5" data-cue="zoomIn">
 													<div>
-														<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">Lowongan</span>
+														<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">LOWONGAN BELUM TERSEDIA</span>
 													</div>
 													<div class="d-flex flex-column gap-6">
 														<div class="d-flex flex-column gap-3">
@@ -231,13 +225,13 @@
 					</div>
 				@endif
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" title="Previous">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
+				<span class="visually-hidden"></span>
 			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" title="Next">
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
+				<span class="visually-hidden"></span>
 			</button>
 		</div>
 	</div>
@@ -368,41 +362,6 @@
         </div>
     </div>
 </section>
-
-<!-- AJAX for Search and Pagination -->
-<script>
-	$(document).ready(function() {
-		// Handle Search Submit
-		$('#search-form').on('submit', function(e) {
-			e.preventDefault();
-			var url = $(this).attr('action');
-			var query = $(this).serialize();
-			fetchJobs(url + '?' + query);
-		});
-		// Handle Pagination Click
-		$(document).on('click', '.pagination a', function(e) {
-			e.preventDefault();
-			var url = $(this).attr('href');
-			fetchJobs(url);
-		});
-		function fetchJobs(url) {
-			$.ajax({
-				url: url,
-				type: 'GET',
-				beforeSend: function() {
-					$('#joblist-container').html('<div class="text-center my-5"><div class="spinner-border text-danger" role="status"><span class="visually-hidden">Loading...</span></div></div>');
-				},
-				success: function(data) {
-					$('#joblist-container').html(data);
-				},
-				error: function() {
-					alert('Gagal memuat data.');
-				}
-			});
-		}
-	});
-</script>
-
 <hr>
 
 {{-- TNC --}}
@@ -702,46 +661,48 @@
 </section>
 
 {{-- FAQ --}}
-<div class="card">
-	<div class="card-body">
-		<section class="py-xl-9 py-5 bg-gray-100" id="faq">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5 col-md-6">
-						<div class="mb-7 mb-md-0 me-lg-7">
-							<div class="mb-4">
-								<h2 class="mb-3">Masih Ada Pertanyaan?</h2>
-								<p class="mb-0">
-									Kami telah menjawab beberapa pertanyaan umum terkait rekrutmen di PT Mitra Sendang Kemakmuran. Jangan ragu untuk menghubungi kami jika ada hal lain yang ingin Anda tanyakan.
-								</p>
+<section id="faq">
+	<div class="card">
+		<div class="card-body">
+			<div class="py-xl-9 py-5 bg-gray-100">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-5 col-md-6">
+							<div class="mb-7 mb-md-0 me-lg-7">
+								<div class="mb-4">
+									<h2 class="mb-3">Masih Ada Pertanyaan?</h2>
+									<p class="mb-0">
+										Kami telah menjawab beberapa pertanyaan umum terkait rekrutmen di PT Mitra Sendang Kemakmuran. Jangan ragu untuk menghubungi kami jika ada hal lain yang ingin Anda tanyakan.
+									</p>
+								</div>
+								<a href="#!" class="btn btn-outline-danger">
+									Human Resource
+								</a>
 							</div>
-							<a href="#!" class="btn btn-outline-danger">
-								Human Resource
-							</a>
 						</div>
+						<div class="col-lg-7 col-md-6">
+							<div class="pb-4 border-bottom">
+								<h4 class="mb-3">Bagaimana cara melamar di PT Mitra Sendang Kemakmuran?</h4>
+								<p class="mb-0">Semua proses lamaran hanya dilakukan melalui website resmi ini. Pastikan Anda mengisi data dengan lengkap dan benar sesuai instruksi.</p>
+							</div>
+							<div class="py-4 border-bottom">
+								<h4 class="mb-3">Apakah ada jalur lain untuk melamar selain website ini?</h4>
+								<p class="mb-0">Tidak. PT Mitra Sendang Kemakmuran hanya menerima lamaran yang diajukan melalui website resmi ini. Kami tidak bertanggung jawab atas lamaran yang dikirim melalui pihak ketiga.</p>
+							</div>
+							<div class="py-4 border-bottom">
+								<h4 class="mb-3">Bagaimana saya mengetahui lowongan yang tersedia?</h4>
+								<p class="mb-0">Daftar lowongan yang tersedia selalu diperbarui di halaman ini. Silakan periksa secara berkala untuk informasi terbaru.</p>
+							</div>
+							<div class="py-4 border-bottom">
+								<h4 class="mb-3">Apakah ada biaya untuk proses rekrutmen?</h4>
+								<p class="mb-0">Tidak. Seluruh proses rekrutmen di PT Mitra Sendang Kemakmuran gratis tanpa dipungut biaya apa pun.</p>
+							</div>
+						</div>					
 					</div>
-					<div class="col-lg-7 col-md-6">
-						<div class="pb-4 border-bottom">
-							<h4 class="mb-3">Bagaimana cara melamar di PT Mitra Sendang Kemakmuran?</h4>
-							<p class="mb-0">Semua proses lamaran hanya dilakukan melalui website resmi ini. Pastikan Anda mengisi data dengan lengkap dan benar sesuai instruksi.</p>
-						</div>
-						<div class="py-4 border-bottom">
-							<h4 class="mb-3">Apakah ada jalur lain untuk melamar selain website ini?</h4>
-							<p class="mb-0">Tidak. PT Mitra Sendang Kemakmuran hanya menerima lamaran yang diajukan melalui website resmi ini. Kami tidak bertanggung jawab atas lamaran yang dikirim melalui pihak ketiga.</p>
-						</div>
-						<div class="py-4 border-bottom">
-							<h4 class="mb-3">Bagaimana saya mengetahui lowongan yang tersedia?</h4>
-							<p class="mb-0">Daftar lowongan yang tersedia selalu diperbarui di halaman ini. Silakan periksa secara berkala untuk informasi terbaru.</p>
-						</div>
-						<div class="py-4 border-bottom">
-							<h4 class="mb-3">Apakah ada biaya untuk proses rekrutmen?</h4>
-							<p class="mb-0">Tidak. Seluruh proses rekrutmen di PT Mitra Sendang Kemakmuran gratis tanpa dipungut biaya apa pun.</p>
-						</div>
-					</div>					
 				</div>
 			</div>
-		</section>
+		</div>
 	</div>
-</div>
+</section>
 
 @endsection

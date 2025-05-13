@@ -115,3 +115,37 @@
         </nav>
     </div>
 </div>
+
+<!-- AJAX for Search and Pagination -->
+<script>
+	$(document).ready(function() {
+		// Handle Search Submit
+		$('#search-form').on('submit', function(e) {
+			e.preventDefault();
+			var url = $(this).attr('action');
+			var query = $(this).serialize();
+			fetchJobs(url + '?' + query);
+		});
+		// Handle Pagination Click
+		$(document).on('click', '.pagination a', function(e) {
+			e.preventDefault();
+			var url = $(this).attr('href');
+			fetchJobs(url);
+		});
+		function fetchJobs(url) {
+			$.ajax({
+				url: url,
+				type: 'GET',
+				beforeSend: function() {
+					$('#joblist-container').html('<div class="text-center my-5"><div class="spinner-border text-danger" role="status"><span class="visually-hidden">Loading...</span></div></div>');
+				},
+				success: function(data) {
+					$('#joblist-container').html(data);
+				},
+				error: function() {
+					alert('Gagal memuat data.');
+				}
+			});
+		}
+	});
+</script>

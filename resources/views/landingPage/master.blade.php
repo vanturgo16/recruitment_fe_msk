@@ -46,19 +46,19 @@
 						<div class="offcanvas-body pt-0 align-items-center">
 							<ul class="navbar-nav mx-auto align-items-lg-center">
 								<li class="nav-item">
-									<a class="nav-link" href="{{ route('home') }}#home">Beranda</a>
+									<a class="nav-link" href="{{ route('home') }}#home" id="nav-home">Beranda</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="{{ route('home') }}#career">Karir</a>
+									<a class="nav-link" href="{{ route('home') }}#career" id="nav-career">Karir</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="{{ route('home') }}#tnc">Ketentuan & Cara Melamar</a>
+									<a class="nav-link" href="{{ route('home') }}#tnc" id="nav-tnc">Ketentuan & Cara Melamar</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="{{ route('home') }}#lifeatmsk">Life at MSK</a>
+									<a class="nav-link" href="{{ route('home') }}#lifeatmsk" id="nav-lifeatmsk">Life at MSK</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="{{ route('home') }}#faq">FAQ</a>
+									<a class="nav-link" href="{{ route('home') }}#faq" id="nav-faq">FAQ</a>
 								</li>
 							</ul>
 							<div class="mt-3 mt-lg-0 d-flex align-items-center">
@@ -104,9 +104,12 @@
 				<div class="row">
 					<div class="col-lg-9 col-12">
 						<div class="row" id="ft-links">
-							<div class="col-lg-3 col-12">
+							<div class="col-lg-3 col-12 mb-4">
 								<div class="position-relative">
-									<img src="{{ asset('assets/images/logo/logo_vertical_light.jpg') }}" class="offcanvas-logo" alt>
+									<!-- Desktop (lg and up) -->
+									<img src="{{ asset('assets/images/logo/logo_vertical_light.jpg') }}" class="offcanvas-logo d-none d-lg-block" alt="Vertical Logo">
+									<!-- Mobile (below lg) -->
+									<img src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" class="offcanvas-logo d-lg-none" alt="Horizontal Logo">
 								</div>
 							</div>
 							<div class="col-lg-3 col-12">
@@ -186,7 +189,7 @@
 			<div class="container mt-7 pt-lg-7 pb-4">
 				<div class="row align-items-center">
 					<div class="col-md-3">
-						<a class="mb-4 mb-lg-0 d-block text-inverse" href="index.html"><img src="{{ asset('assets/images/logo/logo.svg') }}" alt=""/></a>
+						<a class="mb-4 mb-lg-0 d-block text-inverse" href="#"></a>
 					</div>
 					<div class="col-md-9 col-lg-6">
 						<div class="small mb-3 mb-lg-0 text-lg-center">

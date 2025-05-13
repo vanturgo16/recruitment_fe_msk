@@ -31,6 +31,8 @@ class LandingPageController extends Controller
             })
             ->orderBy('joblists.created_at');
         $jobBanner = $jobLists->limit(2)->get();
+        // $jobBanner = collect();
+
         $jobLists = $jobLists->paginate(3);
 
         if ($request->ajax()) {

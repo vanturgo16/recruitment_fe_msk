@@ -1,37 +1,36 @@
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav-link");
-function setActiveLink() {
-    let closestSection = null;
-    let closestOffset = Number.POSITIVE_INFINITY;
-    // Handle the case where the page is at the top (initial load)
-    if (window.scrollY === 0) {
-        // Ensure the "Home" link is active when at the top
-        document
-            .querySelector('.nav-link[href="#home"]')
-            .classList.add("active");
-        return; // Early return to avoid further processing
-    }
-    sections.forEach((section) => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop >= 0 && sectionTop < closestOffset) {
-            closestOffset = sectionTop;
-            closestSection = section;
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const defaultLink = document.querySelector('.nav-link[href="#nav-home"]');
+
+    function onScroll() {
+        const scrollPos = window.scrollY + window.innerHeight / 2;
+        let found = false;
+
+        sections.forEach((section) => {
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+            const id = section.getAttribute("id");
+
+            if (scrollPos >= top && scrollPos < bottom) {
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").includes(`#${id}`)) {
+                        link.classList.add("active");
+                    }
+                });
+                found = true;
+            }
+        });
+
+        // Fallback to default if no section matched
+        if (!found && defaultLink) {
+            navLinks.forEach((link) => link.classList.remove("active"));
+            defaultLink.classList.add("active");
         }
-    });
-    // Remove the active class from all links
-    navLinks.forEach((link) => {
-        link.classList.remove("active");
-    });
-    // Add active class to the corresponding link of the closest section
-    if (closestSection) {
-        const id = closestSection.getAttribute("id");
-        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
-        if (activeLink) {
-            activeLink.classList.add("active");
-        }
     }
-}
-// Initialize on page load to handle the first active link
-window.addEventListener("load", setActiveLink);
-// Update active link on scroll
-window.addEventListener("scroll", setActiveLink);
+
+    // Initial run
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+});

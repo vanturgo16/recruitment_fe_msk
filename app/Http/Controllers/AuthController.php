@@ -19,77 +19,50 @@ use App\Models\MstRules;
 
 class AuthController extends Controller
 {
+    // LOGIN
     public function login(Request $request)
     {
         return view('landingPage.auth.login');
     }
+    public function postlogin(Request $request)
+    {
+        $request->validate([
+            'captcha_input' => 'required|in:' . session('captcha_code'),
+        ], [
+            'captcha_input.required' => 'Kode CAPTCHA harus diisi.',
+            'captcha_input.in' => 'Kode CAPTCHA yang dimasukkan tidak sesuai.',
+        ]);
+        
+        $email = $request->email;
+        $password = $request->password;
+        $credentials = [
+            'email' => $email,
+            'password' => $password
+        ];
+        $dologin = Auth::attempt($credentials);
+        if ($dologin) {
+            $user = User::where('email', $request->email)->first();
+            if ($user->is_active == 1 && $user->role == 'Candidate') {
+                $session = Session::getId();
+                User::where('email', $email)->update([
+                    'last_login' => now(),
+                    'login_counter' => $user->login_counter + 1,
+                    'last_session' => $session,
+                ]);
+                return redirect()->route('dashboard')->with('success', 'Login Berhasil');
+            } else {
+                return redirect()->route('login')->with('fail', 'Akun belum diaktivasi, silahkan cek email untuk aktivasi akun.');
+            }
+        } else {
+            return redirect()->route('login')->with('fail', 'Email atau password salah.');
+        }
+    }
+
+    // REGISTER
     public function register(Request $request)
     {
         return view('landingPage.auth.register');
     }
-    public function forgetPassword()
-    {
-        return view('landingPage.auth.forgetPassword');
-    }
-
-    public function storeforgetPassword(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-        ], [
-            'email.required' => 'Email wajib diisi.',
-            'email.email'    => 'Format email tidak valid.',
-        ]);
-
-        $data = User::where('email', $request->email)->first();
-        $development = MstRules::where('rule_name', 'Development')->first()->rule_value;
-        $emailDev = MstRules::where('rule_name', 'Email Development')->pluck('rule_value')->toArray();
-        $toEmail = ($development == 1) ? $emailDev : $request->email;
-
-        if ($data) {
-            $link = url('auth/reset-password/' . base64_encode($request->email));
-            // Send Email
-            $mailContent = new ReqResetPassword($data, $link);
-            Mail::to($toEmail)->send($mailContent);
-            return redirect()->back()->with('success', 'Silahkan cek email untuk mereset password.');
-        } else {
-            return redirect()->back()->with('fail', 'Email tidak ditemukan.');
-        }
-    }
-    public function resetPassword($email)
-    {
-        $email = base64_decode($email);
-        $user = User::where('email', $email)->first();
-        if ($user) {
-            return view('landingPage.auth.resetPassword', compact('user'));
-        } else {
-            return redirect()->route('login')->with('fail', 'Email tidak ditemukan.');
-        }
-    }
-
-    public function storeresetPassword(Request $request)
-    {
-        $request->validate([
-            'email'     => 'required|email',
-            'password'  => 'required|string|min:8',
-        ], [
-            'email.required'     => 'Email wajib diisi.',
-            'email.email'        => 'Format email tidak valid.',
-            'password.required'  => 'Password wajib diisi.',
-            'password.string'    => 'Password harus berupa teks.',
-            'password.min'       => 'Password minimal :min karakter.',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-        if ($user) {
-            $password = Hash::make($request->password);
-            $user->update(['password' => $password]);
-            return redirect()->route('login')->with('success', 'Password berhasil diubah, silahkan login.');
-        } else {
-            return redirect()->back()->with('fail', 'Email tidak ditemukan.');
-        }
-    }
-
     public function storeRegist(Request $request)
     {
         $request->validate([
@@ -194,39 +167,76 @@ class AuthController extends Controller
         }
     }
 
-    public function postlogin(Request $request)
+    // FORGET PASSWORD
+    public function forgetPassword()
     {
-        $email = $request->email;
-        $password = $request->password;
-        $credentials = [
-            'email' => $email,
-            'password' => $password
-        ];
-        $dologin = Auth::attempt($credentials);
-        if ($dologin) {
-            $user = User::where('email', $request->email)->first();
-            if ($user->is_active == 1 && $user->role == 'Candidate') {
-                $session = Session::getId();
-                User::where('email', $email)->update([
-                    'last_login' => now(),
-                    'login_counter' => $user->login_counter + 1,
-                    'last_session' => $session,
-                ]);
-                return redirect()->route('dashboard')->with('success', 'Login Berhasil');
-            } else {
-                return redirect()->route('login')->with('fail', 'Akun belum diaktivasi, silahkan cek email untuk aktivasi akun.');
-            }
+        return view('landingPage.auth.forgetPassword');
+    }
+    public function storeforgetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ], [
+            'email.required' => 'Email wajib diisi.',
+            'email.email'    => 'Format email tidak valid.',
+        ]);
+
+        $data = User::where('email', $request->email)->first();
+        $development = MstRules::where('rule_name', 'Development')->first()->rule_value;
+        $emailDev = MstRules::where('rule_name', 'Email Development')->pluck('rule_value')->toArray();
+        $toEmail = ($development == 1) ? $emailDev : $request->email;
+
+        if ($data) {
+            $link = url('auth/reset-password/' . base64_encode($request->email));
+            // Send Email
+            $mailContent = new ReqResetPassword($data, $link);
+            Mail::to($toEmail)->send($mailContent);
+            return redirect()->back()->with('success', 'Silahkan cek email untuk mereset password.');
         } else {
-            return redirect()->route('login')->with('fail', 'Email atau password salah.');
+            return redirect()->back()->with('fail', 'Email tidak ditemukan.');
         }
     }
 
+    // RESET PASSWORD
+    public function resetPassword($email)
+    {
+        $email = base64_decode($email);
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            return view('landingPage.auth.resetPassword', compact('user'));
+        } else {
+            return redirect()->route('login')->with('fail', 'Email tidak ditemukan.');
+        }
+    }
+    public function storeresetPassword(Request $request)
+    {
+        $request->validate([
+            'email'     => 'required|email',
+            'password'  => 'required|string|min:8',
+        ], [
+            'email.required'     => 'Email wajib diisi.',
+            'email.email'        => 'Format email tidak valid.',
+            'password.required'  => 'Password wajib diisi.',
+            'password.string'    => 'Password harus berupa teks.',
+            'password.min'       => 'Password minimal :min karakter.',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            $password = Hash::make($request->password);
+            $user->update(['password' => $password]);
+            return redirect()->route('login')->with('success', 'Password berhasil diubah, silahkan login.');
+        } else {
+            return redirect()->back()->with('fail', 'Email tidak ditemukan.');
+        }
+    }
+    
+    // LOGOUT
     public function logout()
     {
         Auth::logout();
         return redirect()->route('login')->with('success', 'Success Logout');
     }
-
     public function expiredlogout()
     {
         Auth::logout();

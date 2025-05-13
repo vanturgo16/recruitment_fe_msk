@@ -153,13 +153,13 @@ body[data-bs-theme="dark"] .body-detail-a {
     }
 }
 
+/* background: url("/assets/images/sizeGuide.png") */
 .bg-company {
     position: relative;
     background: url("/assets/images/background/MSKDealer.jpeg") no-repeat center
-    /* background: url("/assets/images/sizeGuide.png") no-repeat center */
         top;
     background-size: cover;
-    min-height: 60vh;
+    min-height: 81vh;
     z-index: auto;
 }
 .bg-company::before {

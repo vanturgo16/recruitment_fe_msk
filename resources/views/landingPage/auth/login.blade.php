@@ -1,6 +1,9 @@
 @extends('landingPage.master')
 @section('konten')
 
+<!-- CAPTCHA CSS -->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/captcha.css') }}"/>
+
 <section class="p-5">
 	<div class="container">
 		<div class="row">
@@ -43,6 +46,24 @@
 										</div>
 									</div>
 								</div>
+								<!-- CAPTCHA display and refresh -->
+								<div class="col-lg-12">
+									<div class="mb-5">
+										<label class="form-label">Captcha<span class="text-danger">*</span></label>
+										<div class="d-flex align-items-center">
+											<div class="captcha-container me-2">
+												<div class="captcha" id="captcha-text">
+													@foreach(str_split(session('captcha_code')) as $index => $char)
+														<span class="captcha-char" style="--i:{{ $index }}; --rand:{{ rand(0, 4) }};">{{ $char }}</span>
+													@endforeach
+												</div>
+												<div class="middle-line"></div>
+											</div>
+											<button type="button" id="refresh-captcha" title="Refresh Kode Captcha">↻</button>
+										</div>
+										<input type="text" class="form-control mt-2" name="captcha_input" placeholder="Masukkan kode CAPTCHA" required/>
+									</div>
+								</div>
 							</div>
 							<div class="mb-4 d-flex align-items-center justify-content-between">
 								<div class="form-check">
@@ -62,5 +83,8 @@
 		</div>
 	</div>
 </section>
+
+<!-- CAPTCHA JS -->
+<script src="{{ asset('assets/js/captcha.js') }}"></script>
 
 @endsection
