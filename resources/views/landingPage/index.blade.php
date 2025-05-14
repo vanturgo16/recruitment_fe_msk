@@ -177,7 +177,7 @@
 																</div>
 															</div>
 															<div class="d-flex align-items-center">
-																<a href="#!" class="btn btn-danger">Detail Lowongan</a>
+																<a href="{{ route('job.detail', encrypt($banner->id)) }}" class="btn btn-danger">Detail Lowongan</a>
 															</div>
 														</div>
 													</div>

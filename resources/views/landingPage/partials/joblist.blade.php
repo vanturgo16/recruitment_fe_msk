@@ -65,7 +65,7 @@
                 </div>
                 <hr>
                 <div class="career-tags d-flex gap-2 flex-wrap">
-                    <a href="#!" class="btn btn-small btn-info text-white">
+                    <a href="{{ route('job.detail', encrypt($item->id)) }}" class="btn btn-small btn-info text-white">
                         <span class="badge bg-light text-dark"><i class="bi bi-eye"></i></span>
                         Detail Lowongan
                     </a>

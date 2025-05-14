@@ -10,6 +10,11 @@ use App\Traits\AuditLogsTrait;
 
 // Model
 use App\Models\User;
+use App\Models\MainProfile;
+use App\Models\EducationInfo;
+use App\Models\GeneralInfo;
+use App\Models\WorkExpInfo;
+use App\Models\JobApplies;
 
 class DashboardController extends Controller
 {
@@ -17,23 +22,27 @@ class DashboardController extends Controller
 
     public function home(Request $request)
     {
-        return view('landingPage.dashboard.home');
-    }
-    public function switchTheme(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $statusBefore = User::where('id', auth()->user()->id)->first()->is_darkmode;
-            $status = ($statusBefore == 1) ? null : 1;
-            User::where('id', auth()->user()->id)->update(['is_darkmode' => $status]);
+        $idCandidate = auth()->user()->id_candidate;
+        $profileComplete = MainProfile::where('id_candidate', $idCandidate)->exists()
+            && EducationInfo::where('id_candidate', $idCandidate)->exists()
+            && GeneralInfo::where('id_candidate', $idCandidate)->exists()
+            && WorkExpInfo::where('id_candidate', $idCandidate)->exists();
+        $jobApplies = JobApplies::where('id_candidate', $idCandidate)->count();
 
-            //Audit Log
-            $this->auditLogs('Switch Theme');
-            DB::commit();
-            return redirect()->back()->with('success', __('messages.success_switch_theme'));
-        } catch (Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with(['fail' => __('messages.fail_switch_theme')]);
-        }
+        return view('landingPage.dashboard.home', compact('profileComplete', 'jobApplies'));
+    }
+    public function profile(Request $request)
+    {
+        $idCandidate = auth()->user()->id_candidate;
+        $mainProfile = MainProfile::where('id_candidate', $idCandidate)->first();
+        $generalInfo = GeneralInfo::where('id_candidate', $idCandidate)->first();
+        $eduInfo = EducationInfo::where('id_candidate', $idCandidate)->get();
+        $workExpInfo = WorkExpInfo::where('id_candidate', $idCandidate)->get();
+
+        return view('landingPage.dashboard.profile', compact('mainProfile', 'generalInfo', 'eduInfo', 'workExpInfo'));
+    }
+    public function jobApply(Request $request)
+    {
+        return view('landingPage.dashboard.job_apply');
     }
 }

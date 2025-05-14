@@ -75,13 +75,18 @@
 											</a>
 											<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
 												<li>
-													<a class="dropdown-item" href="{{ route('dashboard') }}">
-														<i class='bx bx-grid-alt me-2'></i>  Dashboard
+													<a class="dropdown-item text-danger" href="{{ route('dashboard') }}">
+														<i class='bx bx-grid-alt me-2'></i> Dashboard
+													</a>
+												</li>
+												<li>
+													<a class="dropdown-item text-danger" href="{{ route('profile') }}">
+														<i class='bx bx-user me-2'></i> Profile
 													</a>
 												</li>
 												<li><hr class="dropdown-divider"></li>
 												<li>
-													<a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#logout">
+													<a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logout">
 														<i class='bx bx-log-out me-2'></i> Logout
 													</a>
 												</li>

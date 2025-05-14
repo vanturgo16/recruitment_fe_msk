@@ -21,6 +21,9 @@ use App\Http\Controllers\MstUserController;
 
 // LANDING PAGE
 Route::get('/', [LandingPageController::class, 'index'])->name('home');
+// JOB
+Route::get('/job/detail/{id}', [LandingPageController::class, 'detailJob'])->name('job.detail');
+Route::get('/job/apply/{id}', [LandingPageController::class, 'applyJob'])->name('job.apply');
 
 // REGISTER
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -45,4 +48,10 @@ Route::get('/expired-logout', [AuthController::class, 'expiredlogout'])->name('e
 Route::middleware([Authenticate::class, NoCache::class, UpdateLastSeen::class])->group(function () {
     // DASHBOARD
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
+
+    // PROFILE
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+
+    // JOB APPLY
+    Route::get('/job-apply', [DashboardController::class, 'jobApply'])->name('jobApply');
 });
