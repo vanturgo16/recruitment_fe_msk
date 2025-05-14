@@ -27,22 +27,29 @@
             <div class="collapse d-md-block" id="collapseAccountMenu">
                 <ul class="nav flex-column nav-account">
                     <li class="nav-item">
-                        <a class="nav-link" href="account-home.html">
-                            <i class="align-bottom bx bx-home"></i>
-                            <span class="ms-2">Home</span>
+                        <a class="nav-link active" href="{{ route('dashboard') }}">
+                            <i class="align-bottom bx bx-grid-alt"></i>
+                            <span class="ms-2">Dashboard</span>
                         </a>
                     </li>
+                    <hr>
                     <li class="nav-item">
-                        <a class="nav-link" href="account-profile.html">
+                        <a class="nav-link" href="">
                             <i class="align-bottom bx bx-user"></i>
                             <span class="ms-2">Profile</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="align-bottom bx bx-file"></i>
+                            <span class="ms-2">Lamaran</span>
+                        </a>
+                    </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#logout">
                             <i class="align-bottom bx bx-log-out"></i>
-                            <span class="ms-2">Sign Out</span>
+                            <span class="ms-2">Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -129,5 +136,4 @@
         </div>
     </div>
 </section>
-
 @endsection

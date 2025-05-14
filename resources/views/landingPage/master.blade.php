@@ -63,17 +63,6 @@
 							</ul>
 							
 							<div class="mt-3 mt-lg-0 d-flex align-items-center">
-								{{-- <div class="dropdown d-inline-block">
-									<button type="button" class="btn header-item bg-light-subtle border-start border-end" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/userDefault.png') }}" alt="Header Avatar" width="32" height="32">
-										<span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span> <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-									</button>
-									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href=""><i class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
-										<a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#logout"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
-									</div>
-								</div> --}}
-								
 								@guest
 									<a href="{{ route('login') }}" class="btn btn-light mx-2">Login</a>
 									<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
@@ -85,13 +74,16 @@
 												<span class="text-dark">{{ Auth::user()->name }}</span>
 											</a>
 											<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-												<li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+												<li>
+													<a class="dropdown-item" href="{{ route('dashboard') }}">
+														<i class='bx bx-grid-alt me-2'></i>  Dashboard
+													</a>
+												</li>
 												<li><hr class="dropdown-divider"></li>
 												<li>
-													<form method="POST" action="{{ route('logout') }}">
-														@csrf
-														<button type="submit" class="dropdown-item">Logout</button>
-													</form>
+													<a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#logout">
+														<i class='bx bx-log-out me-2'></i> Logout
+													</a>
 												</li>
 											</ul>
 										</div>
@@ -106,6 +98,27 @@
 				</div>
 			</nav>
 		</header>
+		<!-- Modal Logout -->
+		<div class="modal fade" id="logout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-top" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-danger text-white">
+						<h5 class="modal-title" id="staticBackdropLabel">Logout</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>Pilih "Logout" di bawah jika Anda siap untuk mengakhiri sesi Anda saat ini.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+						<form class="formLoad" action="{{ route('logout') }}" id="formlogout" method="POST" enctype="multipart/form-data">
+							@csrf
+							<button type="submit" class="btn btn-danger"><i class='bx bx-log-out me-2'></i> Logout</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<main class="bg-light">
 			@yield('konten')

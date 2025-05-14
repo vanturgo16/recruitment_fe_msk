@@ -1,5 +1,5 @@
 @if (session('success') || session('fail') || session('warning') || session('info') || count($errors)>0)
-    <div class="toast-container p-3" style="position: fixed; bottom: 5vh; right: 25px; z-index: 9999;" data-bs-autohide="false">
+    <div class="toast-container p-3" style="position: fixed; bottom: 5vh; right: 0px; z-index: 9999;" data-bs-autohide="false">
         @if (session('success'))
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
 				<div class="toast-header bg-success text-white d-flex justify-content-between align-items-center">

@@ -45,7 +45,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end">
+										<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end" data-cue="zoomIn">
 											<img src="{{ asset('assets/images/figureMSK.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
 										</div>
 									</div>
@@ -102,7 +102,7 @@
 				@if($jobBanner->count() > 0)
 					@foreach($jobBanner as $banner)
 						<div class="carousel-item">
-							<section data-cue="fadeIn">
+							<section>
 								<div class="container">
 									<a href="#!">
 										<div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4 image-blur bg-company">
@@ -182,7 +182,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end">
+												<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end" data-cue="zoomIn">
 													<img src="{{ asset('assets/images/lowongan.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
 												</div>
 											</div>
