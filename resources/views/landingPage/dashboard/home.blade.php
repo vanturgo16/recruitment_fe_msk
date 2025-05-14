@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="card p-3" style="min-height: 70vh;">
+<div class="card p-lg-5 p-3" style="min-height: 70vh;">
     <div class="mb-4 text-center">
         <h1 class="mb-0 h3">Halo, {{ Auth::user()->name }}! Selamat datang di Dashboard Kandidat MSK.</h1>
     </div>
@@ -43,17 +43,17 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card border shadow">
                         <div class="card-body">
-                        <div class="mb-4">
-                            <i class="bi bi-person-vcard text-warning" style="font-size:24px;"></i>
-                        </div>
-                        <div class="mb-4">
-                            <h5 class="mb-2">Lengkapi Profil</h5>
-                            <p class="mb-0 pe-xl-7">Lengkapi data pribadi dan pengalaman kerja Anda.</p>
-                        </div>
-                        <a href="{{ route('profile') }}" class="icon-link icon-link-hover text-inherit">
-                            Lengkapi Sekarang
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                            <div class="mb-4">
+                                <i class="bi bi-person-vcard text-warning" style="font-size:24px;"></i>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Lengkapi Profil</h5>
+                                <p class="mb-0 pe-xl-7">Lengkapi data pribadi dan pengalaman kerja.</p>
+                            </div>
+                            <a href="{{ route('profile') }}" class="icon-link icon-link-hover text-inherit">
+                                Lengkapi Sekarang
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -63,17 +63,17 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card border shadow">
                         <div class="card-body">
-                        <div class="mb-4">
-                            <i class="bi bi-file-earmark-lock text-danger" style="font-size:24px;"></i>
-                        </div>
-                        <div class="mb-4">
-                            <h5 class="mb-2">Lihat Lowongan Tersedia</h5>
-                            <p class="mb-0">Jelajahi posisi yang sesuai dengan keahlian Anda.</p>
-                        </div>
-                        <a href="{{ route('home') }}#career" class="icon-link icon-link-hover text-inherit">
-                            Cari Lowongan
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                            <div class="mb-4">
+                                <i class="bi bi-file-earmark-lock text-danger" style="font-size:24px;"></i>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Lihat Lowongan Tersedia</h5>
+                                <p class="mb-0">Jelajahi posisi yang sesuai dengan keahlian Anda.</p>
+                            </div>
+                            <a href="{{ route('home') }}#career" class="icon-link icon-link-hover text-inherit">
+                                Cari Lowongan
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

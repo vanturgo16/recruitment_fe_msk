@@ -4,7 +4,7 @@
 <section class="bg-muted">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-4 py-lg-7 py-2">
+            <div class="col-lg-3 col-md-4 py-lg-7 py-2 bg-white">
                 <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
                     <img src="{{ asset('assets/images/users/userDefault.png') }}" alt="avatar" class="avatar avatar-lg rounded-circle" />
                     <div class="ms-3">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="d-md-none text-center d-grid mb-0">
                     <button
-                        class="btn btn-light mb-3 d-flex align-items-center justify-content-between"
+                        class="btn btn-secondary mb-3 d-flex align-items-center justify-content-between"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseAccountMenu"

@@ -86,7 +86,7 @@
 												</li>
 												<li><hr class="dropdown-divider"></li>
 												<li>
-													<a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logout">
+													<a href="#" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logout">
 														<i class='bx bx-log-out me-2'></i> Logout
 													</a>
 												</li>

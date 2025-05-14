@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Traits\AuditLogsTrait;
 
 // Model
-use App\Models\User;
+use App\Models\Candidate;
 use App\Models\MainProfile;
 use App\Models\EducationInfo;
 use App\Models\GeneralInfo;
@@ -34,12 +34,13 @@ class DashboardController extends Controller
     public function profile(Request $request)
     {
         $idCandidate = auth()->user()->id_candidate;
+        $candidate = Candidate::where('id', $idCandidate)->first();
         $mainProfile = MainProfile::where('id_candidate', $idCandidate)->first();
         $generalInfo = GeneralInfo::where('id_candidate', $idCandidate)->first();
         $eduInfo = EducationInfo::where('id_candidate', $idCandidate)->get();
         $workExpInfo = WorkExpInfo::where('id_candidate', $idCandidate)->get();
 
-        return view('landingPage.dashboard.profile', compact('mainProfile', 'generalInfo', 'eduInfo', 'workExpInfo'));
+        return view('landingPage.dashboard.profile', compact('candidate', 'mainProfile', 'generalInfo', 'eduInfo', 'workExpInfo'));
     }
     public function jobApply(Request $request)
     {

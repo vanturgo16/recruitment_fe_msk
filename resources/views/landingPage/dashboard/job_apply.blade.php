@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="card p-3" style="min-height: 70vh;">
+<div class="card p-lg-5 p-3" style="min-height: 70vh;">
 </div>
 
 @endsection

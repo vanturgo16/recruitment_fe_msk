@@ -72,7 +72,7 @@ class LandingPageController extends Controller
             && GeneralInfo::where('id_candidate', $idCandidate)->exists()
             && WorkExpInfo::where('id_candidate', $idCandidate)->exists();
         if (!$profileComplete) {
-            return redirect()->route('dashboard')->with('info', 'Silakan lengkapi profil Anda terlebih dahulu.');
+            return redirect()->route('profile')->with('info', 'Silakan lengkapi profil Anda terlebih dahulu.');
         }
 
         // Check if user has already applied to this job
