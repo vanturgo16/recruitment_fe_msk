@@ -15,6 +15,7 @@ use App\Models\EducationInfo;
 use App\Models\GeneralInfo;
 use App\Models\WorkExpInfo;
 use App\Models\JobApplies;
+use App\Models\MstDropdowns;
 
 class DashboardController extends Controller
 {
@@ -29,21 +30,6 @@ class DashboardController extends Controller
             && WorkExpInfo::where('id_candidate', $idCandidate)->exists();
         $jobApplies = JobApplies::where('id_candidate', $idCandidate)->count();
 
-        return view('landingPage.dashboard.home', compact('profileComplete', 'jobApplies'));
-    }
-    public function profile(Request $request)
-    {
-        $idCandidate = auth()->user()->id_candidate;
-        $candidate = Candidate::where('id', $idCandidate)->first();
-        $mainProfile = MainProfile::where('id_candidate', $idCandidate)->first();
-        $generalInfo = GeneralInfo::where('id_candidate', $idCandidate)->first();
-        $eduInfo = EducationInfo::where('id_candidate', $idCandidate)->get();
-        $workExpInfo = WorkExpInfo::where('id_candidate', $idCandidate)->get();
-
-        return view('landingPage.dashboard.profile', compact('candidate', 'mainProfile', 'generalInfo', 'eduInfo', 'workExpInfo'));
-    }
-    public function jobApply(Request $request)
-    {
-        return view('landingPage.dashboard.job_apply');
+        return view('dashboard.index', compact('profileComplete', 'jobApplies'));
     }
 }

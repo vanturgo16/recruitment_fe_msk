@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 // Traits
 use App\Traits\AuditLogsTrait;
 
 // Model
-use App\Models\User;
+use App\Models\Candidate;
+use App\Models\MainProfile;
+use App\Models\EducationInfo;
+use App\Models\GeneralInfo;
+use App\Models\WorkExpInfo;
+use App\Models\JobApplies;
+use App\Models\MstDropdowns;
 
 class ProfileController extends Controller
 {
@@ -18,42 +25,255 @@ class ProfileController extends Controller
 
     public function index(Request $request)
     {
-        //Audit Log
-        $this->auditLogs('View Page Profile');
-        return view('profile.index');
+        $idCandidate = auth()->user()->id_candidate;
+        $candidate = Candidate::where('id', $idCandidate)->first();
+        $mainProfile = MainProfile::where('id_candidate', $idCandidate)->first();
+        $generalInfo = GeneralInfo::where('id_candidate', $idCandidate)->first();
+        $eduInfo = EducationInfo::where('id_candidate', $idCandidate)->get();
+        $workExpInfo = WorkExpInfo::where('id_candidate', $idCandidate)->get();
+
+        $isEditable = true;
+
+        $gender = MstDropdowns::where('category', 'Gender')->pluck('name_value');
+        $marriageStatus = MstDropdowns::where('category', 'Marriage Status')->pluck('name_value');
+        $grade = MstDropdowns::where('category', 'Education')->pluck('name_value');
+
+        return view('dashboard.profile.index', compact('candidate', 'mainProfile', 'generalInfo', 'eduInfo', 'workExpInfo', 'isEditable', 'gender', 'marriageStatus', 'grade'));
     }
-    public function updatePhoto(Request $request)
+
+    public function updateMainProfile(Request $request)
     {
         $request->validate([
-            'photoProfile' => 'mimes:jpg,jpeg,png|max:5240',
+            'candidate_first_name' => 'required|string|max:25',
+            'candidate_last_name'  => 'required|string|max:25',
+            'phone'                => 'required|string|max:15',
+            'self_photo'           => 'nullable|mimes:jpg,jpeg,png|max:500',
+            'cv_path'              => 'nullable|mimes:pdf,jpg,jpeg,png|max:500',
+            'id_card_address'      => 'required|string',
+            'domicile_address'     => 'required|string',
+            'birthplace'           => 'required|string',
+            'birthdate'            => 'required|date',
+            'gender'               => 'required|string',
+            'marriage_status'      => 'required|string',
+        ], [
+            'candidate_first_name.required' => 'Nama depan wajib diisi.',
+            'candidate_first_name.string'   => 'Nama depan harus berupa teks.',
+            'candidate_first_name.max'      => 'Nama depan maksimal :max karakter.',
+            'candidate_last_name.required'  => 'Nama belakang wajib diisi.',
+            'candidate_last_name.string'    => 'Nama belakang harus berupa teks.',
+            'candidate_last_name.max'       => 'Nama belakang maksimal :max karakter.',
+            'phone.required'                => 'Nomor telepon wajib diisi.',
+            'phone.string'                  => 'Nomor telepon harus berupa teks.',
+            'phone.max'                     => 'Nomor telepon maksimal :max karakter.',
+            'self_photo.mimes'              => 'Foto harus berupa file jpg, jpeg, atau png.',
+            'self_photo.max'                => 'Ukuran foto maksimal 500KB.',
+            'cv_path.mimes'                 => 'CV harus berupa file pdf, jpg, jpeg, atau png.',
+            'cv_path.max'                   => 'Ukuran CV maksimal 500KB.',
+            'id_card_address.required'      => 'Alamat sesuai KTP wajib diisi.',
+            'domicile_address.required'     => 'Alamat domisili wajib diisi.',
+            'birthplace.required'           => 'Tempat lahir wajib diisi.',
+            'birthdate.required'            => 'Tanggal lahir wajib diisi.',
+            'birthdate.date'                => 'Format tanggal lahir tidak valid.',
+            'gender.required'               => 'Jenis kelamin wajib diisi.',
+            'marriage_status.required'      => 'Status pernikahan wajib diisi.',
         ]);
-        $urlProfileImg = null;
-        if ($request->hasFile('photoProfile')) {
-            $path = $request->file('photoProfile');
-            $urlProfileImg = $path->move('storage/profileImg', $path->hashName());
+
+        $idCandidate = auth()->user()->id_candidate;
+        $candidate = Candidate::findOrFail($idCandidate);
+        $mainProfile = MainProfile::firstOrNew(['id_candidate' => $idCandidate]);
+
+        $candidate->fill([
+            'candidate_first_name' => $request->candidate_first_name,
+            'candidate_last_name'  => $request->candidate_last_name,
+            'phone'                => $request->phone,
+        ]);
+
+        $mainProfile->fill([
+            'id_card_address'   => $request->id_card_address,
+            'domicile_address'  => $request->domicile_address,
+            'birthplace'        => $request->birthplace,
+            'birthdate'         => $request->birthdate,
+            'gender'            => $request->gender,
+            'marriage_status'   => $request->marriage_status,
+        ]);
+
+        $oldSelfPhoto = $mainProfile->exists ? $mainProfile->self_photo : null;
+        $oldCV = $mainProfile->exists ? $mainProfile->cv_path : null;
+
+        // Upload new files
+        if ($request->hasFile('self_photo')) {
+            $path = $request->file('self_photo');
+            $selfPhotoPath = $path->move('storage/self_photo', $path->hashName());
+            $mainProfile->self_photo = $selfPhotoPath;
         }
+        if ($request->hasFile('cv_path')) {
+            $path = $request->file('cv_path');
+            $cvPath = $path->move('storage/cv_path', $path->hashName());
+            $mainProfile->cv_path = $cvPath;
+        }
+
+        if ($candidate->isDirty() || $mainProfile->isDirty()) {
+            DB::beginTransaction();
+            try {
+                $candidate->save();
+                $mainProfile->save();
+
+                $this->auditLogs('Update Data Diri');
+                DB::commit();
+                // Delete old files only after commit success
+                if ($request->hasFile('self_photo') && $oldSelfPhoto && file_exists(public_path($oldSelfPhoto))) {
+                    unlink(public_path($oldSelfPhoto));
+                }
+                if ($request->hasFile('cv_path') && $oldCV && file_exists(public_path($oldCV))) {
+                    unlink(public_path($oldCV));
+                }
+                return back()->with('success', 'Data berhasil diperbaharui.');
+            } catch (\Exception $e) {
+                DB::rollBack();
+                // Delete the *new* files if transaction fails
+                if (isset($selfPhotoPath) && file_exists(public_path($selfPhotoPath))) {
+                    unlink(public_path($selfPhotoPath));
+                }
+                if (isset($cvPath) && file_exists(public_path($cvPath))) {
+                    unlink(public_path($cvPath));
+                }
+                return back()->with('fail', 'Terjadi kesalahan saat memperbaharui data.');
+            }
+        }
+        return back()->with('info', 'Tidak ada perubahan data.');
+    }
+
+    public function addEducation(Request $request)
+    {
+        $request->validate([
+            'edu_grade'        => 'required|string',
+            'edu_institution'  => 'required|string',
+            'edu_city'         => 'required|string',
+            'edu_major'        => 'required|string',
+            'edu_start_year'   => 'required|string',
+            'edu_end_year'     => 'required|string',
+        ], [
+            'edu_grade.required'        => 'Jenjang pendidikan wajib diisi.',
+            'edu_grade.string'          => 'Jenjang pendidikan harus berupa teks.',
+            'edu_institution.required'  => 'Nama institusi wajib diisi.',
+            'edu_institution.string'    => 'Nama institusi harus berupa teks.',
+            'edu_city.required'         => 'Kota institusi wajib diisi.',
+            'edu_city.string'           => 'Kota institusi harus berupa teks.',
+            'edu_major.required'        => 'Jurusan wajib diisi.',
+            'edu_major.string'          => 'Jurusan harus berupa teks.',
+            'edu_start_year.required'   => 'Tahun mulai wajib diisi.',
+            'edu_start_year.string'     => 'Tahun mulai harus berupa teks.',
+            'edu_end_year.required'     => 'Tahun selesai wajib diisi.',
+            'edu_end_year.string'       => 'Tahun selesai harus berupa teks.',
+        ]);
 
         DB::beginTransaction();
         try {
-            // Delete File Before
-            $pathBefore = User::where('id', auth()->user()->id)->first()->profile_path;
-            if ($pathBefore != null) {
-                $file_path = public_path($pathBefore);
-                if (File::exists($file_path)) {
-                    File::delete($file_path);
-                }
-            }
-            // Update
-            User::where('id', auth()->user()->id)->update(['photo_path' => $urlProfileImg]);
+            EducationInfo::create([
+                'id_candidate'    => auth()->user()->id_candidate,
+                'edu_grade'       => $request->edu_grade,
+                'edu_institution' => $request->edu_institution,
+                'edu_city'        => $request->edu_city,
+                'edu_major'       => $request->edu_major,
+                'edu_start_year'  => $request->edu_start_year,
+                'edu_end_year'    => $request->edu_end_year,
+            ]);
 
-            //Audit Log
-            $this->auditLogs('Update Photo Profile');
+            $this->auditLogs('Tambah Pendidikan Baru');
             DB::commit();
-            return redirect()->back()->with('success', __('messages.success_update'));
-        } catch (Exception $e) {
+            return back()->with('success', 'Data berhasil ditambah.');
+        } catch (\Exception $e) {
             DB::rollBack();
-            if ($urlProfileImg && file_exists(public_path($urlProfileImg))) { unlink(public_path($urlProfileImg)); }
-            return redirect()->back()->with(['fail' => __('messages.fail_update')]);
+            return back()->with('fail', 'Terjadi kesalahan saat menambah data.');
+        }
+        
+    }
+    public function detailEducation($id)
+    {
+        $id = decrypt($id);
+        $data = EducationInfo::findOrFail($id);
+
+        return view('dashboard.profile.education.detail', compact('data'));
+    }
+    public function editEducation($id)
+    {
+        $id = decrypt($id);
+        $data = EducationInfo::findOrFail($id);
+        $grade = MstDropdowns::where('category', 'Education')->pluck('name_value');
+
+        return view('dashboard.profile.education.edit', compact('data', 'grade'));
+    }
+    public function updateEducation(Request $request, $id)
+    {
+        $id = decrypt($id);
+        $request->validate([
+            'edu_grade'        => 'required|string',
+            'edu_institution'  => 'required|string',
+            'edu_city'         => 'required|string',
+            'edu_major'        => 'required|string',
+            'edu_start_year'   => 'required|string',
+            'edu_end_year'     => 'required|string',
+        ], [
+            'edu_grade.required'        => 'Jenjang pendidikan wajib diisi.',
+            'edu_grade.string'          => 'Jenjang pendidikan harus berupa teks.',
+            'edu_institution.required'  => 'Nama institusi wajib diisi.',
+            'edu_institution.string'    => 'Nama institusi harus berupa teks.',
+            'edu_city.required'         => 'Kota institusi wajib diisi.',
+            'edu_city.string'           => 'Kota institusi harus berupa teks.',
+            'edu_major.required'        => 'Jurusan wajib diisi.',
+            'edu_major.string'          => 'Jurusan harus berupa teks.',
+            'edu_start_year.required'   => 'Tahun mulai wajib diisi.',
+            'edu_start_year.string'     => 'Tahun mulai harus berupa teks.',
+            'edu_end_year.required'     => 'Tahun selesai wajib diisi.',
+            'edu_end_year.string'       => 'Tahun selesai harus berupa teks.',
+        ]);
+
+        $education = EducationInfo::findOrFail($id);
+        $education->fill([
+            'edu_grade'       => $request->edu_grade,
+            'edu_institution' => $request->edu_institution,
+            'edu_city'        => $request->edu_city,
+            'edu_major'       => $request->edu_major,
+            'edu_start_year'  => $request->edu_start_year,
+            'edu_end_year'    => $request->edu_end_year,
+        ]);
+
+        if ($education->isDirty()) {
+            DB::beginTransaction();
+            try {
+                EducationInfo::where('id', $id)->update([
+                    'edu_grade'       => $request->edu_grade,
+                    'edu_institution' => $request->edu_institution,
+                    'edu_city'        => $request->edu_city,
+                    'edu_major'       => $request->edu_major,
+                    'edu_start_year'  => $request->edu_start_year,
+                    'edu_end_year'    => $request->edu_end_year,
+                ]);
+
+                $this->auditLogs('Update Pendidikan ID: '. $id);
+                DB::commit();
+                return redirect()->route('profile')->with('success', 'Data berhasil diperbaharui.');
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return back()->with('fail', 'Terjadi kesalahan saat memperbaharui data.');
+            }
+        }
+        return back()->with('info', 'Tidak ada perubahan data.');
+    }
+    public function deleteEducation($id)
+    {
+        $id = decrypt($id);
+
+        DB::beginTransaction();
+        try {
+            $education = EducationInfo::findOrFail($id)->delete();
+
+            $this->auditLogs('Hapus Pendidikan ID: '. $id);
+            DB::commit();
+            return back()->with('success', 'Data berhasil dihapus.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('fail', 'Terjadi kesalahan saat menghapus data.');
         }
     }
 }

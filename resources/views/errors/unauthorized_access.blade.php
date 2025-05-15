@@ -9,10 +9,10 @@
                     <i class="mdi mdi-cog spin-right display-3"></i>
                     <i class="mdi mdi-cog spin-left display-4 cog-icon"></i>
                 </div>
-                <h3 class="mt-4">{{ __('messages.ua') }}</h3>
-                <p>{{ __('messages.sub_ua') }}</p>
+                <h3 class="mt-4">Unauthorized Access</h3>
+                <p>Sorry You Dont Have Access To This Route</p>
                 <div class="mt-5 text-center">
-                    <a class="btn btn-primary waves-effect waves-light" href="{{ route('dashboard') }}">{{ __('messages.back_to_dashboard') }}</a>
+                    <a class="btn btn-primary waves-effect waves-light" href="{{ route('dashboard') }}">Back to Dashboard</a>
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@ class LandingPageController extends Controller
         $jobLists = $jobLists->paginate(3);
 
         if ($request->ajax()) {
-            return view('landingPage.partials.joblist', compact('jobLists', 'search'))->render();
+            return view('jobList.index', compact('jobLists', 'search'))->render();
         }
         
         return view('landingPage.index', compact('jobBanner', 'jobLists', 'search'));
@@ -55,7 +55,7 @@ class LandingPageController extends Controller
             ->leftjoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
             ->where('joblists.id', $id)
             ->first();
-        return view('landingPage.detail', compact('data'));
+        return view('jobList.detail', compact('data'));
     }
 
     public function applyJob($id)

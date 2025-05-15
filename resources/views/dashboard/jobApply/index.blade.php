@@ -1,4 +1,4 @@
-@extends('landingPage.dashboard.menu')
+@extends('dashboard.menu')
 @section('contentDashboard')
 
 <div class="container py-4">

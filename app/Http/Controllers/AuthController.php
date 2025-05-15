@@ -22,7 +22,7 @@ class AuthController extends Controller
     // LOGIN
     public function login(Request $request)
     {
-        return view('landingPage.auth.login');
+        return view('auth.login');
     }
     public function postlogin(Request $request)
     {
@@ -61,7 +61,7 @@ class AuthController extends Controller
     // REGISTER
     public function register(Request $request)
     {
-        return view('landingPage.auth.register');
+        return view('auth.register');
     }
     public function storeRegist(Request $request)
     {
@@ -170,7 +170,7 @@ class AuthController extends Controller
     // FORGET PASSWORD
     public function forgetPassword()
     {
-        return view('landingPage.auth.forgetPassword');
+        return view('auth.forgetPassword');
     }
     public function storeforgetPassword(Request $request)
     {
@@ -203,7 +203,7 @@ class AuthController extends Controller
         $email = base64_decode($email);
         $user = User::where('email', $email)->first();
         if ($user) {
-            return view('landingPage.auth.resetPassword', compact('user'));
+            return view('auth.resetPassword', compact('user'));
         } else {
             return redirect()->route('login')->with('fail', 'Email tidak ditemukan.');
         }

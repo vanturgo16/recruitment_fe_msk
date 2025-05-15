@@ -1,4 +1,4 @@
-@extends('landingPage.master')
+@extends('layouts.master')
 @section('konten')
 
 <section class="p-5">

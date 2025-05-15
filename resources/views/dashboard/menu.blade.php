@@ -1,4 +1,4 @@
-@extends('landingPage.master')
+@extends('layouts.master')
 @section('konten')
 
 <section class="bg-muted">
@@ -6,7 +6,11 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 py-lg-7 py-2 bg-white">
                 <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
-                    <img src="{{ asset('assets/images/users/userDefault.png') }}" alt="avatar" class="avatar avatar-lg rounded-circle" />
+                    @if($globalSelfPhotoUrl)
+                        <img src="{{ url($globalSelfPhotoUrl) }}" alt="Foto Profil" class="avatar avatar-lg rounded-circle border border-danger shadow">
+                    @else
+                        <img src="{{ asset('assets/images/users/defaultUser.jpg') }}" alt="Default Avatar" class="avatar avatar-lg rounded-circle border border-danger shadow">
+                    @endif
                     <div class="ms-3">
                         <h5 class="mb-0">{{ Auth::user()->name }}</h5>
                         <small>{{ Auth::user()->role }}</small>

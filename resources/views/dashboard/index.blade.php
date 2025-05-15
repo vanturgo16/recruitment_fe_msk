@@ -1,40 +1,85 @@
-@extends('layouts.master')
-@section('konten')
+@extends('dashboard.menu')
+@section('contentDashboard')
 
-<div class="page-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <div class="page-title-left">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a class="text-danger" href="{{ route('home') }}">..</a></li>
+                        <li class="breadcrumb-item active"> Dashboard</li>
+                    </ol>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row justify-content-center mt-3">
-                            <div class="col-12">
-                                <div class="text-center">
-                                    <h5>{{ __('messages.welcome') }} {{ __('messages.app_name') }}</h5>
-                                    <p class="text-muted">{{ __('messages.welcome_sub') }} {{ __('messages.company_name') }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 text-center mt-4">
-                <div class="maintenance-cog-icon text-primary pt-4">
-                    <i class="mdi mdi-cog spin-right display-3"></i>
-                    <i class="mdi mdi-cog spin-left display-4 cog-icon"></i>
-                </div>
-                <h3 class="mt-4">Site is Under Development</h3>
-                <p>Please wait....</p>
             </div>
         </div>
     </div>
+</div>
+
+<div class="card p-lg-5 p-3" style="min-height: 70vh;">
+    <div class="mb-4 text-center">
+        <h1 class="mb-0 h3">Halo, {{ Auth::user()->name }}! Selamat datang di Dashboard Kandidat MSK.</h1>
+    </div>
+
+    <br>
+    <div class="row mb-5 g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="card border shadow">
+                <div class="card-body">
+                    <span>Status Lamaran</span>
+                    <h3 class="mb-0 mt-4 text-muted"><strong>{{ $jobApplies }}</strong> Lamaran Dikirim</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if(!$profileComplete || $jobApplies == 0)
+        <hr>
+        <div class="mb-3">
+            <h3 class="fw-bold"><span class="badge bg-secondary text-dark">Langkah Selanjutnya</span></h3>
+        </div>
+        <div class="row g-4">
+            @if(!$profileComplete)
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border shadow">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-person-vcard text-warning" style="font-size:24px;"></i>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Lengkapi Profil</h5>
+                                <p class="mb-0 pe-xl-7">Lengkapi data pribadi dan pengalaman kerja.</p>
+                            </div>
+                            <a href="{{ route('profile') }}" class="icon-link icon-link-hover text-inherit">
+                                Lengkapi Sekarang
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if($jobApplies == 0)
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border shadow">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-file-earmark-lock text-danger" style="font-size:24px;"></i>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2">Lihat Lowongan Tersedia</h5>
+                                <p class="mb-0">Jelajahi posisi yang sesuai dengan keahlian Anda.</p>
+                            </div>
+                            <a href="{{ route('home') }}#career" class="icon-link icon-link-hover text-inherit">
+                                Cari Lowongan
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+    @endif
 </div>
 
 @endsection

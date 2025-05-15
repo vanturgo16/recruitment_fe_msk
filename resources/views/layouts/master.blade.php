@@ -1,431 +1,284 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('messages.title_tab_main') }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/logo.png') }}">
-    <!-- APP CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.min.css') }}"/>
-    <!-- BOOTSTRAP CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
-    <!-- ICONS CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icons.min.css') }}"/>
-    <!-- PRELOADER CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/preloader.min.css') }}"/>
-    <!-- DATATABLES CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}"/>
-    <!-- CHOICES SELECT CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/choices.js/public/assets/styles/choices.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/select2/css/select2.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/select2/css/select2.min.css') }}"/>
+    <head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<!-- Favicon icon-->
+		<link rel="shortcut icon" href="{{ asset('assets/images/logo/logo.png') }}">
+		<title>Recruitment PT MSK</title>
+		<!-- Color modes -->
+		<script src="{{ asset('assets/js/vendors/color-modes.js') }}"></script>
+		<!-- Libs CSS -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs2/simplebar/dist/simplebar.min.css') }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs2/bootstrap-icons/font/bootstrap-icons.min.css') }}"/>
+		<!-- Scroll Cue -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs2/scrollcue/scrollCue.css') }}"/>
+		<!-- Box icons -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/css/boxicons.min.css') }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/boxicons@2.1.4/css/boxicons.min.css') }}"/>
+		<!-- Theme CSS -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
+		<!-- CUSTOM CSS -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}"/>
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</head>
 
-    <!-- CUSTOM CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}"/>
-    <!-- JQUERY SCRIPT -->
-    <script type="text/javascript" src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
-</head>
+	<body>
+		@include('layouts.loading')
+		@include('layouts.toast')
 
-{{-- <body> --}}
-<body @if(Auth::user()->is_darkmode) data-bs-theme="dark" data-topbar="dark" data-sidebar="dark" @endif>
-    <!-- Loading -->
-    @include('layouts.loading')
-    @include('layouts.toast')
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light w-100">
+				<div class="container px-3">
+					<a class="navbar-brand " href="{{ route('home') }}">
+						<img class="offcanvas-logo" src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" alt />
+					</a>
+					<button class="navbar-toggler offcanvas-nav-btn" type="button"><i class="bi bi-list"></i></button>
+					<div class="offcanvas offcanvas-start offcanvas-nav" style="width: 20rem">
+						<div class="offcanvas-header">
+							<a href="{{ route('home') }}" class="text-inverse">
+								<img src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" class="offcanvas-logo" alt>
+							</a>
+							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						</div>
+						<div class="offcanvas-body pt-0 align-items-center">
+							<ul class="navbar-nav mx-auto align-items-lg-center">
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('home') }}#home" id="nav-home">Beranda</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('home') }}#career" id="nav-career">Karir</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('home') }}#tnc" id="nav-tnc">Ketentuan & Cara Melamar</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('home') }}#lifeatmsk" id="nav-lifeatmsk">Life at MSK</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('home') }}#faq" id="nav-faq">FAQ</a>
+								</li>
+							</ul>
+							
+							<div class="mt-3 mt-lg-0 d-flex align-items-center">
+								@guest
+									<a href="{{ route('login') }}" class="btn btn-light mx-2">Login</a>
+									<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
+								@else
+									@if(Auth::user()->is_active)
+										<div class="dropdown">
+											<a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+												@if ($globalSelfPhotoUrl)
+													<img src="{{ url($globalSelfPhotoUrl) }}" alt="Foto Profil" class="rounded-circle border border-danger me-2" width="32" height="32">
+												@else
+													<img src="{{ asset('assets/images/users/defaultUser.jpg') }}" alt="Default Avatar" class="rounded-circle border border-danger me-2" width="32" height="32">
+												@endif
+												<span class="text-dark">{{ Auth::user()->name }}</span>
+											</a>
+											<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+												<li>
+													<a class="dropdown-item text-danger" href="{{ route('dashboard') }}">
+														<i class='bx bx-grid-alt me-2'></i> Dashboard
+													</a>
+												</li>
+												<li>
+													<a class="dropdown-item text-danger" href="{{ route('profile') }}">
+														<i class='bx bx-user me-2'></i> Profile
+													</a>
+												</li>
+												<li><hr class="dropdown-divider"></li>
+												<li>
+													<a href="#" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logout">
+														<i class='bx bx-log-out me-2'></i> Logout
+													</a>
+												</li>
+											</ul>
+										</div>
+									@else
+										<a href="{{ route('login') }}" class="btn btn-light mx-2">Login</a>
+										<a href="{{ route('register') }}" class="btn btn-danger">Buat Akun</a>
+									@endif
+								@endguest
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!-- Modal Logout -->
+		<div class="modal fade" id="logout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-top" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-danger text-white">
+						<h5 class="modal-title" id="staticBackdropLabel">Logout</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>Pilih "Logout" di bawah jika Anda siap untuk mengakhiri sesi Anda saat ini.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+						<form class="formLoad" action="{{ route('logout') }}" id="formlogout" method="POST" enctype="multipart/form-data">
+							@csrf
+							<button type="submit" class="btn btn-danger"><i class='bx bx-log-out me-2'></i> Logout</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div id="layout-wrapper">
-        <!-- HEADER -->
-        <header id="page-topbar">
-            <div class="navbar-header">
-                <div class="d-flex">
-                    <div class="navbar-brand-box">
-                        <a href="{{ route('dashboard') }}" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="{{ asset('assets/images/logo/logo_vertical_light.jpg') }}" alt="" height="50">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" alt="" height="50">
-                            </span>
-                        </a>
-                        <a href="{{ route('dashboard') }}" class="logo logo-light">
-                            <span class="logo-sm">
-                                <img src="{{ asset('assets/images/logo/logo_vertical_dark.jpg') }}" alt="" height="50">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" alt="" height="50">
-                            </span>
-                        </a>
-                    </div>
-                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn"><i class="fa fa-fw fa-bars"></i></button>
-                    <form class="app-search d-none d-lg-block">
-                        <div class="position-relative">
-                            <h3 class="d-inline-block me-2"><span class="badge bg-info text-white">{{ Auth::user()->role }}</span></h3>
-                        </div>
-                    </form>
-                    <!-- Role-->
-                    @if(Auth::check() && Auth::user()->role == null)
-                        {{-- Code to destroy authentication session --}}
-                        <?php Auth::logout(); ?>
-                    @endif
-                </div>
+		<main class="bg-light">
+			@yield('konten')
+		</main>
 
-                <div class="d-flex">
-                    <div class="dropdown d-none d-sm-inline-block">
-                        <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img id="header-lang-img" src="{{ asset('assets/images/flags/' . (App::getLocale() == 'id' ? 'id.png' : (App::getLocale() == 'sd' ? 'sunda.jpg' : 'us.jpg'))) }}" alt="Header Language" height="16">
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- English -->
-                            <a href="{{ route('change.language', 'en') }}" class="dropdown-item notify-item language">
-                                <img src="{{ asset('assets/images/flags/us.jpg') }}" alt="user-image" class="me-1" height="12"> 
-                                <span class="align-middle">English</span>
-                            </a>
-                            <!-- Indonesian -->
-                            <a href="{{ route('change.language', 'id') }}" class="dropdown-item notify-item language">
-                                <img src="{{ asset('assets/images/flags/id.png') }}" alt="user-image" class="me-1" height="12"> 
-                                <span class="align-middle">Indonesia</span>
-                            </a>
-                            <!-- Sundanese -->
-                            <a href="{{ route('change.language', 'sd') }}" class="dropdown-item notify-item language">
-                                <img src="{{ asset('assets/images/flags/sunda.jpg') }}" alt="user-image" class="me-1" height="12"> 
-                                <span class="align-middle">Sunda</span>
-                            </a>
-                        </div>                        
-                    </div>                    
-                    <div class="dropdown d-none d-sm-inline-block">
-                        <button type="button" class="btn header-item" data-bs-toggle="modal" data-bs-target="#switchTheme">
-                            <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
-                            <i data-feather="sun" class="icon-lg layout-mode-light"></i>
-                        </button>
-                    </div>
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item right-bar-toggle me-2">
-                            <i data-feather="settings" class="icon-lg"></i>
-                        </button>
-                    </div>
-                    <div class="dropdown d-inline-block">
-                        @php use Illuminate\Support\Facades\File; $defaultImagePath = public_path('assets/images/users/userDefault.png'); @endphp
-                        <button type="button" class="btn header-item bg-light-subtle border-start border-end" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @if(Auth::user()->photo_path)
-                                @php $userImagePath = public_path(Auth::user()->photo_path); @endphp
-                                @if(File::exists($userImagePath))
-                                    <img class="rounded-circle header-profile-user" src="{{ asset(Auth::user()->photo_path) }}" alt="Header Avatar">
-                                @else
-                                    @if(File::exists($defaultImagePath))
-                                        <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/userDefault.png') }}" alt="Header Avatar">
-                                    @endif
-                                @endif
-                            @else 
-                                @if(File::exists($defaultImagePath))
-                                    <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/userDefault.png') }}" alt="Header Avatar">
-                                @endif
-                            @endif
-                            <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span> <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
-                            <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#logout"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- ========== Left Sidebar ========== -->
-        <div class="vertical-menu">
-            <div data-simplebar class="h-100">
-                <div id="sidebar-menu">
-                    <ul class="metismenu list-unstyled" id="side-menu">
-                        <li>
-                            <a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard*') ? 'bg-light active' : '' }}">
-                                <i class="mdi mdi-home"></i><span>Dashboard</span>
-                            </a>
-                        </li>
+		<footer class="pt-7">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9 col-12">
+						<div class="row" id="ft-links">
+							<div class="col-lg-3 col-12 mb-4">
+								<div class="position-relative">
+									<!-- Desktop (lg and up) -->
+									<img src="{{ asset('assets/images/logo/logo_vertical_light.jpg') }}" class="offcanvas-logo d-none d-lg-block" alt="Vertical Logo">
+									<!-- Mobile (below lg) -->
+									<img src="{{ asset('assets/images/logo/logo_horizontal_light.png') }}" class="offcanvas-logo d-lg-none" alt="Horizontal Logo">
+								</div>
+							</div>
+							<div class="col-lg-3 col-12">
+								<div class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
+									<h4>Tentang Kami</h4>
+									<a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse" href="#collapseAccounts" role="button" aria-expanded="false" aria-controls="collapseAccounts">
+										<i class="bi bi-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse d-lg-block" id="collapseAccounts" data-bs-parent="#ft-links">
+									<ul class="list-unstyled mb-0 py-3 py-lg-0">
+										<li class="mb-2">
+											<a href="{{ route('home') }}#home" class="text-decoration-none text-reset my-link">Profil Perusahaan</a>
+										</li>
+										<li class="mb-2">
+											<a href="{{ route('home') }}#career" class="text-decoration-none text-reset my-link">Karir</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-3 col-12">
+								<div class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
+									<h4>Layanan</h4>
+									<a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse" href="#collapseResources" role="button" aria-expanded="false" aria-controls="collapseResources">
+										<i class="bi bi-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse d-lg-block" id="collapseResources" data-bs-parent="#ft-links">
+									<ul class="list-unstyled mb-0 py-3 py-lg-0">
+										<li class="mb-2">
+											<a href="#" class="text-decoration-none text-reset my-link">Penjualan</a>
+										</li>
+										<li class="mb-2">
+											<a href="#" class="text-decoration-none text-reset my-link">Bangkel</a>
+										</li>
+										<li class="mb-2">
+											<a href="#" class="text-decoration-none text-reset my-link">Suku Cadang</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-3 col-12">
+								<div class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
+									<h4>Kontak</h4>
+									<a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse" href="#collapseResources" role="button" aria-expanded="false" aria-controls="collapseResources">
+										<i class="bi bi-chevron-down"></i>
+									</a>
+								</div>
+								<div class="collapse d-lg-block" id="collapseResources" data-bs-parent="#ft-links">
+									<ul class="list-unstyled mb-0 py-3 py-lg-0">
+										<li class="mb-2">
+											<a href="docs/index.html" class="text-decoration-none text-reset my-link">info@kemakmuran.com</a>
+										</li>
+										<li class="mb-2">
+											<a href="#!" class="text-decoration-none text-reset my-link">1-XXX-XXX (24-Hour Customer Care)</a>
+										</li>
+										<li class="mb-2">
+											<a href="changelog.html" class="text-decoration-none text-reset my-link">+62 21 XXXX XXX (Business Hour)</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-12">
+						<div class="me-7">
+							<h4 class="mb-4">Alamat</h4>
+							<p class="text-body-secondary">
+								<b>PT. Mitra Sendang Kemakmuran</b><br>
+								Jalan Raya Pandeglang KM. 3, Karundang, Cipocok Jaya,
+								Kota Serang, Banten <b>42125</b>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container mt-7 pt-lg-7 pb-4">
+				<div class="row align-items-center">
+					<div class="col-md-3">
+						<a class="mb-4 mb-lg-0 d-block text-inverse" href="#"></a>
+					</div>
+					<div class="col-md-9 col-lg-6">
+						<div class="small mb-3 mb-lg-0 text-lg-center">
+							Copyright © <span id="currentYear"></span> 
+							<a href="#" class="my-link text-danger">PT Mitra Sendang Kemakmuran Banten</a>
+						</div>
+						<script>
+							document.getElementById('currentYear').textContent = new Date().getFullYear();
+						</script>
+					</div>
+					<div class="col-lg-3">
+						<div class="text-lg-end d-flex align-items-center justify-content-lg-end">
+							<div class="ms-3 d-flex gap-2">
+								<a href="#!" class="btn btn-instagram btn-light btn-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+										<path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path>
+									</svg>
+								</a>
+								<a href="#!" class="btn btn-facebook btn-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+										<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+									</svg>
+								</a>
+								<a href="#!" class="btn btn-twitter btn-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+										<path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 
-                        @if(in_array(auth()->user()->role, ['Super Admin', 'Admin']))
-                            <li class="menu-title mt-2" data-key="t-menu">Configuration</li>
-                            <li>
-                                <a href="{{ route('user.index') }}" class="{{ request()->is('user*') ? 'bg-light active' : '' }}">
-                                    <i class="mdi mdi-account-supervisor"></i><span>{{ __('messages.mng_user') }}</span>
-                                </a>
-                            </li>
-                            @if(auth()->user()->role == 'Super Admin')
-                            <li>
-                                <a href="{{ route('rule.index') }}" class="{{ request()->is('rule*') ? 'bg-light active' : '' }}">
-                                    <i class="mdi mdi-cog-box"></i><span>{{ __('messages.mng_rule') }}</span>
-                                </a>
-                            </li>
-                            @endif
-                            <li>
-                                <a href="{{ route('dropdown.index') }}" class="{{ request()->is('dropdown*') ? 'bg-light active' : '' }}">
-                                    <i class="mdi mdi-package-down"></i><span>{{ __('messages.mng_dropdown') }}</span>
-                                </a>
-                            </li>
+		<div class="btn-scroll-top">
+			<svg class="progress-square svg-content" width="100%" height="100%" viewBox="0 0 40 40">
+				<path d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
+			</svg>
+		</div>
 
-                            <li class="menu-title mt-2" data-key="t-menu">Master</li>
-                            <li>
-                                <a href="#" class="{{ request()->is('master_1*') ? 'bg-light active' : '' }}">
-                                    <i class="mdi mdi-list-status"></i><span>Master 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="{{ request()->is('master_2*') ? 'bg-light active' : '' }}">
-                                    <i class="mdi mdi-list-status"></i><span>Master 2</span>
-                                </a>
-                            </li>
-                        @endif
-
-                        <li class="menu-title mt-2" data-key="t-menu">Recruitment</li>
-                        <li>
-                            <a href="#" class="{{ request()->is('applicants_list*') ? 'bg-light active' : '' }}">
-                                <i class="mdi mdi-account-group"></i><span>{{ __('messages.applicants_list') }}</span>
-                            </a>
-                        </li>
-
-                        @if(in_array(auth()->user()->role, ['Super Admin', 'Admin']))
-                            <li class="menu-title mt-2" data-key="t-menu">{{ __('messages.other') }}</li>
-                            <li>
-                                <a href="{{ route('auditlog.index') }}" class="{{ request()->is('auditlog*') ? 'bg-light active' : '' }}">
-                                    <i class="mdi mdi-chart-donut"></i><span>{{ __('messages.audit_log') }}</span>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- ========== Main Content ========== -->
-        <div class="main-content">
-            @yield('konten')
-            <footer class="footer" style="position: fixed; z-index: 10;">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6 footer-text">
-                            {{ __('messages.footer_copyright') }}
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-        <!-- ========== Right Sidebar ========== -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title d-flex align-items-center p-3">
-                    <h5 class="m-0 me-2">Theme Customizer</h5>
-                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
-                </div>
-                <hr class="m-0"/>
-                <div class="p-4">
-                    <h6 class="mb-3">Layout</h6>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout"
-                            id="layout-vertical" value="vertical">
-                        <label class="form-check-label" for="layout-vertical">Vertical</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-mode"
-                            id="layout-mode-light" value="light">
-                        <label class="form-check-label" for="layout-mode-light">Light</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-mode"
-                            id="layout-mode-dark" value="dark">
-                        <label class="form-check-label" for="layout-mode-dark">Dark</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-width"
-                            id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
-                        <label class="form-check-label" for="layout-width-fuild">Fluid</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-width"
-                            id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
-                        <label class="form-check-label" for="layout-width-boxed">Boxed</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-position"
-                            id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
-                        <label class="form-check-label" for="layout-position-fixed">Fixed</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-position"
-                            id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
-                        <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="topbar-color"
-                            id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
-                        <label class="form-check-label" for="topbar-color-light">Light</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="topbar-color"
-                            id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
-                        <label class="form-check-label" for="topbar-color-dark">Dark</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-size"
-                            id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
-                        <label class="form-check-label" for="sidebar-size-default">Default</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-size"
-                            id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
-                        <label class="form-check-label" for="sidebar-size-compact">Compact</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-size"
-                            id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
-                        <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-color"
-                            id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
-                        <label class="form-check-label" for="sidebar-color-light">Light</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-color"
-                            id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
-                        <label class="form-check-label" for="sidebar-color-dark">Dark</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-color"
-                            id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
-                        <label class="form-check-label" for="sidebar-color-brand">Brand</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Direction</h6>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-direction"
-                            id="layout-direction-ltr" value="ltr">
-                        <label class="form-check-label" for="layout-direction-ltr">LTR</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rightbar-overlay"></div>
-    </div>
-
-    <!-- Modal Switch Them -->
-    <div class="modal fade" id="switchTheme" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-top" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">{{ __('messages.switch_theme') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <h5>{{ __('messages.switch_to') }} <b>@if(Auth::user()->is_darkmode) Light @else Dark @endif</b> Mode ?</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
-                    <form class="formLoad" action="{{ route('switchTheme') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <button type="submit" class="btn btn-success waves-effect btn-label waves-light"><i class="mdi mdi-check label-icon"></i>{{ __('messages.apply') }}</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Logout -->
-    <div class="modal fade" id="logout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-top" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Logout</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>{{ __('messages.logout_text') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
-                    <form class="formLoad" action="{{ route('logout') }}" id="formlogout" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <button type="submit" class="btn btn-danger waves-effect btn-label waves-light" name="sb"><i class="mdi mdi-logout label-icon"></i>Logout</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT -->
-    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
-    <!-- DATATABLE -->
-    <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <!-- CHOICHES SELECT JS -->
-    <script src="{{ asset('assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
-    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/select2/js/select2.init.js') }}"></script>
-    <!-- twitter-bootstrap-wizard js -->
-    <script src="{{ asset('assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/twitter-bootstrap-wizard/prettify.js') }}"></script>
-    <!-- form wizard init -->
-    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
-    <!-- CKEDITOR JS -->
-    <script src="{{ asset('assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
-    <!-- FORM LOAD JS -->
-    <script src="{{ asset('assets/js/formLoad.js') }}"></script>
-    <!-- DASHBOARD INIT -->
-    <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    <script src="{{ asset('assets/libs/dayjs@1/dayjs.min.js') }}"></script>
-
-    <!-- DATATABLE CUSTOM SCROLL -->
-    <script>
-        $(function() {
-            // Scroll Table
-            $('#ssTable_wrapper .dataTables_scrollBody').css({
-                'overflow-x': 'hidden', 'overflow-y': 'scroll',
-                'max-height': '44vh', // Default
-            });
-            function setTableHeight() {
-                const windowHeight = $(window).height();
-                let maxHeight;
-    
-                if (windowHeight < 550) { maxHeight = '10vh'; } 
-                else if (windowHeight < 600) { maxHeight = '19vh'; } 
-                else if (windowHeight < 700) { maxHeight = '29vh'; } 
-                else if (windowHeight < 800) { maxHeight = '36vh'; } 
-                else if (windowHeight < 900) { maxHeight = '42vh'; } 
-                else if (windowHeight < 1000) { maxHeight = '44vh'; }
-                $('#ssTable_wrapper .dataTables_scrollBody').css('max-height', maxHeight);
-            }
-            setTableHeight();
-            $(window).resize(function() { setTableHeight(); });
-            $('<style>').prop('type', 'text/css').html(`
-                #ssTable_wrapper .dataTables_scrollBody::-webkit-scrollbar { width: 4px; }
-                #ssTable_wrapper .dataTables_scrollBody::-webkit-scrollbar-thumb { background-color: #888;border-radius: 4px; }
-                #ssTable_wrapper .dataTables_scrollBody::-webkit-scrollbar-thumb:hover { background-color: #555; }
-                #ssTable_wrapper .dataTables_scrollBody::-webkit-scrollbar-track { background: transparent; }
-                /* Add margin between scroll body and pagination */
-                #ssTable_wrapper .dataTables_scroll {
-                    margin-bottom: 20px; /* Add space between table body and pagination */
-                }
-            `).appendTo('head');
-        });
-    </script>
-</body>
-
+		<!-- Libs JS -->
+		<script src="{{ asset('assets/libs2/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ asset('assets/libs2/simplebar/dist/simplebar.min.js') }}"></script>
+		<script src="{{ asset('assets/libs2/headhesive/dist/headhesive.min.js') }}"></script>
+		<!-- Theme JS -->
+		<script src="{{ asset('assets/js/theme.min.js') }}"></script>
+		<!-- Scroll Cue JS -->
+		<script src="{{ asset('assets/libs2/scrollcue/scrollCue.min.js') }}"></script>
+		<script src="{{ asset('assets/js/vendors/scrollcue.js') }}"></script>
+		<!-- Hover Effect Navbar -->
+		<script src="{{ asset('assets/js/scroll-hover-nav.js') }}"></script>
+		<!-- Password -->
+		<script src="{{ asset('assets/js/vendors/password.js') }}"></script>
+		<!-- FORM LOAD JS -->
+		<script src="{{ asset('assets/js/formLoad.js') }}"></script>
+	</body>
 </html>

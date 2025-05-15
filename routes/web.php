@@ -14,6 +14,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JobApplyController;
 use App\Http\Controllers\MstDropdownController;
 use App\Http\Controllers\MstRuleController;
 use App\Http\Controllers\MstUserController;
@@ -50,8 +51,24 @@ Route::middleware([Authenticate::class, NoCache::class, UpdateLastSeen::class])-
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
 
     // PROFILE
-    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::controller(ProfileController::class)->group(function () {
+        Route::prefix('/profile')->group(function () {
+            Route::get('/', 'index')->name('profile');
+            // Main Profile
+            Route::post('/update-mainprofile', 'updateMainProfile')->name('profile.updateMainProfile');
+            // Education
+            Route::post('/education/add', 'addEducation')->name('profile.addEducation');
+            Route::get('/education/detail/{id}', 'detailEducation')->name('profile.detailEducation');
+            Route::get('/education/edit/{id}', 'editEducation')->name('profile.editEducation');
+            Route::post('/education/update/{id}', 'updateEducation')->name('profile.updateEducation');
+            Route::post('/education/delete/{id}', 'deleteEducation')->name('profile.deleteEducation');
+        });
+    });
 
     // JOB APPLY
-    Route::get('/job-apply', [DashboardController::class, 'jobApply'])->name('jobApply');
+    Route::controller(JobApplyController::class)->group(function () {
+        Route::prefix('/job-apply')->group(function () {
+            Route::get('/', 'index')->name('jobApply');
+        });
+    });
 });

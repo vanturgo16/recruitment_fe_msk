@@ -1,4 +1,4 @@
-@extends('landingPage.master')
+@extends('layouts.master')
 @section('konten')
 
 <section id="home">
@@ -358,7 +358,7 @@
         </div>
         <!-- Jobs and Pagination Wrapper -->
         <div id="joblist-container">
-            @include('landingPage.partials.joblist')
+            @include('jobList.index')
         </div>
     </div>
 </section>

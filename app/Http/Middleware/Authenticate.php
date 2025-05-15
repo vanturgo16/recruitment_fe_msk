@@ -17,7 +17,7 @@ class Authenticate extends Middleware
         }
 
         // Set flash message before returning the route string
-        session()->flash('warning', 'Please Login');
+        session()->flash('warning', 'Silahkan Login');
         return route('login');
     }
 }
