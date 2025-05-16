@@ -1,16 +1,6 @@
 @extends('dashboard.menu')
 @section('contentDashboard')
 
-<!-- DATATABLES CSS-->
-<link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.4/css/responsive.dataTables.css">
-<!-- JQUERY SCRIPT -->
-<script type="text/javascript" src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
-{{-- SUMMERNOTE --}}
-<link href="{{ asset('assets/css/summernote-bs4.min.css') }}" rel="stylesheet">
-<script src="{{ asset('assets/js/summernote-bs4.min.js') }}"></script>
-
 <div class="container py-4">
     <div class="row">
         <div class="col-12">
@@ -833,46 +823,5 @@
         </div>
     </div>
 </div>
-
-<!-- DATATABLE -->
-<script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.js"></script>
-<script src="https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.dataTables.js"></script>
-<script src="https://cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.js"></script>
-<script src="https://cdn.datatables.net/responsive/3.0.4/js/responsive.dataTables.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        var table = $('#tableEducation').DataTable({
-            paging: true,
-            searching: false,
-            lengthChange: false,
-            responsive: true,
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            }
-        });
-    });
-    $(document).ready(function() {
-        var table = $('#tableExperience').DataTable({
-            paging: true,
-            searching: false,
-            lengthChange: false,
-            responsive: true,
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            }
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $('.summernote-editor').each(function() {
-            $(this).summernote();
-        });
-    });
-</script>
-
 
 @endsection

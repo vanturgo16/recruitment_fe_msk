@@ -77,6 +77,8 @@ Route::middleware([Authenticate::class, NoCache::class, UpdateLastSeen::class])-
     Route::controller(JobApplyController::class)->group(function () {
         Route::prefix('/job-apply')->group(function () {
             Route::get('/', 'index')->name('jobApply');
+            Route::post('/store-screening', 'storeScreening')->name('jobApply.storeScreening');
+            Route::get('/detail/{id}', 'detail')->name('jobApply.detail');
         });
     });
 });

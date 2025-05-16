@@ -1,0 +1,28 @@
+@extends('dashboard.menu')
+@section('contentDashboard')
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <div class="page-title-left">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a class="text-danger" href="{{ route('home') }}">..</a></li>
+                        <li class="breadcrumb-item"><a class="text-danger" href="{{ route('jobApply') }}">Lamaran</a></li>
+                        <li class="breadcrumb-item active"> Detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card p-lg-5 p-3" style="min-height: 70vh;">
+    <div class="row">
+        <div class="col-12">
+            
+        </div>
+    </div>
+</div>
+
+@endsection
