@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 // Traits
 use App\Traits\AuditLogsTrait;
+use App\Traits\ProfilTrait;
 
 // Model
 use App\Models\User;
@@ -20,6 +21,7 @@ use App\Models\JobApplies;
 class LandingPageController extends Controller
 {
     use AuditLogsTrait;
+    use ProfilTrait;
 
     public function index(Request $request)
     {
@@ -67,17 +69,13 @@ class LandingPageController extends Controller
 
         $idCandidate = auth()->user()->id_candidate;
         // Check if user profile is complete
-        $profileComplete = MainProfile::where('id_candidate', $idCandidate)->exists()
-            && EducationInfo::where('id_candidate', $idCandidate)->exists()
-            && GeneralInfo::where('id_candidate', $idCandidate)->exists()
-            && WorkExpInfo::where('id_candidate', $idCandidate)->exists();
-        if (!$profileComplete) {
+        if (!$this->checkProfile($idCandidate)) {
             return redirect()->route('profile')->with('info', 'Silakan lengkapi profil Anda terlebih dahulu.');
         }
 
-        // Check if user has already applied to this job
-        if (JobApplies::where('id_candidate', $idCandidate)->exists()) {
-            return back()->with('info', 'Anda Telah Melamar.');
+        // Check if user has in progress application
+        if ($this->checkApplicationIP($idCandidate)) {
+            return back()->with('info', 'Masih Ada Lamaran Anda Dalam Proses.');
         }
 
         $id = decrypt($id);

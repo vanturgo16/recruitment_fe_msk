@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.4/css/responsive.dataTables.css">
 <!-- JQUERY SCRIPT -->
 <script type="text/javascript" src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
+{{-- SUMMERNOTE --}}
+<link href="{{ asset('assets/css/summernote-bs4.min.css') }}" rel="stylesheet">
+<script src="{{ asset('assets/js/summernote-bs4.min.js') }}"></script>
 
 <div class="container py-4">
     <div class="row">
@@ -15,7 +18,7 @@
                 <div class="page-title-left">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a class="text-danger" href="{{ route('home') }}">..</a></li>
-                        <li class="breadcrumb-item active"> Profile</li>
+                        <li class="breadcrumb-item active"> Profil</li>
                     </ol>
                 </div>
             </div>
@@ -338,8 +341,7 @@
                         </button>
                         {{-- Modal Add --}}
                         <div class="modal fade" id="addEducation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            
-                            <div class="modal-dialog modal-xl modal-dialog-top modal-dialog-scrollable" role="document">
+                            <div class="modal-dialog modal-lg modal-dialog-top modal-dialog-scrollable" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header bg-danger">
                                         <h5 class="modal-title" id="staticBackdropLabel">Tambah</h5>
@@ -424,7 +426,7 @@
                                     <td>{{ $item->edu_institution }}</td>
                                     <td>{{ $item->edu_city }}</td>
                                     <td>{{ $item->edu_major }}</td>
-                                    <td>{{ $item->edu_start_year }} - {{ $item->edu_end_year }}</td>
+                                    <td>{{ $item->edu_start_year }} -> {{ $item->edu_end_year }}</td>
                                     <td class="text-center">
                                         @if($isEditable)
                                             <div class="btn-group" role="group">
@@ -489,20 +491,109 @@
                         </button>
                         {{-- Modal Edit --}}
                         <div class="modal fade" id="editGeneralInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-top" role="document">
+                            <div class="modal-dialog modal-xl modal-dialog-top modal-dialog-scrollable" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header bg-danger">
                                         <h5 class="modal-title" id="staticBackdropLabel">Edit</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form class="formLoad" action="#" id="formadd" method="POST" enctype="multipart/form-data">
+                                    <form class="formLoad" action="{{ route('profile.updateGeneralInfo') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="modal-body text-start">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Identitas</label> <label class="text-danger">*</label>
-                                                        <textarea name="message" rows="8" cols="50" class="form-control" placeholder="Input Identitas.." required></textarea>
+                                        <div class="modal-body small text-start" style="max-height: 67vh; overflow-y: auto;">
+                                            <div class="container">
+                                                <div class="row">
+                                                    @php
+                                                        $fields = [
+                                                            ['label' => 'Riwayat Penyakit', 'name' => 'illness_history'],
+                                                            ['label' => 'Riwayat Kriminal', 'name' => 'criminal_history'],
+                                                            ['label' => 'Riwayat Organisasi Massa', 'name' => 'mass_org_history'],
+                                                        ];
+                                                    @endphp
+                                                
+                                                    @foreach ($fields as $field)
+                                                        <div class="col-lg-4 mb-4">
+                                                            <label class="form-label fw-semibold">{{ $field['label'] }} <span class="text-danger">*</span></label>
+                                                            <select name="{{ $field['name'] }}" id="{{ $field['name'] }}" class="form-select mb-2 toggle-trigger" required
+                                                                    data-target="{{ $field['name'] }}_desc_wrapper">
+                                                                <option value="">-- Pilih --</option>
+                                                                @foreach($optionYN as $item)
+                                                                    <option value="{{ $item }}" {{ ($generalInfo && $generalInfo->{$field['name']} == $item) ? 'selected' : '' }}>
+                                                                        {{ $item }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                
+                                                            <div id="{{ $field['name'] }}_desc_wrapper" class="toggle-target" style="display: none;">
+                                                                <label for="{{ $field['name'] }}_desc" class="form-label">Detail {{ $field['label'] }}</label>
+                                                                <textarea class="form-control" id="{{ $field['name'] }}_desc" name="{{ $field['name'] }}_desc" rows="3"
+                                                                    placeholder="Sebutkan detail...">{{ $generalInfo->{$field['name'].'_desc'} ?? '' }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-4">
+                                                        <label class="form-label fw-semibold">Pengalaman Pelatihan <span class="text-danger">*</span></label>
+                                                        <select name="training_exp" id="training_exp" class="form-select mb-2 toggle-trigger" required
+                                                                data-target="training_exp_desc_wrapper">
+                                                            <option value="">-- Pilih --</option>
+                                                            @foreach($optionYN as $item)
+                                                                <option value="{{ $item }}" {{ ($generalInfo && $generalInfo->training_exp == $item) ? 'selected' : '' }}>
+                                                                    {{ $item }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        <div id="training_exp_desc_wrapper" class="toggle-target" style="display: none;">
+                                                            <label for="training_exp_desc" class="form-label">Detail Pengalaman Pelatihan</label>
+                                                            <textarea class="summernote-editor" id="training_exp_desc" name="training_exp_desc" rows="3"
+                                                                placeholder="Sebutkan detail...">{!! $generalInfo->training_exp_desc ?? '' !!}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function () {
+                                                        const triggers = document.querySelectorAll('.toggle-trigger');
+                                                        triggers.forEach(select => {
+                                                            const targetId = select.dataset.target;
+                                                            const wrapper = document.getElementById(targetId);
+                                                            const textarea = wrapper.querySelector('textarea');
+                                                            function toggleField() {
+                                                                if (select.value === 'Yes') {
+                                                                    wrapper.style.display = 'block';
+                                                                    textarea.removeAttribute('readonly');
+                                                                    textarea.setAttribute('required', 'required');
+                                                                } else {
+                                                                    wrapper.style.display = 'none';
+                                                                    textarea.removeAttribute('required');
+                                                                    textarea.value = '';
+                                                                }
+                                                            }
+                                                            select.addEventListener('change', toggleField);
+                                                            toggleField(); // Initial run
+                                                        });
+                                                    });
+                                                </script>
+                                                <hr>
+                                                <div class="row">
+                                                    <!-- Sumber Informasi -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Sumber Informasi <span class="text-danger">*</span></label>
+                                                        <select name="source_info" class="form-control" required>
+                                                            <option value="">-- Pilih --</option>
+                                                            @foreach($sourceInfo as $item)
+                                                                <option value="{{ $item }}" {{ ($generalInfo && $generalInfo->source_info == $item) ? 'selected' : '' }}>{{ $item }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <!-- Pengalaman -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Berpengalaman Kerja? <span class="text-danger">*</span></label>
+                                                        <select name="experience" class="form-control" required>
+                                                            <option value="">-- Pilih --</option>
+                                                            @foreach($expInfo as $item)
+                                                                <option value="{{ $item }}" {{ ($generalInfo && $generalInfo->experience == $item) ? 'selected' : '' }}>{{ $item }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -526,15 +617,11 @@
                     <div class="form-group">
                         <div><span class="fw-bold">Riwayat Penyakit :</span></div>
                         <small>
-                            {!! $generalInfo->illness_history_desc ?? '<span class="badge bg-secondary text-dark">Not Set</span>' !!}
-                        </small>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-3">
-                    <div class="form-group">
-                        <div><span class="fw-bold">Pengalaman Pelatihan :</span></div>
-                        <small>
-                            {!! $generalInfo->training_exp_desc ?? '<span class="badge bg-secondary text-dark">Not Set</span>' !!}
+                            @if($generalInfo && $generalInfo->illness_history)
+                                {!! $generalInfo->illness_history_desc ?? 'Tidak Ada' !!}
+                            @else
+                                <span class="badge bg-secondary text-dark">Not Set</span>
+                            @endif
                         </small>
                     </div>
                 </div>
@@ -542,7 +629,11 @@
                     <div class="form-group">
                         <div><span class="fw-bold">Riwayat Kriminal :</span></div>
                         <small>
-                            {!! $generalInfo->criminal_history ?? '<span class="badge bg-secondary text-dark">Not Set</span>' !!}
+                            @if($generalInfo && $generalInfo->criminal_history)
+                                {!! $generalInfo->criminal_history_desc ?? 'Tidak Ada' !!}
+                            @else
+                                <span class="badge bg-secondary text-dark">Not Set</span>
+                            @endif
                         </small>
                     </div>
                 </div>
@@ -550,7 +641,37 @@
                     <div class="form-group">
                         <div><span class="fw-bold">Pengalaman Organisasi :</span></div>
                         <small>
-                            {!! $generalInfo->mass_org_history_desc ?? '<span class="badge bg-secondary text-dark">Not Set</span>' !!}
+                            @if($generalInfo && $generalInfo->mass_org_history)
+                                {!! $generalInfo->mass_org_history_desc ?? 'Tidak Ada' !!}
+                            @else
+                                <span class="badge bg-secondary text-dark">Not Set</span>
+                            @endif
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12 mb-3">
+                    <div class="form-group">
+                        <div><span class="fw-bold">Pengalaman Pelatihan :</span></div>
+                        <small>
+                            @if($generalInfo && $generalInfo->training_exp)
+                                {!! $generalInfo->training_exp_desc ?? 'Tidak Ada' !!}
+                            @else
+                                <span class="badge bg-secondary text-dark">Not Set</span>
+                            @endif
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 mb-3">
+                    <div class="form-group">
+                        <div><span class="fw-bold">Sumber Informasi :</span></div>
+                        <small>
+                            {!! $generalInfo->source_info ?? '<span class="badge bg-secondary text-dark">Not Set</span>' !!}
                         </small>
                     </div>
                 </div>
@@ -566,7 +687,7 @@
             <hr>
             <div class="row">
                 <div class="col-6">
-                    <h4 class="text-bold">Pengalaman</h4>
+                    <h4 class="text-bold">Pengalaman</h4> <small class="text-muted">(harus diisi jika berpengalaman / <i>experienced</i>)</small>
                 </div>
                 @if($isEditable)
                 <div class="col-6">
@@ -582,11 +703,52 @@
                                         <h5 class="modal-title" id="staticBackdropLabel">Tambah</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form class="formLoad" action="#" id="formadd" method="POST" enctype="multipart/form-data">
+                                    <form class="formLoad" action="{{ route('profile.addExperience') }}" id="formadd" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="modal-body text-start">
-                                            <div class="row">
-                                                <div class="col-12">
+                                        <div class="modal-body small text-start" style="max-height: 67vh; overflow-y: auto;">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <!-- Institusi -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Institusi / Perusahaan <span class="text-danger">*</span></label>
+                                                        <input class="form-control" name="we_institution" type="text" placeholder="Masukkan Nama Institusi.." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- Kota -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Kota <span class="text-danger">*</span></label>
+                                                        <input class="form-control" name="we_city" type="text" placeholder="Masukkan Kota / Provinsi.." required>
+                                                    </div>
+                                                    <!-- Posisi -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Posisi <span class="text-danger">*</span></label>
+                                                        <input class="form-control" name="we_position" type="text" placeholder="Masukkan Posisi.." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- Jobdesc -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Job Deskripsi <span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" name="we_jobdesc" rows="2" placeholder="Masukkan Job Deskripsi.." required></textarea>
+                                                    </div>
+                                                    <!-- Alasan Berhenti -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Alasan Berhenti </label>
+                                                        <textarea class="form-control" name="resign_reason" rows="2" placeholder="Alasan Berhenti (Opsional).."></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!-- Periode Dari -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Periode (Dari) <span class="text-danger">*</span></label>
+                                                        <input class="form-control" name="we_start" type="date" required>
+                                                    </div>
+                                                    <!-- Periode Dari -->
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Periode (Hingga) </label>
+                                                        <input class="form-control" name="we_end" type="date">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -606,23 +768,63 @@
                         <thead class="table-light">
                             <tr>
                                 <th class="align-middle text-center">#</th>
-                                <th class="align-middle text-center">Institusi / Perusahaan</th>
-                                <th class="align-middle text-center">Kota</th>
-                                <th class="align-middle text-center">Posisi</th>
-                                <th class="align-middle text-center">Periode</th>
+                                <th class="align-middle">Institusi / Perusahaan</th>
+                                <th class="align-middle">Kota</th>
+                                <th class="align-middle">Posisi</th>
+                                <th class="align-middle">Periode</th>
                                 <th class="align-middle text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($workExpInfo as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="fw-bold">{{ $item->we_institution }}</td>
+                                    <td>{{ $item->we_city }}</td>
+                                    <td>{{ $item->we_position }}</td>
+                                    <td>{{ $item->we_start }} -> {{ $item->we_end ?? 'Sekarang' }}</td>
+                                    <td class="text-center">
+                                        @if($isEditable)
+                                            <div class="btn-group" role="group">
+                                                <button id="btnGroupDropExp{{ $item->id }}" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Aksi <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="btnGroupDropExp{{ $item->id }}">
+                                                    <li><a class="dropdown-item drpdwn" href="{{ route('profile.detailExperience', encrypt($item->id)) }}"><span class="bx bx-info-circle me-2"></span> Detail</a></li>
+                                                    <li><a class="dropdown-item drpdwn" href="{{ route('profile.editExperience', encrypt($item->id)) }}"><span class="bx bx-edit me-2"></span> Edit</a></li>
+                                                    <li><a class="dropdown-item drpdwn-dgr" href="#" data-bs-toggle="modal" data-bs-target="#deleteExp{{ $item->id }}"><span class="bx bx-trash me-2"></span> Hapus</a></li>
+                                                </ul>
+                                            </div>
+                                        @else
+                                            <a href="{{ route('profile.detailExperience', encrypt($item->id)) }}" type="button" class="btn btn-sm btn-info text-white">
+                                                <i class="bx bx-info-circle"></i> Detail
+                                            </a>
+                                        @endif
+                                    </td>
                                 </tr>
+                                {{-- Modal Delete --}}
+                                <div class="modal fade" id="deleteExp{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-md modal-dialog-top " role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Hapus</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form class="formLoad" action="{{ route('profile.deleteExperience', encrypt($item->id)) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-body text-center">
+                                                    <div class="row">
+                                                        <p class="text-center">Apakah Anda Yakin Untuk <b>Hapus</b> Data?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-danger"><i class='bx bx-trash'></i> Hapus</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -660,6 +862,14 @@
             rowReorder: {
                 selector: 'td:nth-child(2)'
             }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.summernote-editor').each(function() {
+            $(this).summernote();
         });
     });
 </script>

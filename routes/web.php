@@ -62,6 +62,14 @@ Route::middleware([Authenticate::class, NoCache::class, UpdateLastSeen::class])-
             Route::get('/education/edit/{id}', 'editEducation')->name('profile.editEducation');
             Route::post('/education/update/{id}', 'updateEducation')->name('profile.updateEducation');
             Route::post('/education/delete/{id}', 'deleteEducation')->name('profile.deleteEducation');
+            // General Info
+            Route::post('/update-generalinfo', 'updateGeneralInfo')->name('profile.updateGeneralInfo');
+            // Experience
+            Route::post('/experience/add', 'addExperience')->name('profile.addExperience');
+            Route::get('/experience/detail/{id}', 'detailExperience')->name('profile.detailExperience');
+            Route::get('/experience/edit/{id}', 'editExperience')->name('profile.editExperience');
+            Route::post('/experience/update/{id}', 'updateExperience')->name('profile.updateExperience');
+            Route::post('/experience/delete/{id}', 'deleteExperience')->name('profile.deleteExperience');
         });
     });
 

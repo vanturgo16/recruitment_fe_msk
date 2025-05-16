@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    @if(!$profileComplete || $jobApplies == 0)
+    @if(!$profileComplete || !$jobAppliesIP)
         <hr>
         <div class="mb-3">
             <h3 class="fw-bold"><span class="badge bg-secondary text-dark">Langkah Selanjutnya</span></h3>
@@ -59,7 +59,7 @@
                 </div>
             @endif
 
-            @if($jobApplies == 0)
+            @if(!$jobAppliesIP)
                 <div class="col-lg-4 col-md-6">
                     <div class="card border shadow">
                         <div class="card-body">

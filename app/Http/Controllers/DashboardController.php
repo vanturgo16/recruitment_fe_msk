@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 // Traits
 use App\Traits\AuditLogsTrait;
+use App\Traits\ProfilTrait;
 
 // Model
 use App\Models\Candidate;
@@ -20,16 +21,15 @@ use App\Models\MstDropdowns;
 class DashboardController extends Controller
 {
     use AuditLogsTrait;
+    use ProfilTrait;
 
     public function home(Request $request)
     {
         $idCandidate = auth()->user()->id_candidate;
-        $profileComplete = MainProfile::where('id_candidate', $idCandidate)->exists()
-            && EducationInfo::where('id_candidate', $idCandidate)->exists()
-            && GeneralInfo::where('id_candidate', $idCandidate)->exists()
-            && WorkExpInfo::where('id_candidate', $idCandidate)->exists();
+        $profileComplete = $this->checkProfile($idCandidate);
+        $jobAppliesIP = $this->checkApplicationIP($idCandidate);
         $jobApplies = JobApplies::where('id_candidate', $idCandidate)->count();
 
-        return view('dashboard.index', compact('profileComplete', 'jobApplies'));
+        return view('dashboard.index', compact('profileComplete', 'jobAppliesIP', 'jobApplies'));
     }
 }
