@@ -12,6 +12,7 @@ class ConfirmationAccount extends Mailable
 
     public $data;
     public $link;
+    public $expConfirm;
 
     public function __construct($data, $link, $expConfirm)
     {
