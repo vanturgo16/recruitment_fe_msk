@@ -155,7 +155,7 @@ class AuthController extends Controller
         if ($user) {
             if ($user->is_active == 0) {
                 $user->update([
-                    'email_verified_at ' => now(),
+                    'email_verified_at' => now(),
                     'is_active' => 1
                 ]);
                 return redirect()->route('login')->with('success', 'Akun berhasil diaktivasi, silahkan login.');
