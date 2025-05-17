@@ -32,8 +32,8 @@
 								</div>
 								<div class="col-lg-6">
 									<div class="mb-3">
-										<label class="form-label">Nama Belakang<span class="text-danger">*</span></label>
-										<input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" placeholder="Masukkan Nama Belakang.." required />
+										<label class="form-label">Nama Belakang</label>
+										<input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" placeholder="Masukkan Nama Belakang.." />
 										<div class="invalid-feedback">Masukkan Nama Belakang</div>
 									</div>
 								</div>
