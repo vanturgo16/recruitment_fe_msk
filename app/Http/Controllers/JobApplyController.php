@@ -44,6 +44,7 @@ class JobApplyController extends Controller
                 'id_candidate' => $idCandidate,
                 'id_joblist' => $request->id_job,
                 'screening_content' => $request->screening_content,
+                'progress_status' => 'REVIEW ADM',
                 'status' => 0,
             ]);
 
