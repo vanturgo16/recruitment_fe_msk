@@ -7,7 +7,7 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
 			<div class="carousel-indicators">
 				@php
-					$totalSlides = $jobBanner->isEmpty() ? 4 : 3 + $jobBanner->count();
+					$totalSlides = $jobBanner->isEmpty() ? 3 : 2 + $jobBanner->count();
 				@endphp
 				@for ($i = 0; $i < $totalSlides; $i++)
 					<button type="button"
@@ -78,7 +78,8 @@
 
 				{{-- IMAGE BANNER --}}
 				@php
-					$banners = ['Banner1.jpg', 'Banner2.jpg'];
+					// $banners = ['Banner1.jpg', 'Banner2.jpg'];
+					$banners = ['Banner.jpg'];
 				@endphp
 				@foreach ($banners as $banner)
 					<div class="carousel-item">
