@@ -43,11 +43,7 @@
                                 <td>{{ $item->created_at->format('F j, Y') }}</td>
     
                                 <td class="align-middle text-center">
-                                    @if($item->is_approved_1 == null)
-                                        <span class="badge bg-secondary text-dark">Review</span>
-                                    @else 
-                                        -
-                                    @endif
+                                    <span class="badge bg-secondary text-dark">{{ $item->progress_status }}</span>
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('jobApply.detail', encrypt($item->id)) }}" type="button" class="btn btn-sm btn-info text-white">
