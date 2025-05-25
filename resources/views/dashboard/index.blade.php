@@ -1,63 +1,7 @@
 @extends('dashboard.menu')
 @section('contentDashboard')
 
-<style>
-    .stepper {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 1rem;
-    }
-    .step {
-        flex: 1 1 18%;
-        min-width: 150px;
-        background-color: #f8f9fa;
-        color: darkgray;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-sizing: border-box;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .step.completed {
-        background-color: #d1e7dd;
-        color: #0f5132;
-    }
-    .step.active {
-        background-color: #db1436;
-        color: #ffffff;
-        transform: scale(1.05);
-    }
-    .step-icon {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-    }
-    .step.completed .step-icon {
-        color: #198754;
-    }
-    /* Mobile */
-    @media (max-width: 768px) {
-        .stepper {
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .step {
-            flex: none;
-            min-width: auto;
-            flex-direction: row;
-            justify-content: flex-start;
-            padding: 0.75rem 1rem;
-            text-align: left;
-        }
-        .step-icon {
-            margin-right: 1rem;
-            margin-bottom: 0;
-        }
-    }
-</style>
+<link href="{{ asset('assets/css/step.css') }}" rel="stylesheet">
 
 <div class="container py-4">
     <div class="row">
@@ -85,7 +29,7 @@
             <div class="card border shadow">
                 <div class="card-body">
                     <span>Jumlah Lamaran</span>
-                    <h3 class="mb-0 mt-4 text-muted"><strong>{{ $jobApplies }}</strong> Lamaran Dikirim</h3>
+                    <h3 class="mb-0 mt-4 text-muted"><strong><a href="{{ route('jobApply') }}" class="text-dark">{{ $jobApplies }}</a></strong> Lamaran Dikirim</h3>
                 </div>
             </div>
         </div>
@@ -142,57 +86,40 @@
         <div class="mb-3">
             <h3 class="fw-bold"><span class="badge bg-secondary text-dark">Status Lamaran Terakhir</span></h3>
         </div>
+        
         @php
             $steps = [
-                ['label' => 'Lamaran Terkirim', 'icon' => 'bi-send-check'],
-                ['label' => 'Review HRD', 'icon' => 'bi-hourglass-split'],
-                ['label' => 'Interview HRD', 'icon' => 'bi-person-lines-fill'],
-                ['label' => 'Tes', 'icon' => 'bi-file-earmark-text'],
-                ['label' => 'Selesai', 'icon' => 'bi-check-circle'],
+                ['label' => 'LAMARAN TERKIRIM', 'icon' => 'bi-send-check'],
+                ['label' => 'REVIEW ADM', 'icon' => 'bi-hourglass-split'],
+                ['label' => 'INTERVIEW', 'icon' => 'bi-person-lines-fill'],
+                ['label' => 'READY TESTED', 'icon' => 'bi-file-earmark-text'],
+                ['label' => 'REJECTED / ACCEPTED', 'icon' => 'bi-info-circle'],
             ];
-            $currentStep = 'Review HRD';
+            $rawStatus = strtoupper($lastJobApplies->progress_status);
+            // Normalize status
+            if (in_array($rawStatus, ['REJECTED', 'ACCEPTED'])) {
+                $currentStep = 'REJECTED / ACCEPTED';
+            } else {
+                $currentStep = $rawStatus;
+            }
+            $currentIndex = collect($steps)->pluck('label')->search($currentStep);
         @endphp
-        {{-- <div class="stepper">
-            @foreach($steps as $step)
+
+        <div class="stepper">
+            @foreach ($steps as $index => $step)
                 @php
-                    $status = 'default';
-                    if (array_search($step, $steps) < array_search(array_filter($steps, fn($s) => $s['label'] === $currentStep)[0], $steps)) {
-                        $status = 'completed';
-                    } elseif ($step['label'] === $currentStep) {
-                        $status = 'active';
+                    $class = '';
+                    if ($index < $currentIndex) {
+                        $class = 'completed';
+                    } elseif ($index === $currentIndex) {
+                        $class = 'active';
                     }
                 @endphp
-        
-                <div class="step {{ $status }}">
-                    <div class="step-icon">
-                        <i class="bi {{ $step['icon'] }}"></i>
-                    </div>
+                <div class="step {{ $class }}">
+                    <div class="step-icon"><i class="bi {{ $step['icon'] }}"></i></div>
                     <div class="step-label">{{ $step['label'] }}</div>
                 </div>
             @endforeach
-        </div> --}}
-
-        <div class="stepper">
-            <div class="step completed">
-                <div class="step-icon"><i class="bi bi-send-check"></i></div>
-                <div class="step-label">Lamaran Terkirim</div>
-            </div>
-            <div class="step active">
-                <div class="step-icon"><i class="bi bi-hourglass-split"></i></div>
-                <div class="step-label">Review HRD</div>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="bi bi-person-lines-fill"></i></div>
-                <div class="step-label">Interview HRD</div>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="bi bi-file-earmark-text"></i></div>
-                <div class="step-label">Tes</div>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="bi bi-check-circle"></i></div>
-                <div class="step-label">Selesai</div>
-            </div>
         </div>
     @endif
 </div>

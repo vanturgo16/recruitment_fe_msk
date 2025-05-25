@@ -12,6 +12,7 @@ use App\Traits\AuditLogsTrait;
 
 // Model
 use App\Models\JobApplies;
+use App\Models\Joblist;
 
 class JobApplyController extends Controller
 {
@@ -20,7 +21,7 @@ class JobApplyController extends Controller
     public function index(Request $request)
     {
         $idCandidate = auth()->user()->id_candidate;
-        $datas = JobApplies::select('mst_positions.position_name', 'mst_departments.dept_name', 'joblists.*')
+        $datas = JobApplies::select('job_applies.*', 'mst_positions.position_name', 'mst_departments.dept_name')
             ->leftJoin('joblists', 'job_applies.id_joblist', 'joblists.id')
             ->leftJoin('mst_positions', 'joblists.id_position', 'mst_positions.id')
             ->leftJoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
@@ -40,12 +41,19 @@ class JobApplyController extends Controller
 
         DB::beginTransaction();
         try {
+            // Lock the job row for update to prevent race condition
+            $jobList = Joblist::where('id', $request->id_job)->lockForUpdate()->first();
+
             $data = JobApplies::create([
                 'id_candidate' => $idCandidate,
                 'id_joblist' => $request->id_job,
                 'screening_content' => $request->screening_content,
                 'progress_status' => 'REVIEW ADM',
                 'status' => 0,
+            ]);
+
+            Joblist::where('id', $request->id_job)->update([
+                'number_of_applicant' => $jobList->number_of_applicant + 1
             ]);
 
             $this->auditLogs('Mengirim Lamaran ID : '. $data->id);
@@ -60,7 +68,7 @@ class JobApplyController extends Controller
     public function detail($id)
     {
         $id = decrypt($id);
-        $data = JobApplies::select('mst_positions.position_name', 'mst_departments.dept_name', 'joblists.*')
+        $data = JobApplies::select('job_applies.*', 'mst_positions.position_name', 'mst_departments.dept_name')
             ->leftJoin('joblists', 'job_applies.id_joblist', 'joblists.id')
             ->leftJoin('mst_positions', 'joblists.id_position', 'mst_positions.id')
             ->leftJoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
