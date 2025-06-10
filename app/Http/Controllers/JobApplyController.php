@@ -13,6 +13,10 @@ use App\Traits\AuditLogsTrait;
 // Model
 use App\Models\JobApplies;
 use App\Models\Joblist;
+use App\Models\InterviewSchedules;
+use App\Models\MCUSchedules;
+use App\Models\TestSchedules;
+use App\Models\OfferingSchedules;
 
 class JobApplyController extends Controller
 {
@@ -74,8 +78,13 @@ class JobApplyController extends Controller
             ->leftJoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
             ->where('job_applies.id', $id)
             ->first();
+        
+        $schedInterview = InterviewSchedules::where('id_jobapply', $id)->first();
+        $schedTest = TestSchedules::where('id_jobapply', $id)->first();
+        $schedOffering = OfferingSchedules::where('id_jobapply', $id)->first();
+        $schedMCU = MCUSchedules::where('id_jobapply', $id)->first();
 
         $this->auditLogs('Melihat detail lamaran ID : '. $id);
-        return view('dashboard.jobApply.detail', compact('data'));
+        return view('dashboard.jobApply.detail', compact('data', 'schedInterview', 'schedTest', 'schedOffering', 'schedMCU'));
     }
 }
