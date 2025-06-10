@@ -6058,9 +6058,13 @@ fieldset:disabled .btn {
 }
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-    background-color: var(--bs-nav-tabs-link-active-bg);
+    /* background-color: var(--bs-nav-tabs-link-active-bg); */
     border-color: var(--bs-nav-tabs-link-active-border-color);
     color: var(--bs-nav-tabs-link-active-color);
+    
+    background-color: #db1436;
+    color: #ffffff;
+    transform: scale(1.05);
 }
 .nav-tabs .dropdown-menu {
     border-top-left-radius: 0;

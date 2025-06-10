@@ -43,7 +43,11 @@
                                 <td>{{ $item->created_at->format('F j, Y') }}</td>
     
                                 <td class="align-middle text-center">
-                                    <span class="badge bg-secondary text-dark">{{ $item->progress_status }}</span>
+                                    @if($item->status == 2)
+                                        <span class="badge bg-danger text-white">REJECT</span>
+                                    @else
+                                        <span class="badge bg-secondary text-dark">{{ $item->progress_status }}</span>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('jobApply.detail', encrypt($item->id)) }}" type="button" class="btn btn-sm btn-info text-white">

@@ -84,7 +84,18 @@
     @else
         <hr>
         <div class="mb-3">
-            <h3 class="fw-bold"><span class="badge bg-secondary text-dark">Status Lamaran Terakhir</span></h3>
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="fw-bold"><span class="badge bg-secondary text-dark">Status Lamaran Terakhir</span></h3>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('jobApply.detail', encrypt($lastJobApplies->id)) }}" type="button" class="btn btn-sm btn-info text-white">
+                            <i class="bx bx-info-circle"></i> Detail
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         
         @php
@@ -92,7 +103,10 @@
                 ['label' => 'LAMARAN TERKIRIM', 'icon' => 'bi-send-check'],
                 ['label' => 'REVIEW ADM', 'icon' => 'bi-hourglass-split'],
                 ['label' => 'INTERVIEW', 'icon' => 'bi-person-lines-fill'],
-                ['label' => 'READY TESTED', 'icon' => 'bi-file-earmark-text'],
+                ['label' => 'TESTED', 'icon' => 'bi-file-earmark-text'],
+                ['label' => 'OFFERING', 'icon' => 'bi-question-circle'],
+                ['label' => 'MCU', 'icon' => 'bi-file-medical'],
+                ['label' => 'HIRED', 'icon' => 'bi-pen-fill'],
                 ['label' => 'REJECTED / ACCEPTED', 'icon' => 'bi-info-circle'],
             ];
             $rawStatus = strtoupper($lastJobApplies->progress_status);
