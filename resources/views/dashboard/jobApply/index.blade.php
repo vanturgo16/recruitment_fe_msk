@@ -16,6 +16,23 @@
     </div>
 </div>
 
+
+@php
+    $progressSteps = [
+        'LAMARAN TERKIRIM' => ['icon' => 'bi-send-check', 'badge' => 'secondary', 'text' => 'dark'],
+        'REVIEW ADM'       => ['icon' => 'bi-hourglass-split', 'badge' => 'warning', 'text' => 'white'],
+        'INTERVIEW'        => ['icon' => 'bi-person-lines-fill', 'badge' => 'warning', 'text' => 'white'],
+        'TESTED'           => ['icon' => 'bi-file-earmark-text', 'badge' => 'warning', 'text' => 'white'],
+        'OFFERING'         => ['icon' => 'bi-question-circle', 'badge' => 'warning', 'text' => 'white'],
+        'MCU'              => ['icon' => 'bi-file-medical', 'badge' => 'warning', 'text' => 'white'],
+        'SIGN'             => ['icon' => 'bi-pen-fill', 'badge' => 'warning', 'text' => 'white'],
+        'HIRED'            => ['icon' => 'bi-check-circle', 'badge' => 'success', 'text' => 'white'],
+        'REJECT'           => ['icon' => 'bi-x-circle-fill', 'badge' => 'danger', 'text' => 'white'],
+        // fallback/default for undefined or unknown statuses
+        'DEFAULT'          => ['icon' => 'bi-question-circle', 'badge' => 'secondary', 'text' => 'dark'],
+    ];
+@endphp
+
 <div class="card" style="min-height: 70vh;">
     <div class="card-header bg-secondary">
         Daftar Lamaran Anda
@@ -37,19 +54,20 @@
                     <tbody>
                         @foreach ($datas as $item)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="fw-bold">{{ $item->position_name }}</td>
-                                <td>{{ $item->dept_name }}</td>
-                                <td>{{ $item->created_at->format('F j, Y') }}</td>
-    
-                                <td class="align-middle text-center">
-                                    @if($item->status == 2)
-                                        <span class="badge bg-danger text-white">REJECT</span>
-                                    @else
-                                        <span class="badge bg-secondary text-dark">{{ $item->progress_status }}</span>
-                                    @endif
+                                <td class="align-top text-center">{{ $loop->iteration }}</td>
+                                <td class="align-top text-center fw-bold">{{ $item->position_name }}</td>
+                                <td class="align-top">{{ $item->dept_name }}</td>
+                                <td class="align-top">{{ $item->created_at->format('F j, Y') }}</td>
+                                <td class="align-top text-center">
+                                    @php
+                                        $status = $item->status == 2 ? 'REJECT' : $item->progress_status;
+                                        $step = $progressSteps[$status] ?? $progressSteps['DEFAULT'];
+                                    @endphp
+                                    <span class="badge bg-{{ $step['badge'] }} text-{{ $step['text'] }}">
+                                        <i class="bi {{ $step['icon'] }}"></i> {{ $status }}
+                                    </span>
                                 </td>
-                                <td class="text-center">
+                                <td class="align-top text-center">
                                     <a href="{{ route('jobApply.detail', encrypt($item->id)) }}" type="button" class="btn btn-sm btn-info text-white">
                                         <i class="bx bx-info-circle"></i> Detail
                                     </a>

@@ -38,7 +38,7 @@
     @if(!$profileComplete || !$jobAppliesIP)
         <hr>
         <div class="mb-3">
-            <h3 class="fw-bold"><span class="badge bg-secondary text-dark">Langkah Selanjutnya</span></h3>
+            <h3 class="fw-bold"><span class="badge bg-secondary text-dark">{{ ($jobApplies > 0) ? 'Lamaran Yang Tersedia' : 'Langkah Selanjutnya' }}</span></h3>
         </div>
         <div class="row g-4">
             @if(!$profileComplete)
@@ -106,16 +106,10 @@
                 ['label' => 'TESTED', 'icon' => 'bi-file-earmark-text'],
                 ['label' => 'OFFERING', 'icon' => 'bi-question-circle'],
                 ['label' => 'MCU', 'icon' => 'bi-file-medical'],
-                ['label' => 'HIRED', 'icon' => 'bi-pen-fill'],
-                ['label' => 'REJECTED / ACCEPTED', 'icon' => 'bi-info-circle'],
+                ['label' => 'SIGN', 'icon' => 'bi-pen-fill'],
+                ['label' => 'HIRED', 'icon' => 'bi-info-circle'],
             ];
-            $rawStatus = strtoupper($lastJobApplies->progress_status);
-            // Normalize status
-            if (in_array($rawStatus, ['REJECTED', 'ACCEPTED'])) {
-                $currentStep = 'REJECTED / ACCEPTED';
-            } else {
-                $currentStep = $rawStatus;
-            }
+            $currentStep = strtoupper($lastJobApplies->progress_status);
             $currentIndex = collect($steps)->pluck('label')->search($currentStep);
         @endphp
 

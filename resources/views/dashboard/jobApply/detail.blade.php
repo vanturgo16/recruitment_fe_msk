@@ -31,11 +31,10 @@
                     ['label' => 'TESTED', 'icon' => 'bi-file-earmark-text'],
                     ['label' => 'OFFERING', 'icon' => 'bi-question-circle'],
                     ['label' => 'MCU', 'icon' => 'bi-file-medical'],
-                    ['label' => 'HIRED', 'icon' => 'bi-pen-fill'],
-                    ['label' => 'REJECTED / ACCEPTED', 'icon' => 'bi-info-circle'],
+                    ['label' => 'SIGN', 'icon' => 'bi-pen-fill'],
+                    ['label' => 'HIRED', 'icon' => 'bi-info-circle'],
                 ];
-                $rawStatus = strtoupper($data->progress_status);
-                $currentStep = in_array($rawStatus, ['REJECTED', 'ACCEPTED']) ? 'REJECTED / ACCEPTED' : $rawStatus;
+                $currentStep = strtoupper($data->progress_status);
                 $currentIndex = collect($steps)->pluck('label')->search($currentStep);
             @endphp
 
@@ -79,7 +78,7 @@
                             <i class="bi bi-info-circle-fill"></i>
                         </div>
                         <div class="text-dark">
-                            "Mohon Maaf, Setelah melalui proses seleksi, kami informasikan bahwa Anda belum berhasil melanjut ke tahap selanjutnya."
+                            "Mohon Maaf, Setelah melalui proses seleksi dan review, kami informasikan bahwa Anda belum berhasil melanjut ke tahap selanjutnya."
                         </div>
                     </div>
                 </div>
@@ -380,21 +379,21 @@
                                 </div>
                             </div>
                             <div class="progress-detail-item">
-                                <div class="progress-detail-dot {{ ($schedMCU->ready_hired == 1 || $schedMCU->ready_hired == 2) ? 'active' : ''  }}"></div>
-                                <div class="progress-detail-content {{ ($schedMCU->ready_hired == 1 || $schedMCU->ready_hired == 2) ? 'active' : ''  }}">
+                                <div class="progress-detail-dot {{ ($schedMCU->ready_sign == 1 || $schedMCU->ready_sign == 2) ? 'active' : ''  }}"></div>
+                                <div class="progress-detail-content {{ ($schedMCU->ready_sign == 1 || $schedMCU->ready_sign == 2) ? 'active' : ''  }}">
                                     <div class="row progress-detail-title">
                                         <div class="col-6 fw-bold">Hasil</div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            @if($schedMCU->ready_hired == 1 || $schedMCU->ready_hired == 2)
+                                            @if($schedMCU->ready_sign == 1 || $schedMCU->ready_sign == 2)
                                                 {{ $schedMCU->updated_at ?? '-' }}
                                             @else
                                             @endif
                                         </div>
                                     </div>
                                     <div class="progress-detail-fill">
-                                        @if($schedMCU->ready_hired == 1)
+                                        @if($schedMCU->ready_sign == 1)
                                             <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS MCU</span></h3>
-                                        @elseif($schedMCU->ready_hired == 2)
+                                        @elseif($schedMCU->ready_sign == 2)
                                             <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL MCU</span></h3>
                                         @else 
                                             -
@@ -408,11 +407,61 @@
                     </div>
                 </div>
 
-                <!-- END RESULT -->
+                <!-- SIGN -->
                 <div class="tab-pane fade {{ $currentIndex == 6 ? 'show active' : '' }}" id="step-content-6" role="tabpanel" aria-labelledby="step-tab-6">
                     <div class="p-3 border rounded">
-                        <h5>HIRED / SIGNING CONTRACT</h5>
-                        <p>Menunggu Jadwal</p>
+                        <h5>SIGNING CONTRACT</h5>
+                        @if($schedSign)
+                            <div class="progress-detail-item">
+                                <div class="progress-detail-dot active"></div>
+                                <div class="progress-detail-content active">
+                                    <div class="row progress-detail-title">
+                                        <div class="col-6 fw-bold">Ready To Sign Contract</div>
+                                        <div class="col-6 d-flex justify-content-end">{{ $schedSign->created_at }}</div>
+                                    </div>
+                                    <div class="progress-detail-title">Jadwal</div>
+                                    <ul class="progress-detail-fill">
+                                        <li class="mb-n3">
+                                            <b>Tanggal & Waktu</b>
+                                            <p>{{ $schedSign->sign_date ?? '-' }}</p>
+                                        </li>
+                                        <li class="mb-n3">
+                                            <b>Alamat</b>
+                                            <p>{{ $schedSign->sign_address ?? '-' }}</p>
+                                        </li>
+                                        <li class="mb-n3">
+                                            <b>Catatan</b>
+                                            <p>{{ $schedSign->sign_notes ?? '-' }}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="progress-detail-item">
+                                <div class="progress-detail-dot {{ ($schedSign->ready_hired == 1 || $schedSign->ready_hired == 2) ? 'active' : ''  }}"></div>
+                                <div class="progress-detail-content {{ ($schedSign->ready_hired == 1 || $schedSign->ready_hired == 2) ? 'active' : ''  }}">
+                                    <div class="row progress-detail-title">
+                                        <div class="col-6 fw-bold">Hasil</div>
+                                        <div class="col-6 d-flex justify-content-end">
+                                            @if($schedSign->ready_hired == 1 || $schedSign->ready_hired == 2)
+                                                {{ $schedSign->updated_at ?? '-' }}
+                                            @else
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="progress-detail-fill">
+                                        @if($schedSign->ready_hired == 1)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS SIGN CONTRACT</span></h3>
+                                        @elseif($schedSign->ready_hired == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL SIGN</span></h3>
+                                        @else 
+                                            -
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <p>Menunggu Jadwal</p>
+                        @endif
                     </div>
                 </div>
 
@@ -420,7 +469,7 @@
                 <div class="tab-pane fade {{ $currentIndex == 7 ? 'show active' : '' }}" id="step-content-7" role="tabpanel" aria-labelledby="step-tab-7">
                     <div class="p-3 border rounded">
                         <h5>HASIL AKHIR</h5>
-                        @if($data->progress_status == 'ACCEPTED' && $data->status == 1)
+                        @if($data->progress_status == 'HIRED' && $data->status == 1)
                             <div class="col-12 mt-4">
                                 <div class="alert alert-success d-flex align-items-center" role="alert">
                                     <div class="me-2">
@@ -431,8 +480,8 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif($data->progress_status == 'REJECTED' && $data->status == 2)
-                            <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL</span></h3>
+                        @else
+                            <h3 class="fw-bold"><span class="badge bg-secondary text-white">-</span></h3>
                         @endif
                     </div>
                 </div>

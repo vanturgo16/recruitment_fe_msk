@@ -31,6 +31,7 @@ trait ProfilTrait
 
     public function checkApplicationIP($idCandidate)
     {
-        return JobApplies::where('id_candidate', $idCandidate)->where('status', 0)->exists();
+        // return JobApplies::where('id_candidate', $idCandidate)->where('status', 0)->exists();
+        return JobApplies::where('id_candidate', $idCandidate)->whereIn('status', [0,1])->exists();
     }
 }
