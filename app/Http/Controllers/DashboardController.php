@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $profileComplete = $this->checkProfile($idCandidate);
         $jobAppliesIP = $this->checkApplicationIP($idCandidate);
         $jobApplies = JobApplies::where('id_candidate', $idCandidate)->count();
-        $lastJobApplies = JobApplies::where('id_candidate', $idCandidate)->where('status', 0)->orderBy('created_at', 'desc')->first();
+        $lastJobApplies = JobApplies::where('id_candidate', $idCandidate)->whereIn('status', [0,1])->orderBy('created_at', 'desc')->first();
 
         return view('dashboard.index', compact('profileComplete', 'jobAppliesIP', 'jobApplies', 'lastJobApplies'));
     }
