@@ -17,6 +17,7 @@ use App\Models\InterviewSchedules;
 use App\Models\MCUSchedules;
 use App\Models\TestSchedules;
 use App\Models\OfferingSchedules;
+use App\Models\SignSchedules;
 
 class JobApplyController extends Controller
 {
@@ -42,6 +43,11 @@ class JobApplyController extends Controller
             'screening_content'  => 'required',
         ]);
         $idCandidate = auth()->user()->id_candidate;
+
+        // Add Validation Same Candidate With Applied Joblist
+        if(JobApplies::where('id_candidate', $idCandidate)->where('id_joblist', $request->id_job)->exists()){
+            return redirect()->back()->with(['fail' => 'Maaf, anda tidak bisa melamar lowongan ini kembali.']);
+        }
 
         DB::beginTransaction();
         try {
@@ -83,8 +89,9 @@ class JobApplyController extends Controller
         $schedTest = TestSchedules::where('id_jobapply', $id)->first();
         $schedOffering = OfferingSchedules::where('id_jobapply', $id)->first();
         $schedMCU = MCUSchedules::where('id_jobapply', $id)->first();
+        $schedSign = SignSchedules::where('id_jobapply', $id)->first();
 
         $this->auditLogs('Melihat detail lamaran ID : '. $id);
-        return view('dashboard.jobApply.detail', compact('data', 'schedInterview', 'schedTest', 'schedOffering', 'schedMCU'));
+        return view('dashboard.jobApply.detail', compact('data', 'schedInterview', 'schedTest', 'schedOffering', 'schedMCU', 'schedSign'));
     }
 }
