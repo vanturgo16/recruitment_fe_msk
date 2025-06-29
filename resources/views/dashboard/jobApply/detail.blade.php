@@ -204,24 +204,32 @@
                                     </ul>
                                 </div>
                             </div>
+                            @php
+                                $isResultInt = in_array($schedInterview->interview_status, [1, 2]) || in_array($schedInterview->ready_tested, [1, 2]);
+                            @endphp
                             <div class="progress-detail-item">
-                                <div class="progress-detail-dot {{ ($schedInterview->ready_tested == 1 || $schedInterview->ready_tested == 2) ? 'active' : ''  }}"></div>
-                                <div class="progress-detail-content {{ ($schedInterview->ready_tested == 1 || $schedInterview->ready_tested == 2) ? 'active' : ''  }}">
+                                <div class="progress-detail-dot {{ $isResultInt ? 'active' : '' }}"></div>
+                                <div class="progress-detail-content {{ $isResultInt ? 'active' : '' }}">
                                     <div class="row progress-detail-title">
                                         <div class="col-6 fw-bold">Hasil</div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            @if($schedInterview->ready_tested == 1 || $schedInterview->ready_tested == 2)
-                                                {{ $schedInterview->updated_at ?? '-' }}
-                                            @else
-                                            @endif
+                                            {{ $isResultInt ? ($schedInterview->updated_at ?? '-') : '' }}
                                         </div>
                                     </div>
                                     <div class="progress-detail-fill">
-                                        @if($schedInterview->ready_tested == 1)
+                                        @if($schedInterview->interview_status == 1)
                                             <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS INTERVIEW</span></h3>
-                                        @elseif($schedInterview->ready_tested == 2)
+                                        @elseif($schedInterview->interview_status == 2)
                                             <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL INTERVIEW</span></h3>
-                                        @else 
+                                        @else
+                                            -
+                                        @endif
+                                        <br>
+                                        @if($schedInterview->ready_tested == 1)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE TES</span></h3>
+                                        @elseif($schedInterview->ready_tested == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LOLOS KE TES</span></h3>
+                                        @else
                                             -
                                         @endif
                                     </div>
@@ -262,24 +270,32 @@
                                     </ul>
                                 </div>
                             </div>
+                            @php
+                                $isResultTest = in_array($schedTest->test_status, [1, 2]) || in_array($schedTest->ready_offering, [1, 2]);
+                            @endphp
                             <div class="progress-detail-item">
-                                <div class="progress-detail-dot {{ ($schedTest->ready_offering == 1 || $schedTest->ready_offering == 2) ? 'active' : ''  }}"></div>
-                                <div class="progress-detail-content {{ ($schedTest->ready_offering == 1 || $schedTest->ready_offering == 2) ? 'active' : ''  }}">
+                                <div class="progress-detail-dot {{ $isResultTest ? 'active' : '' }}"></div>
+                                <div class="progress-detail-content {{ $isResultTest ? 'active' : '' }}">
                                     <div class="row progress-detail-title">
                                         <div class="col-6 fw-bold">Hasil</div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            @if($schedTest->ready_offering == 1 || $schedTest->ready_offering == 2)
-                                                {{ $schedTest->updated_at ?? '-' }}
-                                            @else
-                                            @endif
+                                            {{ $isResultTest ? ($schedTest->updated_at ?? '-') : '' }}
                                         </div>
                                     </div>
                                     <div class="progress-detail-fill">
-                                        @if($schedTest->ready_offering == 1)
+                                        @if($schedTest->test_status == 1)
                                             <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS TEST</span></h3>
-                                        @elseif($schedTest->ready_offering == 2)
+                                        @elseif($schedTest->test_status == 2)
                                             <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL TEST</span></h3>
-                                        @else 
+                                        @else
+                                            -
+                                        @endif
+                                        <br>
+                                        @if($schedTest->ready_offering == 1)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE OFFERING</span></h3>
+                                        @elseif($schedTest->ready_offering == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LOLOS KE OFFERING</span></h3>
+                                        @else
                                             -
                                         @endif
                                     </div>
@@ -320,24 +336,32 @@
                                     </ul>
                                 </div>
                             </div>
+                            @php
+                                $isResultOffer = in_array($schedOffering->offering_status, [1, 2]) || in_array($schedOffering->ready_mcu, [1, 2]);
+                            @endphp
                             <div class="progress-detail-item">
-                                <div class="progress-detail-dot {{ ($schedOffering->ready_mcu == 1 || $schedOffering->ready_mcu == 2) ? 'active' : ''  }}"></div>
-                                <div class="progress-detail-content {{ ($schedOffering->ready_mcu == 1 || $schedOffering->ready_mcu == 2) ? 'active' : ''  }}">
+                                <div class="progress-detail-dot {{ $isResultOffer ? 'active' : '' }}"></div>
+                                <div class="progress-detail-content {{ $isResultOffer ? 'active' : '' }}">
                                     <div class="row progress-detail-title">
                                         <div class="col-6 fw-bold">Hasil</div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            @if($schedOffering->ready_mcu == 1 || $schedOffering->ready_mcu == 2)
-                                                {{ $schedOffering->updated_at ?? '-' }}
-                                            @else
-                                            @endif
+                                            {{ $isResultOffer ? ($schedOffering->updated_at ?? '-') : '' }}
                                         </div>
                                     </div>
                                     <div class="progress-detail-fill">
-                                        @if($schedOffering->ready_mcu == 1)
+                                        @if($schedOffering->offering_status == 1)
                                             <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS OFFERING</span></h3>
-                                        @elseif($schedOffering->ready_mcu == 2)
+                                        @elseif($schedOffering->offering_status == 2)
                                             <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL OFFERING</span></h3>
-                                        @else 
+                                        @else
+                                            -
+                                        @endif
+                                        <br>
+                                        @if($schedOffering->ready_mcu == 1)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE MCU</span></h3>
+                                        @elseif($schedOffering->ready_mcu == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LOLOS KE MCU</span></h3>
+                                        @else
                                             -
                                         @endif
                                     </div>
@@ -378,24 +402,32 @@
                                     </ul>
                                 </div>
                             </div>
+                            @php
+                                $isResultMCU = in_array($schedMCU->mcu_status, [1, 2]) || in_array($schedMCU->ready_sign, [1, 2]);
+                            @endphp
                             <div class="progress-detail-item">
-                                <div class="progress-detail-dot {{ ($schedMCU->ready_sign == 1 || $schedMCU->ready_sign == 2) ? 'active' : ''  }}"></div>
-                                <div class="progress-detail-content {{ ($schedMCU->ready_sign == 1 || $schedMCU->ready_sign == 2) ? 'active' : ''  }}">
+                                <div class="progress-detail-dot {{ $isResultMCU ? 'active' : '' }}"></div>
+                                <div class="progress-detail-content {{ $isResultMCU ? 'active' : '' }}">
                                     <div class="row progress-detail-title">
                                         <div class="col-6 fw-bold">Hasil</div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            @if($schedMCU->ready_sign == 1 || $schedMCU->ready_sign == 2)
-                                                {{ $schedMCU->updated_at ?? '-' }}
-                                            @else
-                                            @endif
+                                            {{ $isResultMCU ? ($schedMCU->updated_at ?? '-') : '' }}
                                         </div>
                                     </div>
                                     <div class="progress-detail-fill">
-                                        @if($schedMCU->ready_sign == 1)
+                                        @if($schedMCU->mcu_status == 1)
                                             <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS MCU</span></h3>
-                                        @elseif($schedMCU->ready_sign == 2)
+                                        @elseif($schedMCU->mcu_status == 2)
                                             <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL MCU</span></h3>
-                                        @else 
+                                        @else
+                                            -
+                                        @endif
+                                        <br>
+                                        @if($schedMCU->ready_sign == 1)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE SIGN CONTRACT</span></h3>
+                                        @elseif($schedMCU->ready_sign == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LOLOS KE SIGN CONTRACT</span></h3>
+                                        @else
                                             -
                                         @endif
                                     </div>
@@ -436,24 +468,32 @@
                                     </ul>
                                 </div>
                             </div>
+                            @php
+                                $isResultSign = in_array($schedSign->sign_status, [1, 2]) || in_array($schedSign->ready_hired, [1, 2]);
+                            @endphp
                             <div class="progress-detail-item">
-                                <div class="progress-detail-dot {{ ($schedSign->ready_hired == 1 || $schedSign->ready_hired == 2) ? 'active' : ''  }}"></div>
-                                <div class="progress-detail-content {{ ($schedSign->ready_hired == 1 || $schedSign->ready_hired == 2) ? 'active' : ''  }}">
+                                <div class="progress-detail-dot {{ $isResultSign ? 'active' : '' }}"></div>
+                                <div class="progress-detail-content {{ $isResultSign ? 'active' : '' }}">
                                     <div class="row progress-detail-title">
                                         <div class="col-6 fw-bold">Hasil</div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            @if($schedSign->ready_hired == 1 || $schedSign->ready_hired == 2)
-                                                {{ $schedSign->updated_at ?? '-' }}
-                                            @else
-                                            @endif
+                                            {{ $isResultSign ? ($schedSign->updated_at ?? '-') : '' }}
                                         </div>
                                     </div>
                                     <div class="progress-detail-fill">
-                                        @if($schedSign->ready_hired == 1)
+                                        @if($schedSign->sign_status == 1)
                                             <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS SIGN CONTRACT</span></h3>
+                                        @elseif($schedSign->sign_status == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL SIGN CONTRACT</span></h3>
+                                        @else
+                                            -
+                                        @endif
+                                        <br>
+                                        @if($schedSign->ready_hired == 1)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE HIRED</span></h3>
                                         @elseif($schedSign->ready_hired == 2)
-                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL SIGN</span></h3>
-                                        @else 
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LANJUT HIRED</span></h3>
+                                        @else
                                             -
                                         @endif
                                     </div>
