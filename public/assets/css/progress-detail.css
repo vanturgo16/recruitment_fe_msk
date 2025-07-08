@@ -1,0 +1,80 @@
+.progress-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    position: relative;
+    padding-bottom: 25px;
+}
+
+.progress-detail-item:last-child {
+    padding-bottom: 0;
+}
+
+.progress-detail-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #d7dbe0;
+    flex-shrink: 0;
+    margin-top: 4px;
+    position: relative;
+}
+
+.progress-detail-dot.active {
+    background-color: #198754;
+}
+
+.progress-detail-dot.active::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.progress-detail-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 6px;
+    width: 2px;
+    height: calc(100% - 18px);
+    background: #d1d1d1;
+}
+
+.progress-detail-content {
+    background: #f5f8ff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    flex-grow: 1;
+    transition: background 0.2s;
+}
+
+.progress-detail-content:hover {
+    background: #e9f1ff;
+}
+
+.progress-detail-content.active {
+    background: #d1e7dd;
+}
+
+.progress-detail-content.active:hover {
+    background: #9dfdd2;
+}
+
+.progress-detail-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #4A4A4A;
+    margin-bottom: 4px;
+    text-transform: capitalize;
+}
+
+.progress-detail-fill {
+    font-size: 13px;
+    color: #2c3e50;
+    word-break: break-word;
+}
