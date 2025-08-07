@@ -74,10 +74,10 @@ class ProfileController extends Controller
             'phone.required'                => 'Nomor telepon wajib diisi.',
             'phone.string'                  => 'Nomor telepon harus berupa teks.',
             'phone.max'                     => 'Nomor telepon maksimal :max karakter.',
-            'self_photo.mimes'              => 'Foto harus berupa file jpg, jpeg, atau png.',
-            'self_photo.max'                => 'Ukuran foto maksimal 500KB.',
-            'cv_path.mimes'                 => 'CV harus berupa file pdf, jpg, jpeg, atau png.',
-            'cv_path.max'                   => 'Ukuran CV maksimal 500KB.',
+            // 'self_photo.mimes'              => 'Foto harus berupa file jpg, jpeg, atau png.',
+            // 'self_photo.max'                => 'Ukuran foto maksimal 500KB.',
+            // 'cv_path.mimes'                 => 'CV harus berupa file pdf, jpg, jpeg, atau png.',
+            // 'cv_path.max'                   => 'Ukuran CV maksimal 500KB.',
             'id_card_address.required'      => 'Alamat sesuai KTP wajib diisi.',
             'domicile_address.required'     => 'Alamat domisili wajib diisi.',
             'birthplace.required'           => 'Tempat lahir wajib diisi.',
@@ -106,20 +106,20 @@ class ProfileController extends Controller
             'marriage_status'   => $request->marriage_status,
         ]);
 
-        $oldSelfPhoto = $mainProfile->exists ? $mainProfile->self_photo : null;
-        $oldCV = $mainProfile->exists ? $mainProfile->cv_path : null;
+        // $oldSelfPhoto = $mainProfile->exists ? $mainProfile->self_photo : null;
+        // $oldCV = $mainProfile->exists ? $mainProfile->cv_path : null;
 
         // Upload new files
-        if ($request->hasFile('self_photo')) {
-            $path = $request->file('self_photo');
-            $selfPhotoPath = $path->move('storage/self_photo', $path->hashName());
-            $mainProfile->self_photo = $selfPhotoPath;
-        }
-        if ($request->hasFile('cv_path')) {
-            $path = $request->file('cv_path');
-            $cvPath = $path->move('storage/cv_path', $path->hashName());
-            $mainProfile->cv_path = $cvPath;
-        }
+        // if ($request->hasFile('self_photo')) {
+        //     $path = $request->file('self_photo');
+        //     $selfPhotoPath = $path->move('storage/self_photo', $path->hashName());
+        //     $mainProfile->self_photo = $selfPhotoPath;
+        // }
+        // if ($request->hasFile('cv_path')) {
+        //     $path = $request->file('cv_path');
+        //     $cvPath = $path->move('storage/cv_path', $path->hashName());
+        //     $mainProfile->cv_path = $cvPath;
+        // }
 
         if ($candidate->isDirty() || $mainProfile->isDirty()) {
             DB::beginTransaction();
@@ -129,23 +129,23 @@ class ProfileController extends Controller
 
                 $this->auditLogs('Update Data Diri');
                 DB::commit();
-                // Delete old files only after commit success
-                if ($request->hasFile('self_photo') && $oldSelfPhoto && file_exists(public_path($oldSelfPhoto))) {
-                    unlink(public_path($oldSelfPhoto));
-                }
-                if ($request->hasFile('cv_path') && $oldCV && file_exists(public_path($oldCV))) {
-                    unlink(public_path($oldCV));
-                }
+                // // Delete old files only after commit success
+                // if ($request->hasFile('self_photo') && $oldSelfPhoto && file_exists(public_path($oldSelfPhoto))) {
+                //     unlink(public_path($oldSelfPhoto));
+                // }
+                // if ($request->hasFile('cv_path') && $oldCV && file_exists(public_path($oldCV))) {
+                //     unlink(public_path($oldCV));
+                // }
                 return back()->with('success', 'Data berhasil diperbaharui.');
             } catch (\Exception $e) {
                 DB::rollBack();
-                // Delete the *new* files if transaction fails
-                if (isset($selfPhotoPath) && file_exists(public_path($selfPhotoPath))) {
-                    unlink(public_path($selfPhotoPath));
-                }
-                if (isset($cvPath) && file_exists(public_path($cvPath))) {
-                    unlink(public_path($cvPath));
-                }
+                // // Delete the *new* files if transaction fails
+                // if (isset($selfPhotoPath) && file_exists(public_path($selfPhotoPath))) {
+                //     unlink(public_path($selfPhotoPath));
+                // }
+                // if (isset($cvPath) && file_exists(public_path($cvPath))) {
+                //     unlink(public_path($cvPath));
+                // }
                 return back()->with('fail', 'Terjadi kesalahan saat memperbaharui data.');
             }
         }
