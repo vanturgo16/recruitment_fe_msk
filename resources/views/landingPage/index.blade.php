@@ -79,7 +79,7 @@
 				{{-- IMAGE BANNER --}}
 				@php
 					// $banners = ['Banner1.jpg', 'Banner2.jpg'];
-					$banners = ['Banner.jpg'];
+					$banners = ['Slide2_1550x720px.jpg'];
 				@endphp
 				@foreach ($banners as $banner)
 					<div class="carousel-item">
