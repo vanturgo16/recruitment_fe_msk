@@ -195,13 +195,13 @@
 								<div class="collapse d-lg-block" id="collapseResources" data-bs-parent="#ft-links">
 									<ul class="list-unstyled mb-0 py-3 py-lg-0">
 										<li class="mb-2">
-											<a href="docs/index.html" class="text-decoration-none text-reset my-link">info@kemakmuran.com</a>
+											<a href="docs/index.html" class="text-decoration-none text-reset my-link">{{ $mainRules['emailHR'] ?? '-' }}</a>
 										</li>
 										<li class="mb-2">
-											<a href="#!" class="text-decoration-none text-reset my-link">1-XXX-XXX (24-Hour Customer Care)</a>
+											<a href="#!" class="text-decoration-none text-reset my-link">{{ $mainRules['phoneHR'] ?? '-' }} (Phone)</a>
 										</li>
 										<li class="mb-2">
-											<a href="changelog.html" class="text-decoration-none text-reset my-link">+62 21 XXXX XXX (Business Hour)</a>
+											<a href="changelog.html" class="text-decoration-none text-reset my-link">{{ $mainRules['waHR'] ?? '-' }} (Whatsapp)</a>
 										</li>
 									</ul>
 								</div>

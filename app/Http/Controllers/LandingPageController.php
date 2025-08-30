@@ -17,6 +17,7 @@ use App\Models\EducationInfo;
 use App\Models\GeneralInfo;
 use App\Models\WorkExpInfo;
 use App\Models\JobApplies;
+use App\Models\MstRules;
 
 class LandingPageController extends Controller
 {
@@ -25,8 +26,14 @@ class LandingPageController extends Controller
 
     public function index(Request $request)
     {
-        $search = $request->get('search');
+        $domainWeb = optional(MstRules::where('rule_name', 'Domain FE')->first())->rule_value;
+        $emailHR = optional(MstRules::where('rule_name', 'Email HR')->first())->rule_value;
+        $rules = [
+            'domainWeb' => $domainWeb,
+            'emailHR' => $emailHR,
+        ];
 
+        $search = $request->get('search');
         $jobLists = Joblist::select('joblists.*', 'mst_positions.position_name', 'mst_departments.dept_name', 'employees.email')
             ->leftjoin('mst_positions', 'joblists.id_position', 'mst_positions.id')
             ->leftjoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
@@ -38,7 +45,6 @@ class LandingPageController extends Controller
             })
             ->orderBy('joblists.created_at');
         $jobBanner = $jobLists->limit(2)->get();
-        // $jobBanner = collect();
 
         $jobLists = $jobLists->paginate(3);
 
@@ -46,7 +52,7 @@ class LandingPageController extends Controller
             return view('jobList.index', compact('jobLists', 'search'))->render();
         }
         
-        return view('landingPage.index', compact('jobBanner', 'jobLists', 'search'));
+        return view('landingPage.index', compact('rules', 'jobBanner', 'jobLists', 'search'));
     }
 
     public function detailJob($id)
