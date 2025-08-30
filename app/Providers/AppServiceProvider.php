@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\MainProfile;
+use App\Models\MstRules;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,18 @@ class AppServiceProvider extends ServiceProvider
                     }
                 }
             }
+            
+            $emailHR = optional(MstRules::where('rule_name', 'Email HR')->first())->rule_value;
+            $waHR = optional(MstRules::where('rule_name', 'WA Number HR')->first())->rule_value;
+            $phoneHR = optional(MstRules::where('rule_name', 'Phone Number HR')->first())->rule_value;
+            $rules = [
+                'emailHR' => $emailHR,
+                'waHR' => $waHR,
+                'phoneHR' => $phoneHR,
+            ];
+
             $view->with('globalSelfPhotoUrl', $photoUrl);
+            $view->with('mainRules', $rules);
         });
     }
 }

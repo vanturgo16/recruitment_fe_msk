@@ -15,6 +15,8 @@ use App\Models\JobApplies;
 use App\Models\Joblist;
 use App\Models\InterviewSchedules;
 use App\Models\MCUSchedules;
+use App\Models\MstDropdowns;
+use App\Models\MstRules;
 use App\Models\TestSchedules;
 use App\Models\OfferingSchedules;
 use App\Models\SignSchedules;
@@ -43,6 +45,16 @@ class JobApplyController extends Controller
             'screening_content'  => 'required',
         ]);
         $idCandidate = auth()->user()->id_candidate;
+
+        // Validate Min Education
+        $minEduJob = Joblist::where('id', $request->id_job)->value('min_education');
+        $minLevel = MstDropdowns::where('category', 'Education')->where('name_value', $minEduJob)->value('code_format');
+        $eduCandidate = EducationInfo::where('id_candidate', $idCandidate)->pluck('edu_grade');
+        $levelEduCandidate = MstDropdowns::where('category', 'Education')->whereIn('code_value', $eduCandidate)->pluck('code_format')->toArray();
+        $maxLevelEduCandidate = max($levelEduCandidate);
+        if($maxLevelEduCandidate < $minLevel){
+            return redirect()->back()->with(['fail' => 'Maaf, anda tidak memenuhi kualifikasi pendidikan minimal untuk melamar lowongan ini.']);
+        }
 
         // Add Validation Same Candidate With Applied Joblist
         if(JobApplies::where('id_candidate', $idCandidate)->where('id_joblist', $request->id_job)->exists()){
