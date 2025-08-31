@@ -17,6 +17,7 @@ use App\Models\EducationInfo;
 use App\Models\GeneralInfo;
 use App\Models\WorkExpInfo;
 use App\Models\JobApplies;
+use App\Models\MstDropdowns;
 use App\Models\MstRules;
 
 class LandingPageController extends Controller
@@ -83,8 +84,19 @@ class LandingPageController extends Controller
         if ($this->checkApplicationIP($idCandidate)) {
             return back()->with('info', 'Masih Ada Lamaran Anda Dalam Proses.');
         }
-
+        
         $id = decrypt($id);
+
+        // Validate Min Education
+        $minEduJob = Joblist::where('id', $id)->value('min_education');
+        $minLevel = MstDropdowns::where('category', 'Education')->where('name_value', $minEduJob)->value('code_format');
+        $eduCandidate = EducationInfo::where('id_candidate', $idCandidate)->pluck('edu_grade');
+        $levelEduCandidate = MstDropdowns::where('category', 'Education')->whereIn('name_value', $eduCandidate)->pluck('code_format')->toArray();
+        $maxLevelEduCandidate = max($levelEduCandidate);
+        if($maxLevelEduCandidate < $minLevel){
+            return redirect()->back()->with(['fail' => 'Maaf, anda tidak memenuhi kualifikasi pendidikan minimal untuk melamar lowongan ini.']);
+        }
+
         $data = Joblist::select('joblists.*', 'mst_positions.position_name', 'mst_departments.dept_name')
             ->leftjoin('mst_positions', 'joblists.id_position', 'mst_positions.id')
             ->leftjoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
