@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 // Traits
 use App\Traits\AuditLogsTrait;
@@ -19,6 +20,9 @@ use App\Models\WorkExpInfo;
 use App\Models\JobApplies;
 use App\Models\MstDropdowns;
 use App\Models\MstRules;
+
+// Mail
+use App\Mail\RejectEducation;
 
 class LandingPageController extends Controller
 {
@@ -86,22 +90,29 @@ class LandingPageController extends Controller
         }
         
         $id = decrypt($id);
-
-        // Validate Min Education
-        $minEduJob = Joblist::where('id', $id)->value('min_education');
-        $minLevel = MstDropdowns::where('category', 'Education')->where('name_value', $minEduJob)->value('code_format');
-        $eduCandidate = EducationInfo::where('id_candidate', $idCandidate)->pluck('edu_grade');
-        $levelEduCandidate = MstDropdowns::where('category', 'Education')->whereIn('name_value', $eduCandidate)->pluck('code_format')->toArray();
-        $maxLevelEduCandidate = max($levelEduCandidate);
-        if($maxLevelEduCandidate < $minLevel){
-            return redirect()->back()->with(['fail' => 'Maaf, anda tidak memenuhi kualifikasi pendidikan minimal untuk melamar lowongan ini.']);
-        }
-
         $data = Joblist::select('joblists.*', 'mst_positions.position_name', 'mst_departments.dept_name')
             ->leftjoin('mst_positions', 'joblists.id_position', 'mst_positions.id')
             ->leftjoin('mst_departments', 'mst_positions.id_dept', 'mst_departments.id')
             ->where('joblists.id', $id)
             ->first();
+
+        // Validate Min Education
+        $minLevel = MstDropdowns::where('category', 'Education')->where('name_value', $data->min_education)->value('code_format');
+        $eduCandidate = EducationInfo::where('id_candidate', $idCandidate)->pluck('edu_grade');
+        $levelEduCandidate = MstDropdowns::where('category', 'Education')->whereIn('name_value', $eduCandidate)->pluck('code_format')->toArray();
+        $maxLevelEduCandidate = max($levelEduCandidate);
+        if($maxLevelEduCandidate < $minLevel){
+            $nameApplied = auth()->user()->name;
+
+            $development = MstRules::where('rule_name', 'Development')->first()->rule_value;
+            $emailDev = MstRules::where('rule_name', 'Email Development')->pluck('rule_value')->toArray();
+            $toEmail = ($development == 1) ? $emailDev : auth()->user()->email;
+            $maxEduCandidate = optional(MstDropdowns::where('category', 'Education')->whereIn('name_value', $eduCandidate)->orderBy('code_format', 'desc')->first())->name_value;
+            // Send Email
+            $mailContent = new RejectEducation($data, $maxEduCandidate, $nameApplied);
+            Mail::to($toEmail)->send($mailContent);
+            return redirect()->back()->with(['fail' => 'Maaf, anda tidak memenuhi kualifikasi pendidikan minimal untuk melamar lowongan ini.']);
+        }
 
         return view('landingPage.screening', compact('data'));
     }
