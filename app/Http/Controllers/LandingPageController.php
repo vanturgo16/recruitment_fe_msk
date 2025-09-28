@@ -111,7 +111,10 @@ class LandingPageController extends Controller
             // Send Email
             $mailContent = new RejectEducation($data, $maxEduCandidate, $nameApplied);
             Mail::to($toEmail)->send($mailContent);
-            return redirect()->back()->with(['fail' => 'Maaf, anda tidak memenuhi kualifikasi pendidikan minimal untuk melamar lowongan ini.']);
+            // return redirect()->back()->with(['fail' => 'Maaf, anda tidak memenuhi kualifikasi pendidikan minimal untuk melamar lowongan ini.']);
+            return redirect()->back()->with([
+                'fail' => 'Mohon maaf, lamaran Anda tidak dapat diproses saat ini.'
+            ]);
         }
 
         return view('landingPage.screening', compact('data'));
