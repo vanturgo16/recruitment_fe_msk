@@ -37,6 +37,11 @@ Route::post('auth/store-forget-password', [AuthController::class, 'storeforgetPa
 Route::get('auth/reset-password/{email}', [AuthController::class, 'resetPassword'])->name('resetPassword');
 Route::post('auth/store-reset-password', [AuthController::class, 'storeresetPassword'])->name('storeresetPassword');
 
+// 2FA
+Route::get('/verify-2fa', [AuthController::class, 'show2fa'])->name('verify.2fa');
+Route::post('/verify-2fa', [AuthController::class, 'verify2fa'])->name('verify.2fa.post');
+Route::post('/resend-2fa', [AuthController::class, 'resend2fa'])->name('resend.2fa');
+
 // LOGIN
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/captcha/generate', [CaptchaController::class, 'generate'])->name('captcha.generate');

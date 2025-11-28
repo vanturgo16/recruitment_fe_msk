@@ -27,7 +27,7 @@
 							<a href="#!">
 								<div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4 image-blur bg-company">
 									<div class="row g-0">
-										<div class="col-xxl-6 col-xl-7 col-lg-8">
+										{{-- <div class="col-xxl-6 col-xl-7 col-lg-12">
 											<div class="d-flex flex-column gap-5" data-cue="zoomIn">
 												<div>
 													<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">RECRUITMENT MITRA SENDANG KEMAKMURAN</span>
@@ -47,6 +47,24 @@
 										</div>
 										<div class="col-xxl-6 col-xl-5 col-lg-4 d-none d-lg-block text-end d-flex flex-column justify-content-end" data-cue="zoomIn">
 											<img src="{{ asset('assets/images/figureMSK.png') }}" alt="Person Standing" class="img-fluid" style="max-height: 400px;">
+										</div> --}}
+										<div class="col-12">
+											<div class="d-flex flex-column gap-5" data-cue="zoomIn">
+												<div>
+													<span class="badge bg-danger border border-white text-white-stable px-3 py-2 fw-medium rounded-pill fs-8">RECRUITMENT MITRA SENDANG KEMAKMURAN</span>
+												</div>
+												<div class="d-flex flex-column gap-6">
+													<div class="d-flex flex-column gap-3">
+														<h1 class="mb-0 text-white-stable">Mari Bertumbuh Bersama <br class="d-none d-lg-block"> PT. Mitra Sendang Kemakmuran</h1>
+														<p class="mb-0 text-white-stable">
+														Buka lembaran baru dalam perjalanan karier Anda bersama MSK - Main Dealer Distribusi Sepeda Motor Honda wilayah Banten minus Tangerang yang semakin terus berkembang. Kami mencari individu berbakat dan berdedikasi untuk bergabung dalam tim profesional kami. Raih kesempatan untuk berkembang, berkontribusi, dan sukses bersama kami.
+														</p>
+													</div>
+													<div class="d-flex align-items-center">
+														<a href="#career" class="btn btn-danger">Lihat Kesempatan</a>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -79,7 +97,7 @@
 				{{-- IMAGE BANNER --}}
 				@php
 					// $banners = ['Banner1.jpg', 'Banner2.jpg'];
-					$banners = ['Banner.jpg'];
+					$banners = ['Slide2_1550x720px.jpg'];
 				@endphp
 				@foreach ($banners as $banner)
 					<div class="carousel-item">
@@ -247,7 +265,7 @@
 					</small>
 					<h2 class="h1 mt-4 mb-3">Komitmen Kami untuk Layanan Terbaik Honda.</h2>
                     <p class="mb-3">
-						PT Mitra Sendang Kemakmuran adalah jaringan resmi Honda di Banten yang melayani penjualan motor, layanan bengkel, dan penyediaan suku cadang asli Honda.
+						PT. Mitra Sendang Kemakmuran adalah jaringan resmi Honda di Banten yang melayani penjualan motor, layanan bengkel, dan penyediaan suku cadang asli Honda.
 					</p>
 					<p class="mb-0">
 						Dengan pelayanan profesional dan fasilitas terbaik, kami berkomitmen memberikan pengalaman terbaik bagi setiap pelanggan setia Honda.
@@ -393,7 +411,7 @@
 							<span class="me-2 align-self-start badge bg-danger text-white">2</span>
 						</h4>
 						<span>
-							Pastikan data dan dokumen pada Daftar Riwayat Hidup telah diisi dengan benar.
+							Pastikan data pada Daftar Riwayat Hidup telah diisi dengan benar.
 						</span>
 					</div>	
 				</div>
@@ -413,7 +431,7 @@
 							<span class="me-2 align-self-start badge bg-danger text-white">4</span>
 						</h4>
 						<span>
-							Seluruh informasi dan proses rekrutmen hanya dapat di akses melalui portal <i><span class="fw-bold">rekrutmentmsk.com</span></i> dan email resmi.
+							Seluruh informasi dan proses rekrutmen hanya dapat di akses melalui portal <i><span class="fw-bold"> {{ $rules['domainWeb'] ?? '-' }} </span></i> dan email resmi.
 						</span>
 					</div>	
 				</div>
@@ -453,7 +471,7 @@
 							<span class="me-2 align-self-start badge bg-danger text-white">8</span>
 						</h4>
 						<span>
-							Pelamar harus mengisi data diri sesuai dengan dokumen yang dilampirkan. Jika isian data diri dan dokumen tidak sesuai maka dapat mempengaruhi hasil seleksi administrasi.
+							Pelamar harus mengisi data diri yang sesuai. Jika isian data diri tidak sesuai maka dapat mempengaruhi hasil seleksi administrasi.
 						</span>
 					</div>	
 				</div>
@@ -502,7 +520,7 @@
 							<div class="alur-step-text d-none" data-content="3">
 								<h3 class="text-danger fw-bold mb-4">Melengkapi Daftar Riwayat Hidup</h3>
 								<p>
-									Pelamar wajib melengkapi Daftar Riwayat Hidup dan dokumen persyaratan pada menu Daftar Riwayat Hidup.
+									Pelamar wajib melengkapi Daftar Riwayat Hidup sesuai persyaratan pada menu Daftar Riwayat Hidup.
 								</p>
 							</div>
 							<div class="alur-step-text d-none" data-content="4">
@@ -676,7 +694,7 @@
 										Kami telah menjawab beberapa pertanyaan umum terkait rekrutmen di PT Mitra Sendang Kemakmuran. Jangan ragu untuk menghubungi kami jika ada hal lain yang ingin Anda tanyakan.
 									</p>
 								</div>
-								<a href="#!" class="btn btn-outline-danger">
+								<a href="mailto:{{ $rules['emailHR'] ?? '#' }}" class="btn btn-outline-danger">
 									Human Resource
 								</a>
 							</div>

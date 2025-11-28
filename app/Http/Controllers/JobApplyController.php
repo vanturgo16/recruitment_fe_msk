@@ -15,6 +15,8 @@ use App\Models\JobApplies;
 use App\Models\Joblist;
 use App\Models\InterviewSchedules;
 use App\Models\MCUSchedules;
+use App\Models\MstDropdowns;
+use App\Models\MstRules;
 use App\Models\TestSchedules;
 use App\Models\OfferingSchedules;
 use App\Models\SignSchedules;
@@ -85,13 +87,13 @@ class JobApplyController extends Controller
             ->where('job_applies.id', $id)
             ->first();
         
-        $schedInterview = InterviewSchedules::where('id_jobapply', $id)->first();
         $schedTest = TestSchedules::where('id_jobapply', $id)->first();
+        $schedInterview = InterviewSchedules::where('id_jobapply', $id)->first();
         $schedOffering = OfferingSchedules::where('id_jobapply', $id)->first();
         $schedMCU = MCUSchedules::where('id_jobapply', $id)->first();
         $schedSign = SignSchedules::where('id_jobapply', $id)->first();
 
         $this->auditLogs('Melihat detail lamaran ID : '. $id);
-        return view('dashboard.jobApply.detail', compact('data', 'schedInterview', 'schedTest', 'schedOffering', 'schedMCU', 'schedSign'));
+        return view('dashboard.jobApply.detail', compact('data', 'schedTest', 'schedInterview', 'schedOffering', 'schedMCU', 'schedSign'));
     }
 }

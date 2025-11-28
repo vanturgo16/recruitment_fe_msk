@@ -27,8 +27,8 @@
                 $steps = [
                     ['label' => 'LAMARAN TERKIRIM', 'icon' => 'bi-send-check'],
                     ['label' => 'REVIEW ADM', 'icon' => 'bi-hourglass-split'],
-                    ['label' => 'INTERVIEW', 'icon' => 'bi-person-lines-fill'],
                     ['label' => 'TESTED', 'icon' => 'bi-file-earmark-text'],
+                    ['label' => 'INTERVIEW', 'icon' => 'bi-person-lines-fill'],
                     ['label' => 'OFFERING', 'icon' => 'bi-question-circle'],
                     ['label' => 'MCU', 'icon' => 'bi-file-medical'],
                     ['label' => 'SIGN', 'icon' => 'bi-pen-fill'],
@@ -175,74 +175,8 @@
                     </div>
                 </div>
 
-                <!-- INTERVIEW -->
-                <div class="tab-pane fade {{ $currentIndex == 2 ? 'show active' : '' }}" id="step-content-2" role="tabpanel" aria-labelledby="step-tab-2">
-                    <div class="p-3 border rounded">
-                        <h5>INTERVIEW</h5>
-                        @if($schedInterview)
-                            <div class="progress-detail-item">
-                                <div class="progress-detail-dot active"></div>
-                                <div class="progress-detail-content active">
-                                    <div class="row progress-detail-title">
-                                        <div class="col-6 fw-bold">Ready To Interview</div>
-                                        <div class="col-6 d-flex justify-content-end">{{ $schedInterview->created_at }}</div>
-                                    </div>
-                                    <div class="progress-detail-title">Jadwal</div>
-                                    <ul class="progress-detail-fill">
-                                        <li class="mb-n3">
-                                            <b>Tanggal & Waktu</b>
-                                            <p>{{ $schedInterview->interview_date ?? '-' }}</p>
-                                        </li>
-                                        <li class="mb-n3">
-                                            <b>Alamat</b>
-                                            <p>{{ $schedInterview->interview_address ?? '-' }}</p>
-                                        </li>
-                                        <li class="mb-n3">
-                                            <b>Catatan</b>
-                                            <p>{{ $schedInterview->interview_notes ?? '-' }}</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            @php
-                                $isResultInt = in_array($schedInterview->interview_status, [1, 2]) || in_array($schedInterview->ready_tested, [1, 2]);
-                            @endphp
-                            <div class="progress-detail-item">
-                                <div class="progress-detail-dot {{ $isResultInt ? 'active' : '' }}"></div>
-                                <div class="progress-detail-content {{ $isResultInt ? 'active' : '' }}">
-                                    <div class="row progress-detail-title">
-                                        <div class="col-6 fw-bold">Hasil</div>
-                                        <div class="col-6 d-flex justify-content-end">
-                                            {{ $isResultInt ? ($schedInterview->updated_at ?? '-') : '' }}
-                                        </div>
-                                    </div>
-                                    <div class="progress-detail-fill">
-                                        @if($schedInterview->interview_status == 1)
-                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS INTERVIEW</span></h3>
-                                        @elseif($schedInterview->interview_status == 2)
-                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL INTERVIEW</span></h3>
-                                        @else
-                                            -
-                                        @endif
-                                        <br>
-                                        @if($schedInterview->ready_tested == 1)
-                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE TES</span></h3>
-                                        @elseif($schedInterview->ready_tested == 2)
-                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LOLOS KE TES</span></h3>
-                                        @else
-                                            -
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                            <p>Menunggu Jadwal</p>
-                        @endif
-                    </div>
-                </div>
-
                 <!-- TESTED -->
-                <div class="tab-pane fade {{ $currentIndex == 3 ? 'show active' : '' }}" id="step-content-3" role="tabpanel" aria-labelledby="step-tab-3">
+                <div class="tab-pane fade {{ $currentIndex == 2 ? 'show active' : '' }}" id="step-content-2" role="tabpanel" aria-labelledby="step-tab-3">
                     <div class="p-3 border rounded">
                         <h5>TESTED</h5>
                         @if($schedTest)
@@ -291,9 +225,75 @@
                                             -
                                         @endif
                                         <br>
-                                        @if($schedTest->ready_offering == 1)
+                                        @if($schedTest->ready_interview == 1)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE INTERVIEW</span></h3>
+                                        @elseif($schedTest->ready_interview == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LOLOS KE INTERVIEW</span></h3>
+                                        @else
+                                            -
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <p>Menunggu Jadwal</p>
+                        @endif
+                    </div>
+                </div>
+
+                <!-- INTERVIEW -->
+                <div class="tab-pane fade {{ $currentIndex == 3 ? 'show active' : '' }}" id="step-content-3" role="tabpanel" aria-labelledby="step-tab-2">
+                    <div class="p-3 border rounded">
+                        <h5>INTERVIEW</h5>
+                        @if($schedInterview)
+                            <div class="progress-detail-item">
+                                <div class="progress-detail-dot active"></div>
+                                <div class="progress-detail-content active">
+                                    <div class="row progress-detail-title">
+                                        <div class="col-6 fw-bold">Ready To Interview</div>
+                                        <div class="col-6 d-flex justify-content-end">{{ $schedInterview->created_at }}</div>
+                                    </div>
+                                    <div class="progress-detail-title">Jadwal</div>
+                                    <ul class="progress-detail-fill">
+                                        <li class="mb-n3">
+                                            <b>Tanggal & Waktu</b>
+                                            <p>{{ $schedInterview->interview_date ?? '-' }}</p>
+                                        </li>
+                                        <li class="mb-n3">
+                                            <b>Alamat</b>
+                                            <p>{{ $schedInterview->interview_address ?? '-' }}</p>
+                                        </li>
+                                        <li class="mb-n3">
+                                            <b>Catatan</b>
+                                            <p>{{ $schedInterview->interview_notes ?? '-' }}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @php
+                                $isResultInt = in_array($schedInterview->interview_status, [1, 2]) || in_array($schedInterview->ready_tested, [1, 2]);
+                            @endphp
+                            <div class="progress-detail-item">
+                                <div class="progress-detail-dot {{ $isResultInt ? 'active' : '' }}"></div>
+                                <div class="progress-detail-content {{ $isResultInt ? 'active' : '' }}">
+                                    <div class="row progress-detail-title">
+                                        <div class="col-6 fw-bold">Hasil</div>
+                                        <div class="col-6 d-flex justify-content-end">
+                                            {{ $isResultInt ? ($schedInterview->updated_at ?? '-') : '' }}
+                                        </div>
+                                    </div>
+                                    <div class="progress-detail-fill">
+                                        @if($schedInterview->interview_status == 1 && $schedInterview->approved_to_offering_by_1 != null)
+                                            <h3 class="fw-bold"><span class="badge bg-success text-white">LOLOS INTERVIEW</span></h3>
+                                        @elseif($schedInterview->interview_status == 2)
+                                            <h3 class="fw-bold"><span class="badge bg-danger text-white">GAGAL INTERVIEW</span></h3>
+                                        @else
+                                            -
+                                        @endif
+                                        <br>
+                                        @if($schedInterview->ready_offering == 1)
                                             <h3 class="fw-bold"><span class="badge bg-success text-white">LANJUT KE OFFERING</span></h3>
-                                        @elseif($schedTest->ready_offering == 2)
+                                        @elseif($schedInterview->ready_offering == 2)
                                             <h3 class="fw-bold"><span class="badge bg-danger text-white">TIDAK LOLOS KE OFFERING</span></h3>
                                         @else
                                             -
@@ -509,7 +509,7 @@
                 <div class="tab-pane fade {{ $currentIndex == 7 ? 'show active' : '' }}" id="step-content-7" role="tabpanel" aria-labelledby="step-tab-7">
                     <div class="p-3 border rounded">
                         <h5>HASIL AKHIR</h5>
-                        @if($data->progress_status == 'HIRED' && $data->status == 1)
+                        @if($data->progress_status == 'HIRED')
                             <div class="col-12 mt-4">
                                 <div class="alert alert-success d-flex align-items-center" role="alert">
                                     <div class="me-2">
