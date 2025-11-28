@@ -41,7 +41,7 @@
                                         @csrf
                                         <div class="modal-body small text-start" style="max-height: 67vh; overflow-y: auto;">
                                             <div class="container">
-                                                <div class="row">
+                                                {{-- <div class="row">
                                                     <!-- Foto Diri -->
                                                     <div class="col-lg-6 mb-3">
                                                         <label class="form-label">Foto Diri <small class="text-muted">(JPG/PNG/JPEG, max 500KB)</small></label>
@@ -75,7 +75,8 @@
                                                             onchange="if(this.files[0].size > 512000){ alert('Ukuran maksimal 500KB'); this.value=null; }">
                                                     </div>
                                                 </div>
-                                                <hr>
+                                                <hr> --}}
+                                                
                                                 <div class="row">
                                                     <!-- Nama Depan -->
                                                     <div class="col-lg-3 mb-3">
@@ -206,7 +207,7 @@
         </div>
         <div class="card-body small">
             <div class="row">
-                <div class="col-lg-3 mb-lg-0 mb-3">
+                {{-- <div class="col-lg-3 mb-lg-0 mb-3">
                     <div class="form-group">
                         <div><span class="fw-bold">Foto Diri :</span></div>
                         <small>
@@ -233,7 +234,7 @@
                             @endif
                         </small>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-lg-6 mb-lg-0 mb-3">
                     <div class="form-group">
                         <div><span class="fw-bold">Email :</span></div>

@@ -102,8 +102,8 @@
             $steps = [
                 ['label' => 'LAMARAN TERKIRIM', 'icon' => 'bi-send-check'],
                 ['label' => 'REVIEW ADM', 'icon' => 'bi-hourglass-split'],
-                ['label' => 'INTERVIEW', 'icon' => 'bi-person-lines-fill'],
                 ['label' => 'TESTED', 'icon' => 'bi-file-earmark-text'],
+                ['label' => 'INTERVIEW', 'icon' => 'bi-person-lines-fill'],
                 ['label' => 'OFFERING', 'icon' => 'bi-question-circle'],
                 ['label' => 'MCU', 'icon' => 'bi-file-medical'],
                 ['label' => 'SIGN', 'icon' => 'bi-pen-fill'],

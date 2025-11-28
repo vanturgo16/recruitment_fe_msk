@@ -138,7 +138,33 @@
 							<div class="step">
 								<div class="mb-3">
 									<label class="fw-bold">Gaji yang diharapkan</label>
-									<input type="number" class="form-control answer" data-question="Gaji yang diharapkan" required placeholder="Dalam Rupiah">
+									<input type="text" class="form-control answer currency" data-question="Gaji yang diharapkan" required placeholder="Dalam Rupiah">
+									<script>
+										// Fungsi format ke Rupiah
+										function formatRupiah(angka) {
+											let number_string = angka.replace(/[^,\d]/g, "").toString(),
+												split   	 = number_string.split(","),
+												sisa     	 = split[0].length % 3,
+												rupiah     	 = split[0].substr(0, sisa),
+												ribuan     	 = split[0].substr(sisa).match(/\d{3}/gi);
+											if (ribuan) {
+												let separator = sisa ? "." : "";
+												rupiah += separator + ribuan.join(".");
+											}
+											rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+											return rupiah ? "Rp " + rupiah : "";
+										}
+										// Event input
+										document.querySelectorAll(".currency").forEach(function(input) {
+											input.addEventListener("keyup", function(e) {
+												this.value = formatRupiah(this.value);
+											});
+										});
+										// Cara ambil nilai asli (tanpa format)
+										function getNumericValue(input) {
+											return input.value.replace(/[^0-9]/g, "");
+										}
+									</script>
 								</div>
 								<div class="mb-3">
 									<label class="fw-bold">Tanggal ketersediaan mulai bekerja</label>
