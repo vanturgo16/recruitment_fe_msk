@@ -114,12 +114,31 @@
                                                             placeholder="Masukkan Tempat Lahir.." required>
                                                     </div>
                                                     <!-- Tanggal Lahir -->
-                                                    <div class="col-lg-3 mb-3">
+                                                    {{-- <div class="col-lg-3 mb-3">
                                                         <label class="form-label">Tanggal Lahir <span class="text-danger">*</span></label>
                                                         <input class="form-control" name="birthdate" type="date" 
                                                             value="{{ $mainProfile->birthdate ?? null }}" 
                                                             placeholder="Masukkan Tanggal Lahir.." required>
+                                                    </div> --}}
+                                                    @php
+                                                        $maxDate = \Carbon\Carbon::now()->subYears(17)->format('Y-m-d');
+                                                    @endphp
+
+                                                    <div class="col-lg-3 mb-3">
+                                                        <label class="form-label">Tanggal Lahir <span class="text-danger">*</span></label>
+                                                        <input
+                                                            class="form-control"
+                                                            name="birthdate"
+                                                            type="date"
+                                                            value="{{ $mainProfile->birthdate ?? '' }}"
+                                                            max="{{ $maxDate }}"
+                                                            required
+                                                        >
+                                                        <small class="text-muted">
+                                                            Minimum age is <b>17 years</b>.
+                                                        </small>
                                                     </div>
+
                                                     <!-- Jenis Kelamin -->
                                                     <div class="col-lg-3 mb-3">
                                                         <label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
@@ -566,16 +585,60 @@
                                                 </script>
                                                 <hr>
                                                 <div class="row">
+                                                    @php
+                                                        $savedSource = $generalInfo->source_info ?? null;
+                                                        $isOtherSource = $savedSource && !in_array($savedSource, $sourceInfo->toArray());
+                                                    @endphp
+
                                                     <!-- Sumber Informasi -->
                                                     <div class="col-lg-6 mb-3">
                                                         <label class="form-label">Sumber Informasi <span class="text-danger">*</span></label>
-                                                        <select name="source_info" class="form-control" required>
+                                                        <select name="source_info" id="source_info" class="form-control" required>
                                                             <option value="">-- Pilih --</option>
                                                             @foreach($sourceInfo as $item)
                                                                 <option value="{{ $item }}" {{ ($generalInfo && $generalInfo->source_info == $item) ? 'selected' : '' }}>{{ $item }}</option>
                                                             @endforeach
+                                                            <option value="Lainnya" {{ $isOtherSource ? 'selected' : '' }}>
+                                                                Lainnya
+                                                            </option>
                                                         </select>
                                                     </div>
+                                                    <div class="col-lg-6 mb-3 {{ $isOtherSource ? '' : 'd-none' }}" id="source_info_other_wrapper">
+                                                        <label class="form-label">
+                                                            Sumber Informasi Lainnya <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="source_info_other"
+                                                            id="source_info_other"
+                                                            value="{{ $isOtherSource ? $savedSource : '' }}"
+                                                            placeholder="Masukkan sumber informasi lainnya..."
+                                                        >
+                                                    </div>
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', function () {
+                                                            const sourceSelect = document.getElementById('source_info');
+                                                            const otherWrapper = document.getElementById('source_info_other_wrapper');
+                                                            const otherInput   = document.getElementById('source_info_other');
+
+                                                            function toggleOtherInput() {
+                                                                if (sourceSelect.value === 'Lainnya') {
+                                                                    otherWrapper.classList.remove('d-none');
+                                                                    otherInput.required = true;
+                                                                } else {
+                                                                    otherWrapper.classList.add('d-none');
+                                                                    otherInput.required = false;
+                                                                    otherInput.value = '';
+                                                                }
+                                                            }
+
+                                                            sourceSelect.addEventListener('change', toggleOtherInput);
+                                                        });
+                                                    </script>
+
+                                                </div>
+                                                <div class="row">
                                                     <!-- Pengalaman -->
                                                     <div class="col-lg-6 mb-3">
                                                         <label class="form-label">Berpengalaman Kerja? <span class="text-danger">*</span></label>
