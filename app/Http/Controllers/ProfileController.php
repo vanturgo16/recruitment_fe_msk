@@ -305,6 +305,7 @@ class ProfileController extends Controller
             'training_exp'            => 'required',
             'training_exp_desc'       => 'required_if:training_exp,Yes|string|nullable',
             'source_info'             => 'required|string',
+            'source_info_other'       => 'required_if:source_info,Lainnya|nullable|string|max:255',
             'experience'              => 'required|string',
         ], [
             'illness_history.required'        => 'Riwayat penyakit harus diisi.',
@@ -316,11 +317,16 @@ class ProfileController extends Controller
             'training_exp.required'           => 'Pengalaman pelatihan harus diisi.',
             'training_exp_desc.required_if'   => 'Detail pelatihan harus diisi jika ada.',
             'source_info.required'            => 'Sumber informasi harus diisi.',
+            'source_info_other.required_if'     => 'Sumber informasi lainnya harus diisi.',
             'experience.required'             => 'Pengalaman kerja harus diisi.',
         ]);
 
         $idCandidate = auth()->user()->id_candidate;
         $generalInfo = GeneralInfo::firstOrNew(['id_candidate' => $idCandidate]);
+
+        $sourceInfo = $request->source_info === 'Lainnya'
+            ? $request->source_info_other
+            : $request->source_info;
 
         $generalInfo->fill([
             'illness_history'        => $request->illness_history,
@@ -331,7 +337,7 @@ class ProfileController extends Controller
             'mass_org_history_desc'  => $request->mass_org_history_desc,
             'training_exp'           => $request->training_exp,
             'training_exp_desc'      => $request->training_exp_desc,
-            'source_info'            => $request->source_info,
+            'source_info'            => $sourceInfo,
             'experience'             => $request->experience,
         ]);
 
