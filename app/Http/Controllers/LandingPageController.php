@@ -48,6 +48,7 @@ class LandingPageController extends Controller
                     ->orWhere('mst_departments.dept_name', 'like', "%{$search}%")
                     ->orWhere('joblists.jobdesc', 'like', "%{$search}%");
             })
+            ->where('joblists.is_active', 1)
             ->orderBy('joblists.created_at');
         $jobBanner = $jobLists->limit(2)->get();
 
